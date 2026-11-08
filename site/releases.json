@@ -1,0 +1,54 @@
+{
+  "repository": "upe4d/creative-relab-software",
+  "recordedAt": "2026-11-08T09:52:21.630885+00:00",
+  "products": [
+    {
+      "id": "pc-care",
+      "version": "1.1.2",
+      "date": "2026-11-08T09:51:04Z",
+      "prerelease": false,
+      "assets": {
+        "installer": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.1.2/pc-care-1.1.2-portable.exe",
+          "bytes": 111616
+        },
+        "portable": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.1.2/pc-care-1.1.2-portable.zip",
+          "bytes": 88837
+        }
+      }
+    },
+    {
+      "id": "pc-guard",
+      "version": "3.4.0",
+      "date": "2026-11-08T09:51:08Z",
+      "prerelease": true,
+      "assets": {
+        "installer": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.0/pc-guard-3.4.0-portable.exe",
+          "bytes": 2834432
+        },
+        "portable": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.0/pc-guard-3.4.0-portable.zip",
+          "bytes": 2811855
+        }
+      }
+    },
+    {
+      "id": "pc-tune",
+      "version": "1.0.1",
+      "date": "2026-11-08T09:51:19Z",
+      "prerelease": true,
+      "assets": {
+        "installer": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.0.1/pc-tune-1.0.1-portable.exe",
+          "bytes": 70803968
+        },
+        "portable": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.0.1/pc-tune-1.0.1-portable.zip",
+          "bytes": 70781136
+        }
+      }
+    }
+  ]
+}
