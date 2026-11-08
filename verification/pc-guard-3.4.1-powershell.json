@@ -1,0 +1,59 @@
+﻿{
+    "runtime":  "Windows PowerShell 5.1",
+    "errors":  0,
+    "results":  [
+                    {
+                        "file":  "driver\\Build-Driver.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "driver\\Build-TestPackage.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "driver\\Check-Release.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "driver\\Install-Driver.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "driver\\Test-Policy.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\camera-consent.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\camera-policy.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\camera.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\common.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\network.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\security.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\startup.ps1",
+                        "errors":  0
+                    },
+                    {
+                        "file":  "system\\worker.ps1",
+                        "errors":  0
+                    }
+                ],
+    "scripts":  13
+}

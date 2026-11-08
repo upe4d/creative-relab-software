@@ -13,7 +13,7 @@
   },
   {
     "product": "PC Guard",
-    "version": "3.4.0",
+    "version": "3.4.1",
     "checks": 8,
     "failures": 0,
     "preservedData": true,
@@ -21,7 +21,7 @@
     "traversalRejected": true,
     "driveCRejected": true,
     "extractedExecutableVerified": true,
-    "unpackerSHA256": "20BD775996F331679BDEF7E4C4372EE85931DA98A86583ED10D7B89A54FC235C"
+    "unpackerSHA256": "391BED89590988D6CD77811300C05D67EFFBC3554B76FB70AFB3A35B897D9CF6"
   },
   {
     "product": "PC Tune",

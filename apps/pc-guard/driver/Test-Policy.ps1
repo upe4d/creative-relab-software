@@ -1,4 +1,4 @@
-param([string]$Toolchain='D:\Codex\work\PCGuard-toolchain')
+﻿param([string]$Toolchain='D:\Codex\work\PCGuard-toolchain')
 $ErrorActionPreference='Stop'
 $bin=Join-Path $Toolchain 'msvc\Contents\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64'
 $out=Join-Path $PSScriptRoot 'build';[void][IO.Directory]::CreateDirectory($out)

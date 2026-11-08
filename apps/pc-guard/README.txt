@@ -1,4 +1,4 @@
-PC Guard 3.4.0 Preview
+PC Guard 3.4.1 Preview
 Creative Relab | @creativerelab
 https://tools.crrl.ru/software/#pc-guard
 
@@ -81,3 +81,6 @@ PC Guard.exe --self-test и --suite-test используют искусстве
 Локальный блок «Реклама · 18+» ведёт на https://zabivki.ru/.
 Забивки — конструктор кальянных миксов, сочетания вкусов и пропорции.
 Запрос к рекламному сайту возникает только после нажатия.
+
+ИСПРАВЛЕНИЕ 3.4.1
+PowerShell-скрипты распространяются в UTF-8 с BOM для Windows PowerShell 5.1.

@@ -1,4 +1,4 @@
-# Камера: чтение устройств и записей Windows. Отключение/возврат — только по явной команде.
+﻿# Камера: чтение устройств и записей Windows. Отключение/возврат — только по явной команде.
 function Get-GuardCameraDevices {
     return @(Get-CimInstance Win32_PnPEntity | Where-Object { $_.PNPClass -eq 'Camera' -or ($_.PNPClass -eq 'Image' -and $_.Name -match '(?i)camera|webcam|камера') } | ForEach-Object {
         [pscustomobject]@{id=$_.PNPDeviceID;name=$_.Name;code=[int]$_.ConfigManagerErrorCode;status=$(if($_.ConfigManagerErrorCode-eq22){'Отключено'}elseif($_.ConfigManagerErrorCode-eq0){'Доступно'}else{'Ошибка устройства: '+$_.ConfigManagerErrorCode})}

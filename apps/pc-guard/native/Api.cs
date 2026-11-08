@@ -19,7 +19,7 @@ namespace PCGuard
             {
                 case "meta":
                     var settings = store.Read("settings.json"); if (!settings.ContainsKey("theme")) settings["theme"] = "dark";
-                    return Store.Map("version", "3.4.0", "root", store.Root, "settings", settings, "history", store.History());
+                    return Store.Map("version", "3.4.1", "root", store.Root, "settings", settings, "history", store.History());
                 case "settings":
                     string theme = Store.Text(input, "theme"); if (theme != "dark" && theme != "light") throw new ArgumentException("Неизвестная тема.");
                     store.Write("settings.json", Store.Map("theme", theme)); return Store.Map("theme", theme);
@@ -74,7 +74,7 @@ namespace PCGuard
         }
         private object Report()
         {
-            var result = Store.Map("application", "PC Guard", "version", "3.4.0", "created", DateTimeOffset.Now.ToString("o"), "journal", store.History());
+            var result = Store.Map("application", "PC Guard", "version", "3.4.1", "created", DateTimeOffset.Now.ToString("o"), "journal", store.History());
             if(suite!=null)result["suite"]=suite.Status();
             foreach (string section in new[] { "status", "startup", "network", "threats", "file" }) result[section] = store.Read("cache-" + section + ".json"); return result;
         }

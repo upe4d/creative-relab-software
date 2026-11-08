@@ -1,4 +1,4 @@
-param([string]$Toolchain='D:\Codex\work\PCGuard-toolchain',[switch]$PrepareOnly)
+﻿param([string]$Toolchain='D:\Codex\work\PCGuard-toolchain',[switch]$PrepareOnly)
 $ErrorActionPreference='Stop'
 $out=Join-Path $PSScriptRoot 'build\lab-package-v3';[void][IO.Directory]::CreateDirectory($out)
 $source=Join-Path $PSScriptRoot 'build\PCGuardFilter.sys';Copy-Item -LiteralPath $source -Destination (Join-Path $out 'PCGuardFilter.sys') -Force

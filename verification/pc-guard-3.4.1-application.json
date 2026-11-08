@@ -1,0 +1,22 @@
+{
+  "Date": "2026-11-08T12:59:41.0358856+03:00",
+  "ApplicationSHA256": "094416E23518567DB479DDB17313C73D0E26A32B87023D9D1660D4CDCB87DA70",
+  "Checks": {
+    "native-results.json": 14,
+    "startup-results.json": 17,
+    "suite-results.json": 52,
+    "browser-results.json": 111,
+    "suite-browser-results.json": 69,
+    "camera-policy-results.json": 17,
+    "camera-consent-results.json": 13,
+    "provider-results.json": 5
+  },
+  "ApplicationChecks": 298.0,
+  "NativeChecksReused": false,
+  "UnsignedDriverInstallRefused": true,
+  "CameraPhysicallyToggled": false,
+  "DefenderSwitched": false,
+  "IObitSwitched": false,
+  "KernelRuntimeTested": false,
+  "scope": "Application-only verification; separately published kernel evidence applies to unchanged SYS"
+}
