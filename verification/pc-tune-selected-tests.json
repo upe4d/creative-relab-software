@@ -1,0 +1,9 @@
+{
+  "tests": 46,
+  "failed": 0,
+  "errors": 0,
+  "scope": "LanguageManagerTests and RevertStepSerializationTests",
+  "releaseBuildErrors": 0,
+  "releaseBuildWarnings": 0,
+  "formatCheckedFiles": 308
+}

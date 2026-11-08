@@ -38,3 +38,7 @@ PowerShell: .\Build-PCTune.ps1. Оригинальные publish.bat и тест
 Создатель этой производной: **Creative Relab**, [@creativerelab](https://t.me/creativerelab). Раздел «О программе» показывает PC Care и PC Guard. [Каталог](https://tools.crrl.ru/software/) и [исходники/версии](https://github.com/upe4d/creative-relab-software).
 
 В 1.0.1 исправлены виртуализация автозагрузки/задач, точное восстановление DelayedAutoStart и совместимость Feeds с Windows 11. Отсутствующая совместимая GPU отмечается как неприменимая настройка.
+
+## Проверка LTSC 1.0.1
+
+В отдельной VM просмотрены все 42 пункта: 30 применены с точным восстановлением наблюдаемых областей, 12 неприменимы на оборудовании/версии стенда. Ошибок отката нет. [Полная таблица и JSON](https://github.com/upe4d/creative-relab-software/blob/main/verification/PC-TUNE-RESULTS-RU.md). Эти результаты не подтверждают работу 12 пропущенных пунктов на подходящем оборудовании.
