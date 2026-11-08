@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-08T14:09:07.0366854+03:00",
+  "checks": 1829,
+  "failures": 0,
+  "systemOptimizationsApplied": false,
+  "selectedTests": 46,
+  "selectedFailures": 0,
+  "assemblySHA256": "156ED2B53057466B832B056DFA2A8C024A6E7958DBE37D4507CDE12A641D539E",
+  "runtime42RetestedForThisBinary": false
+}

@@ -280,12 +280,6 @@
                                 <!--  Normal state  -->
                                 <Grid RowDefinitions="Auto,Auto,Auto,Auto,*" Visibility="{Binding IsConditionBlocked, Converter={StaticResource InverseBooleanToVisibilityConverter}}">
                                     <ui:TextBlock
-                                        Grid.Row="0"
-                                        FontTypography="Caption"
-                                        Foreground="{DynamicResource TextFillColorDisabledBrush}"
-                                        Text="{Binding Id}"
-                                        TextWrapping="Wrap" />
-                                    <ui:TextBlock
                                         Grid.Row="1"
                                         FontTypography="Subtitle"
                                         Text="{Binding Name}"

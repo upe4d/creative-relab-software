@@ -21,3 +21,6 @@ if($LASTEXITCODE){throw 'Публикация не прошла'}
 Copy-Item -LiteralPath (Join-Path $Destination 'optimizerDuck.exe') -Destination (Join-Path $Destination 'PC Tune.exe')
 foreach($name in @('LICENSE','THIRD-PARTY-NOTICES.md','UPSTREAM.txt','README-PC-TUNE-RU.md','CHANGES-PC-TUNE-RU.md')){Copy-Item -LiteralPath (Join-Path $PSScriptRoot $name) -Destination $Destination -Force}
 Write-Output (Join-Path $Destination 'PC Tune.exe')
+# Центр обновлений собирается отдельно от кода приложения, без системной установки.
+$updateBuildCandidates=@((Join-Path $PSScriptRoot '..\..\updates\Build-Updates.ps1'),(Join-Path $PSScriptRoot 'updates\Build-Updates.ps1'))
+foreach($updateBuild in $updateBuildCandidates){if(Test-Path -LiteralPath $updateBuild){& $updateBuild -Destination $Destination;break}}

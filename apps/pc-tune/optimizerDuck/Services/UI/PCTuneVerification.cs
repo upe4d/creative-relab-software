@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using optimizerDuck.Common.Helpers;
 using optimizerDuck.Domain.Attributes;
 using optimizerDuck.Domain.Configuration;
+using optimizerDuck.Domain.Optimizations.Models;
 using optimizerDuck.Resources.Languages;
 using optimizerDuck.Services.Configuration;
 using optimizerDuck.UI.Controls;
@@ -35,6 +36,60 @@ internal static class PCTuneVerification
                 return found;
         }
         return null;
+    }
+
+    // Диагностика отличает реальный цвет текста от незавершённого перехода страницы.
+    private static TextBlock? FindOptimizationTitle(DependencyObject root)
+    {
+        if (
+            root is TextBlock text
+            && text.IsVisible
+            && text.DataContext is BaseOptimization item
+            && text.Text == item.Name
+        )
+            return text;
+        for (var i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
+        {
+            var found = FindOptimizationTitle(VisualTreeHelper.GetChild(root, i));
+            if (found != null)
+                return found;
+        }
+        return null;
+    }
+
+    private static double EffectiveOpacity(DependencyObject root)
+    {
+        double result = 1;
+        for (DependencyObject? node = root; node != null; node = VisualTreeHelper.GetParent(node))
+            if (node is FrameworkElement element)
+                result *= element.Opacity;
+        return result;
+    }
+
+    private static object DescribeTitle(DependencyObject root)
+    {
+        var text = FindOptimizationTitle(root);
+        var parents = new List<object>();
+        for (DependencyObject? node = text; node != null; node = VisualTreeHelper.GetParent(node))
+        {
+            if (node is FrameworkElement element)
+                parents.Add(
+                    new
+                    {
+                        type = node.GetType().Name,
+                        element.Name,
+                        element.Opacity,
+                        element.IsEnabled,
+                        element.IsVisible,
+                    }
+                );
+        }
+        return new
+        {
+            text = text?.Text,
+            color = text?.Foreground.ToString(),
+            parents,
+        };
     }
 
     internal static async Task RunAsync(App app, IServiceProvider services)
@@ -185,6 +240,32 @@ internal static class PCTuneVerification
                                 && offset.Y + banner.ActualHeight <= window.ActualHeight + 1
                         );
                         Check($"Название {theme}/{width}/{page.Name}", window.Title == "PC Tune");
+                        var immediate =
+                            theme == ApplicationTheme.Dark
+                            && width == 1350
+                            && page == typeof(OptimizePage)
+                                ? DescribeTitle(window)
+                                : null;
+                        for (
+                            var attempt = 0;
+                            attempt < 30
+                                && visiblePage != null
+                                && EffectiveOpacity(visiblePage) < 0.99;
+                            attempt++
+                        )
+                            await Task.Delay(50);
+                        Check(
+                            $"Переход завершён {theme}/{width}/{page.Name}",
+                            visiblePage != null && EffectiveOpacity(visiblePage) >= 0.99
+                        );
+                        if (immediate != null)
+                            File.WriteAllText(
+                                Path.Combine(directory, "optimization-visual-tree.json"),
+                                JsonConvert.SerializeObject(
+                                    new { immediate, settled = DescribeTitle(window) },
+                                    Formatting.Indented
+                                )
+                            );
                         var bitmap = new RenderTargetBitmap(
                             (int)window.ActualWidth,
                             (int)window.ActualHeight,

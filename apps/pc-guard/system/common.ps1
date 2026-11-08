@@ -11,8 +11,18 @@ $GuardUtf8 = New-Object Text.UTF8Encoding($false)
 function Write-GuardJson([string]$Path, $Value) {
     $temporary = $Path + '.' + [Guid]::NewGuid().ToString('N') + '.tmp'
     [IO.File]::WriteAllText($temporary, (ConvertTo-Json -InputObject $Value -Depth 25 -Compress), $GuardUtf8)
-    if ([IO.File]::Exists($Path)) { [IO.File]::Replace($temporary, $Path, ($Path + '.bak')) }
-    else { [IO.File]::Move($temporary, $Path) }
+    # Короткая блокировка читателем не должна терять финальный результат операции.
+    for($attempt=0;;$attempt++) {
+        try {
+            if ([IO.File]::Exists($Path)) { [IO.File]::Replace($temporary, $Path, ($Path + '.bak')) }
+            else { [IO.File]::Move($temporary, $Path) }
+            return
+        } catch {
+            $code=$_.Exception.GetBaseException().HResult -band 0xffff
+            if($attempt-ge6-or$code-notin@(32,33)){throw}
+            Start-Sleep -Milliseconds (10 -shl $attempt)
+        }
+    }
 }
 
 function Get-GuardJson([string]$Path, $Fallback) {

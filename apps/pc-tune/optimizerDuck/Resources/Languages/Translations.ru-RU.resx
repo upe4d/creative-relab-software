@@ -1255,7 +1255,7 @@
     <value>Статус</value>
   </data>
   <data name="Common.SortBy.RiskAndStatus" xml:space="preserve">
-    <value>Риск &amp; Статус</value>
+    <value>Риск и статус</value>
   </data>
   <data name="StartupManager.Menu.OpenSettings" xml:space="preserve">
     <value>Открыть Параметры</value>
@@ -2530,4 +2530,7 @@
 <data name="Family.Details" xml:space="preserve"><value>Подробнее</value></data>
 <data name="Family.Guard" xml:space="preserve"><value>Проверка файлов, карантин, сейф и инструменты безопасности.</value></data>
 <data name="Optimizer.Gpu.NoCompatibleHardware" xml:space="preserve"><value>Не найден совместимый адаптер с доступным путём настроек.</value></data>
+  <data name="Updates.Check" xml:space="preserve"><value>Проверить обновления</value></data>
+  <data name="Updates.HelperMissing" xml:space="preserve"><value>Не найден центр обновлений. Распакуйте программу целиком.</value></data>
+  <data name="Updates.OpenFailed" xml:space="preserve"><value>Не удалось открыть обновления.</value></data>
 </root>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -48,7 +48,9 @@ namespace CreativeRelab.Portable
         public static string Extract(string folder, Action<int> progress)
         {
             folder = Target(folder); Verify();
-            foreach (var p in Process.GetProcessesByName(Path.GetFileNameWithoutExtension(Info.MainExe))) using (p) { try { if (String.Equals(p.MainModule.FileName, Path.Combine(folder, Info.MainExe), StringComparison.OrdinalIgnoreCase)) throw new IOException("Сначала закройте " + Info.Name + "."); } catch (System.ComponentModel.Win32Exception) { } }
+            // PC Tune можно запустить и через исходный apphost optimizerDuck.exe.
+            var processNames = Info.Slug == "pc-tune" ? new[] { Path.GetFileNameWithoutExtension(Info.MainExe), "optimizerDuck" } : new[] { Path.GetFileNameWithoutExtension(Info.MainExe) };
+            foreach (var name in processNames) foreach (var p in Process.GetProcessesByName(name)) using (p) { try { if (String.Equals(Path.GetDirectoryName(p.MainModule.FileName), folder, StringComparison.OrdinalIgnoreCase)) throw new IOException("Сначала закройте " + Info.Name + "."); } catch (System.ComponentModel.Win32Exception) { throw new IOException("Сначала закройте " + Info.Name + ". Не удалось проверить путь работающего процесса; файлы не заменены."); } }
             var backup = Path.Combine(@"D:\Codex\portable-backups", Info.Slug, DateTime.Now.ToString("yyyyMMdd-HHmmss") + "-" + Guid.NewGuid().ToString("N").Substring(0, 6));
             Directory.CreateDirectory(folder);
             using (var s = Open()) using (var zip = new ZipArchive(s, ZipArchiveMode.Read))

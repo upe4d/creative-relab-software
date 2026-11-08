@@ -1,0 +1,16 @@
+{
+  "immediate": {
+    "title": "Приоритет активных приложений",
+    "foreground": "#FFFFFFFF",
+    "pageOpacity": [
+      1.0
+    ]
+  },
+  "settled": {
+    "title": "Приоритет активных приложений",
+    "foreground": "#FFFFFFFF",
+    "pageOpacity": [
+      1.0
+    ]
+  }
+}

@@ -52,8 +52,7 @@ namespace PCGuard
         {
             if (!Regex.IsMatch(id, @"\A[a-f0-9]{32}\z")) throw new ArgumentException("Некорректный идентификатор задания.");
             string path = Path.Combine(store.Data, "Jobs", id + ".result.json");
-            if (!File.Exists(path)) throw new IOException("Задание не найдено.");
-            var result = Store.Object(Store.ReadPath(path, null));
+            var result = ReadResult(path, id);
             string state = Store.Text(result, "state"); long age = Now() - Convert.ToInt64(Store.Get(result, "created", Now()));
             if ((state == "queued" && age > 60) || (state == "running" && age > 86400))
             {
@@ -74,6 +73,24 @@ namespace PCGuard
                 }
             }
             return result;
+        }
+        // File.Exists скрывает ошибки совместного доступа; читаем результат напрямую.
+        // Короткий промежуток замены известного задания не означает его исчезновение.
+        private static Dictionary<string, object> ReadResult(string path, string expectedId)
+        {
+            string request = path.Substring(0, path.Length - ".result.json".Length) + ".request.json";
+            for (int attempt = 0; ; attempt++)
+            {
+                try {
+                    var value = Store.Object(Store.Serializer().DeserializeObject(Store.ReadText(path)));
+                    if (Store.Text(value, "id") != expectedId || !new[] { "queued", "running", "done", "error" }.Contains(Store.Text(value, "state")))
+                        throw new InvalidDataException("Повреждён результат задания. Операция повторно не запускается.");
+                    return value;
+                } catch (FileNotFoundException) {
+                    if (attempt >= 5 || !File.Exists(request)) throw new IOException("Задание не найдено.");
+                    System.Threading.Thread.Sleep(10 << attempt);
+                }
+            }
         }
         private static long Now() { return (long)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds; }
         private static string Label(string action)

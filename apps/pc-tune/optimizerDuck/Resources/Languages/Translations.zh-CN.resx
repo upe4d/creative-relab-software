@@ -2538,4 +2538,7 @@
 <data name="Family.Details" xml:space="preserve"><value>Learn more</value></data>
 <data name="Family.Guard" xml:space="preserve"><value>File scanning, quarantine, vault and security tools.</value></data>
 <data name="Optimizer.Gpu.NoCompatibleHardware" xml:space="preserve"><value>No compatible adapter with an available settings path was found.</value></data>
+  <data name="Updates.Check" xml:space="preserve"><value>Check for updates</value></data>
+  <data name="Updates.HelperMissing" xml:space="preserve"><value>The update center is missing. Extract the complete application.</value></data>
+  <data name="Updates.OpenFailed" xml:space="preserve"><value>Could not open the update center.</value></data>
 </root>

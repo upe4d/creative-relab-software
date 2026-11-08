@@ -22,9 +22,12 @@ foreach($name in @('startup-tests.ps1','camera-policy-tests.ps1','camera-consent
     & $windowsPs -NoProfile -ExecutionPolicy Bypass -File (Join-Path $build ('tests\'+$name)) | Out-Null
     if($LASTEXITCODE-ne0){throw ('Не пройден системный тест '+$name)}
 }
-$serviceBefore=Test-Path 'HKLM:\SYSTEM\CurrentControlSet\Services\PCGuardFilter'
-$refused=$false;try{& (Join-Path $build 'driver\Install-Driver.ps1') | Out-Null}catch{$refused=$true}
-if(-not$refused-or(Test-Path 'HKLM:\SYSTEM\CurrentControlSet\Services\PCGuardFilter')-ne$serviceBefore){throw 'Проверка отказа установки неподписанного драйвера не прошла.'}
+# На основной Windows проверяем только файлы: установщик драйвера здесь не вызывается.
+$signature=Get-AuthenticodeSignature -LiteralPath (Join-Path $build 'driver\build\PCGuardFilter.sys')
+$metadata=Get-Content -LiteralPath (Join-Path $build 'driver\release.json') -Raw|ConvertFrom-Json
+$refused=$null
+if($signature.Status-eq'Valid'-and$metadata.assignedAltitude){throw 'Для новых подписанных драйверов требуется отдельная проверка стенда'}
+
 }
 $hostProcess=Start-Process -FilePath $exe -ArgumentList '--headless' -WindowStyle Hidden -PassThru
 try{
@@ -46,6 +49,6 @@ foreach($name in @('native-results.json','startup-results.json','suite-results.j
     $r=Get-Content -LiteralPath (Join-Path $build ('Data\Tests\'+$name)) -Raw|ConvertFrom-Json
     $results[$name]=$r.checks
 }
-$summary=[ordered]@{Date=(Get-Date).ToString('o');ApplicationSHA256=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash;Checks=$results;ApplicationChecks=($results.Values|Measure-Object -Sum).Sum;NativeChecksReused=$BrowserOnly.IsPresent;UnsignedDriverInstallRefused=$refused;CameraPhysicallyToggled=$false;DefenderSwitched=$false;IObitSwitched=$false;KernelRuntimeTested=$false}
+$summary=[ordered]@{Date=(Get-Date).ToString('o');ApplicationSHA256=(Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash;Checks=$results;ApplicationChecks=($results.Values|Measure-Object -Sum).Sum;NativeChecksReused=$BrowserOnly.IsPresent;UnsignedDriverInstallRefused=$refused;CameraPhysicallyToggled=$false;DefenderSwitched=$false;IObitSwitched=$false;KernelRuntimeTested=$false;DriverInstallationAttempted=$false;DriverGateCheckedReadOnly=$true}
 [IO.File]::WriteAllText((Join-Path $build 'Data\Tests\verification-summary.json'),($summary|ConvertTo-Json -Depth 5),[Text.UTF8Encoding]::new($false))
 $summary|ConvertTo-Json -Depth 5

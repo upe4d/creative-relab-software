@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-11-08T11:22:15.047414+00:00",
+  "selfTests": 27,
+  "selfTestFailures": 0,
+  "uiSmokeChecks": 36,
+  "uiSmokeFailures": 0,
+  "executableSHA256": "055F5F90CFE238AC5DC4D460E5708F081796B50D549FC65E972B16507016E6F3",
+  "updateCenterIncluded": true
+}

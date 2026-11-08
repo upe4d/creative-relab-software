@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -17,9 +18,14 @@ namespace PCGuard
             if(action.StartsWith("own_",StringComparison.Ordinal)||action.StartsWith("suite_",StringComparison.Ordinal)||action.StartsWith("vault_",StringComparison.Ordinal)||action.StartsWith("folder_",StringComparison.Ordinal)){if(suite==null)throw new InvalidOperationException("Модуль не загружен.");return suite.Dispatch(action,input);}
             switch (action)
             {
+                case "updates":
+                    string updateHelper = Path.Combine(store.Root, "Creative Relab Updates.exe");
+                    if (!File.Exists(updateHelper)) throw new IOException("Не найден центр обновлений. Распакуйте программу целиком.");
+                    Process.Start(new ProcessStartInfo(updateHelper, "--product pc-guard --target \"" + store.Root + "\"") { UseShellExecute = true });
+                    return Store.Map("opened", true);
                 case "meta":
                     var settings = store.Read("settings.json"); if (!settings.ContainsKey("theme")) settings["theme"] = "dark";
-                    return Store.Map("version", "3.4.2", "root", store.Root, "settings", settings, "history", store.History());
+                    return Store.Map("version", "3.5.0", "root", store.Root, "settings", settings, "history", store.History());
                 case "settings":
                     string theme = Store.Text(input, "theme"); if (theme != "dark" && theme != "light") throw new ArgumentException("Неизвестная тема.");
                     store.Write("settings.json", Store.Map("theme", theme)); return Store.Map("theme", theme);
@@ -74,7 +80,7 @@ namespace PCGuard
         }
         private object Report()
         {
-            var result = Store.Map("application", "PC Guard", "version", "3.4.2", "created", DateTimeOffset.Now.ToString("o"), "journal", store.History());
+            var result = Store.Map("application", "PC Guard", "version", "3.5.0", "created", DateTimeOffset.Now.ToString("o"), "journal", store.History());
             if(suite!=null)result["suite"]=suite.Status();
             foreach (string section in new[] { "status", "startup", "network", "threats", "file" }) result[section] = store.Read("cache-" + section + ".json"); return result;
         }

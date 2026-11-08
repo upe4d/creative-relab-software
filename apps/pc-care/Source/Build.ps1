@@ -1,4 +1,4 @@
-param([string]$Destination = (Split-Path -Parent $PSScriptRoot))
+﻿param([string]$Destination = (Split-Path -Parent $PSScriptRoot))
 $ErrorActionPreference = 'Stop'
 $framework = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319'
 if (-not (Test-Path -LiteralPath $framework)) { $framework = Join-Path $env:WINDIR 'Microsoft.NET\Framework\v4.0.30319' }
@@ -25,3 +25,7 @@ $arguments += @(("/win32icon:" + (Join-Path $PSScriptRoot 'app.ico')),("/resourc
 if ($LASTEXITCODE -ne 0) { throw "Build failed ($LASTEXITCODE)" }
 Get-Item -LiteralPath $output | Select-Object FullName,Length
 Get-FileHash -LiteralPath $output -Algorithm SHA256
+
+# Центр обновлений собирается отдельно от кода приложения, без системной установки.
+$updateBuildCandidates=@((Join-Path $PSScriptRoot '..\..\..\updates\Build-Updates.ps1'),(Join-Path $PSScriptRoot '..\updates\Build-Updates.ps1'))
+foreach($updateBuild in $updateBuildCandidates){if(Test-Path -LiteralPath $updateBuild){& $updateBuild -Destination $Destination;break}}
