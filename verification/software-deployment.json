@@ -1,0 +1,13 @@
+{
+  "url": "https://tools.crrl.ru/software/",
+  "protectedFilesChecked": 58,
+  "protectedFileChanges": [],
+  "serverBinariesStored": false,
+  "downloadSource": "GitHub Releases",
+  "versions": {
+    "pc-care": "1.1.2",
+    "pc-guard": "3.4.1",
+    "pc-tune": "1.0.1"
+  },
+  "checkedAt": "2026-11-08T10:06:14.656270+00:00"
+}

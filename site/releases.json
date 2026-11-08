@@ -1,6 +1,6 @@
 {
   "repository": "upe4d/creative-relab-software",
-  "recordedAt": "2026-11-08T09:52:21.630885+00:00",
+  "recordedAt": "2026-11-08T10:03:53.455410+00:00",
   "products": [
     {
       "id": "pc-care",
@@ -20,17 +20,17 @@
     },
     {
       "id": "pc-guard",
-      "version": "3.4.0",
-      "date": "2026-11-08T09:51:08Z",
+      "version": "3.4.1",
+      "date": "2026-11-08T10:03:03Z",
       "prerelease": true,
       "assets": {
         "installer": {
-          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.0/pc-guard-3.4.0-portable.exe",
-          "bytes": 2834432
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.1/pc-guard-3.4.1-portable.exe",
+          "bytes": 2834944
         },
         "portable": {
-          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.0/pc-guard-3.4.0-portable.zip",
-          "bytes": 2811855
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.1/pc-guard-3.4.1-portable.zip",
+          "bytes": 2812000
         }
       }
     },
