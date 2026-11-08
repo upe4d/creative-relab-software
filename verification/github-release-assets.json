@@ -1,76 +1,76 @@
 {
   "assets": [
     {
-      "name": "pc-care-1.1.3-portable.exe",
-      "bytes": 455680,
-      "sha256": "d1413fe570f3dd54a987503e2c03e486375d550a8bae0c3b586f014e254b4bb2",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.1.3/pc-care-1.1.3-portable.exe"
+      "name": "pc-care-1.2.0-portable.exe",
+      "bytes": 663040,
+      "sha256": "e03889552a9613f046481d982ecec5e7d18a53d52574ca5f6e74a8acd69d210d",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.2.0/pc-care-1.2.0-portable.exe"
     },
     {
-      "name": "pc-care-1.1.3-portable.zip",
-      "bytes": 248474,
-      "sha256": "581de846334f93367d49be0f2d22bd55ce201474872d25f379af234ee6549c83",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.1.3/pc-care-1.1.3-portable.zip"
+      "name": "pc-care-1.2.0-portable.zip",
+      "bytes": 455913,
+      "sha256": "2e46943c4fc9371ad8a98b167c55419e11787f3bc5e601e77287d63b14c2ca3a",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.2.0/pc-care-1.2.0-portable.zip"
     },
     {
-      "name": "pc-care-1.1.3-SHA256SUMS.txt",
+      "name": "pc-care-1.2.0-SHA256SUMS.txt",
       "bytes": 280,
-      "sha256": "27cc0d1fabd4063f68a98bd117ea11be7e955b51365199452f916fcf35e9bd5d",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.1.3/pc-care-1.1.3-SHA256SUMS.txt"
+      "sha256": "c2a030f7d0160b07e34527d9ab61c22c53756a7339360b9691dbafdf54d107d3",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.2.0/pc-care-1.2.0-SHA256SUMS.txt"
     },
     {
-      "name": "pc-care-1.1.3-source.zip",
-      "bytes": 306649,
-      "sha256": "33043f0734c23929b7903bb6e158605a9186a1363b45018ea48d5cb8e093c1f6",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.1.3/pc-care-1.1.3-source.zip"
+      "name": "pc-care-1.2.0-source.zip",
+      "bytes": 506421,
+      "sha256": "b991605e29525fd4bb87d3b6690c172904f56d5bbf6af344b30798fcd693bc3f",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.2.0/pc-care-1.2.0-source.zip"
     },
     {
-      "name": "pc-guard-3.4.2-portable.exe",
-      "bytes": 3281920,
-      "sha256": "99dbc30df0080a25748131a72ad6266c552f482d6afd0ea6a748af2678e42635",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.2/pc-guard-3.4.2-portable.exe"
+      "name": "pc-guard-3.5.0-portable.exe",
+      "bytes": 3490304,
+      "sha256": "fa72853ebe542b93bc45eb55aa9a9e179d477e7c1ed68404601d67a1f77a4774",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.5.0/pc-guard-3.5.0-portable.exe"
     },
     {
-      "name": "pc-guard-3.4.2-portable.zip",
-      "bytes": 3075027,
-      "sha256": "ec6272b28db091dfe4ed4a653b29c7afba745b9170e3ad183fdfe9017225bbe3",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.2/pc-guard-3.4.2-portable.zip"
+      "name": "pc-guard-3.5.0-portable.zip",
+      "bytes": 3283206,
+      "sha256": "029f0008e4a863aeab6a62aeba782019e691a0e2be3be197a240823f07e0d1f1",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.5.0/pc-guard-3.5.0-portable.zip"
     },
     {
-      "name": "pc-guard-3.4.2-SHA256SUMS.txt",
+      "name": "pc-guard-3.5.0-SHA256SUMS.txt",
       "bytes": 283,
-      "sha256": "afd7b18d9f7cd6fb99286eae5bbb269ea781be7e5554e9bf42a568c50f80261b",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.2/pc-guard-3.4.2-SHA256SUMS.txt"
+      "sha256": "10401c40610c3e2c99b8eb50630065c2256dc9ff3374c01132e7d61ada31b068",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.5.0/pc-guard-3.5.0-SHA256SUMS.txt"
     },
     {
-      "name": "pc-guard-3.4.2-source.zip",
-      "bytes": 1939992,
-      "sha256": "841a999bfcf729c7ae7044f0acaa21717380bc930803fc31988eb77a7c4f4a16",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.4.2/pc-guard-3.4.2-source.zip"
+      "name": "pc-guard-3.5.0-source.zip",
+      "bytes": 2141825,
+      "sha256": "cf4bca24c09e106ba154dee6547a86594b0aae5938f2f7975c4288fe165e360e",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-guard-v3.5.0/pc-guard-3.5.0-source.zip"
     },
     {
-      "name": "pc-tune-1.0.2-portable.exe",
-      "bytes": 71385600,
-      "sha256": "3ff6423195c50a6de8f010ae125fbbf76ed842e4097d961395ecf40c02738009",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.0.2/pc-tune-1.0.2-portable.exe"
+      "name": "pc-tune-1.1.0-portable.exe",
+      "bytes": 71597568,
+      "sha256": "527eaddb250c3c8c300835253544888a86f69e98597a1eede1b5f05e71072fce",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.1.0/pc-tune-1.1.0-portable.exe"
     },
     {
-      "name": "pc-tune-1.0.2-portable.zip",
-      "bytes": 71178431,
-      "sha256": "609b893df21911e029b87b703d067bacb293190d8107529283899ded82e2c7d5",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.0.2/pc-tune-1.0.2-portable.zip"
+      "name": "pc-tune-1.1.0-portable.zip",
+      "bytes": 71390120,
+      "sha256": "ce7a58bd5d184eac8a4ea8fd54af9ceff6bd4e8112f1009ca51f657a6c199e4f",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.1.0/pc-tune-1.1.0-portable.zip"
     },
     {
-      "name": "pc-tune-1.0.2-SHA256SUMS.txt",
+      "name": "pc-tune-1.1.0-SHA256SUMS.txt",
       "bytes": 280,
-      "sha256": "0db0ed3fc4c5b69aa5bb815ee8f7b11123eaa6ec83b363bb7630e05ea78d101c",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.0.2/pc-tune-1.0.2-SHA256SUMS.txt"
+      "sha256": "59c77767eb40312dfc41483170a690d5bef8c92fd1dffe575df00b6597c2352f",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.1.0/pc-tune-1.1.0-SHA256SUMS.txt"
     },
     {
-      "name": "pc-tune-1.0.2-source.zip",
-      "bytes": 2064862,
-      "sha256": "cdcacae2d2a1908f1e9aa2408049c6bdb9e407da2fb3304061a0993a8554f8c7",
-      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.0.2/pc-tune-1.0.2-source.zip"
+      "name": "pc-tune-1.1.0-source.zip",
+      "bytes": 2268459,
+      "sha256": "0278b131f617ba2a77a2dee342f4702911a669e00ce5b218f9fdac65ab27e2b8",
+      "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.1.0/pc-tune-1.1.0-source.zip"
     }
   ],
   "digestMatches": 12

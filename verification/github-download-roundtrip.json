@@ -1,41 +1,34 @@
 {
-  "checkedAt": "2026-11-08T10:40:35.170547+00:00",
-  "scope": "Six actual downloads from GitHub Releases through gh; SHA-256 compared with tested local packages",
+  "actualDownloads": 6,
   "files": [
     {
-      "file": "pc-care-1.1.3-portable.zip",
-      "sha256": "581de846334f93367d49be0f2d22bd55ce201474872d25f379af234ee6549c83",
-      "bytes": 248474,
+      "file": "pc-care-1.2.0-portable.exe",
+      "sha256": "e03889552a9613f046481d982ecec5e7d18a53d52574ca5f6e74a8acd69d210d",
       "matches": true
     },
     {
-      "file": "pc-care-1.1.3-portable.exe",
-      "sha256": "d1413fe570f3dd54a987503e2c03e486375d550a8bae0c3b586f014e254b4bb2",
-      "bytes": 455680,
+      "file": "pc-care-1.2.0-portable.zip",
+      "sha256": "2e46943c4fc9371ad8a98b167c55419e11787f3bc5e601e77287d63b14c2ca3a",
       "matches": true
     },
     {
-      "file": "pc-guard-3.4.2-portable.zip",
-      "sha256": "ec6272b28db091dfe4ed4a653b29c7afba745b9170e3ad183fdfe9017225bbe3",
-      "bytes": 3075027,
+      "file": "pc-guard-3.5.0-portable.exe",
+      "sha256": "fa72853ebe542b93bc45eb55aa9a9e179d477e7c1ed68404601d67a1f77a4774",
       "matches": true
     },
     {
-      "file": "pc-guard-3.4.2-portable.exe",
-      "sha256": "99dbc30df0080a25748131a72ad6266c552f482d6afd0ea6a748af2678e42635",
-      "bytes": 3281920,
+      "file": "pc-guard-3.5.0-portable.zip",
+      "sha256": "029f0008e4a863aeab6a62aeba782019e691a0e2be3be197a240823f07e0d1f1",
       "matches": true
     },
     {
-      "file": "pc-tune-1.0.2-portable.zip",
-      "sha256": "609b893df21911e029b87b703d067bacb293190d8107529283899ded82e2c7d5",
-      "bytes": 71178431,
+      "file": "pc-tune-1.1.0-portable.exe",
+      "sha256": "527eaddb250c3c8c300835253544888a86f69e98597a1eede1b5f05e71072fce",
       "matches": true
     },
     {
-      "file": "pc-tune-1.0.2-portable.exe",
-      "sha256": "3ff6423195c50a6de8f010ae125fbbf76ed842e4097d961395ecf40c02738009",
-      "bytes": 71385600,
+      "file": "pc-tune-1.1.0-portable.zip",
+      "sha256": "ce7a58bd5d184eac8a4ea8fd54af9ceff6bd4e8112f1009ca51f657a6c199e4f",
       "matches": true
     }
   ],
