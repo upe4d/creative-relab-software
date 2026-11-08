@@ -1,44 +1,43 @@
 {
-  "checkedAt": "2026-11-08T10:04:50.791027+00:00",
-  "scope": "Actual GitHub release download through gh; six binary packages re-downloaded and compared",
+  "checkedAt": "2026-11-08T10:40:35.170547+00:00",
+  "scope": "Six actual downloads from GitHub Releases through gh; SHA-256 compared with tested local packages",
   "files": [
     {
-      "name": "pc-care-1.1.2-portable.zip",
-      "sha256": "aa0c8e0f81c4d81eea57de914ca14bd256f934c589bb08e0f23d1618bb4bc92f",
-      "bytes": 88837,
+      "file": "pc-care-1.1.3-portable.zip",
+      "sha256": "581de846334f93367d49be0f2d22bd55ce201474872d25f379af234ee6549c83",
+      "bytes": 248474,
       "matches": true
     },
     {
-      "name": "pc-care-1.1.2-portable.exe",
-      "sha256": "84db0b5e433414073d4c2e9b01b2ed8a47d4e627b3fa87ca7bb0efcf0f086f94",
-      "bytes": 111616,
+      "file": "pc-care-1.1.3-portable.exe",
+      "sha256": "d1413fe570f3dd54a987503e2c03e486375d550a8bae0c3b586f014e254b4bb2",
+      "bytes": 455680,
       "matches": true
     },
     {
-      "name": "pc-guard-3.4.1-portable.zip",
-      "sha256": "3d659051e010d8aee1c12ff67501f71066795a2afe58abad9076237dc2901800",
-      "bytes": 2812000,
+      "file": "pc-guard-3.4.2-portable.zip",
+      "sha256": "ec6272b28db091dfe4ed4a653b29c7afba745b9170e3ad183fdfe9017225bbe3",
+      "bytes": 3075027,
       "matches": true
     },
     {
-      "name": "pc-guard-3.4.1-portable.exe",
-      "sha256": "391bed89590988d6cd77811300c05d67effbc3554b76fb70afb3a35b897d9cf6",
-      "bytes": 2834944,
+      "file": "pc-guard-3.4.2-portable.exe",
+      "sha256": "99dbc30df0080a25748131a72ad6266c552f482d6afd0ea6a748af2678e42635",
+      "bytes": 3281920,
       "matches": true
     },
     {
-      "name": "pc-tune-1.0.1-portable.zip",
-      "sha256": "e20dc065f54ca76c747b259bc03574cd25076d4411ffb13e1eebbbde99d251a6",
-      "bytes": 70781136,
+      "file": "pc-tune-1.0.2-portable.zip",
+      "sha256": "609b893df21911e029b87b703d067bacb293190d8107529283899ded82e2c7d5",
+      "bytes": 71178431,
       "matches": true
     },
     {
-      "name": "pc-tune-1.0.1-portable.exe",
-      "sha256": "ce5247d048633f6c65948392c366a24a6ae803bfe60e22e190568c3523ab4c20",
-      "bytes": 70803968,
+      "file": "pc-tune-1.0.2-portable.exe",
+      "sha256": "3ff6423195c50a6de8f010ae125fbbf76ed842e4097d961395ecf40c02738009",
+      "bytes": 71385600,
       "matches": true
     }
   ],
-  "failures": 0,
-  "headRequestNote": "Separate anonymous HEAD probes from the local HTTP route returned gateway timeouts; those were not treated as successful download evidence."
+  "failures": 0
 }

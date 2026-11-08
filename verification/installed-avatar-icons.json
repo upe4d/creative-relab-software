@@ -1,0 +1,23 @@
+[
+  {
+    "product": "PC Care",
+    "version": "1.1.3.0",
+    "company": "Creative Relab",
+    "avatarNeonPixels": 162,
+    "executableSHA256": "C11F5723A04C53DBE06C09C4853F72BCE1A21D8CE86141AC77348EF58BE5400C"
+  },
+  {
+    "product": "PC Guard",
+    "version": "3.4.2.0",
+    "company": "Creative Relab",
+    "avatarNeonPixels": 162,
+    "executableSHA256": "8A2B6F46E3FA3A19D8EB894935616A403CF99C69E897B03147027F4D962A6778"
+  },
+  {
+    "product": "PC Tune",
+    "version": "1.0.2",
+    "company": "Creative Relab",
+    "avatarNeonPixels": 163,
+    "executableSHA256": "1FD940624FB0C04295E9B2BD82570B9A7490C72C66EF82FB6A98410805D1F549"
+  }
+]
