@@ -1,0 +1,4 @@
+/* Длинный путь редактора не вытесняет кнопку и не перекрывает стрелку выбора. */
+.driver-launch-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px;max-width:760px}
+.driver-launch-controls .form-select{min-width:0;width:100%;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:600px){.driver-launch-controls{grid-template-columns:minmax(0,1fr)}.driver-launch-controls .btn{justify-self:start}}

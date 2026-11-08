@@ -1,0 +1,1308 @@
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Threading.Channels;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.Win32;
+using optimizerDuck.Domain.Abstractions;
+using optimizerDuck.Domain.Customize.Models;
+using optimizerDuck.Domain.Execution;
+using optimizerDuck.Domain.Optimizations.Models.Services;
+using optimizerDuck.Services.Configuration;
+using optimizerDuck.Services.System.Primitives;
+using Xunit;
+
+namespace optimizerDuck.Test.Domain.Customize;
+
+public class BaseCustomizeSettingTests : IDisposable
+{
+    private const string TestKeyPath = @"HKCU\Software\TestOptimizerDuckCustomize";
+
+    private static OpCall NewCall() => new() { Logger = NullLogger.Instance };
+
+    private class TestCustomizeSetting : BaseCustomizeSetting
+    {
+        protected override IEnumerable<RegistryToggle> RegistryToggles =>
+            [
+                new()
+                {
+                    Path = TestKeyPath,
+                    Name = "TestValue",
+                    OnValues = [1],
+                    OffValues = [0],
+                    ValueKind = RegistryValueKind.DWord,
+                },
+            ];
+    }
+
+    #region GetStateWithRetryAsync helpers
+
+    private sealed class StableStateSetting : BaseCustomizeSetting
+    {
+        public bool State { get; set; }
+
+        public override Task<bool> GetStateAsync() => Task.Run(() => State);
+    }
+
+    private sealed class EmptyTogglesSetting : BaseCustomizeSetting
+    {
+        // No overrides, so the base GetStateAsync reads empty toggles and returns false.
+    }
+
+    private sealed class OscillatingStateSetting : BaseCustomizeSetting
+    {
+        private int _callCount;
+
+        public override Task<bool> GetStateAsync() =>
+            Task.Run(() => Interlocked.Increment(ref _callCount) % 2 == 1);
+    }
+
+    private sealed class DelayedStateSetting : BaseCustomizeSetting
+    {
+        public bool State { get; set; } = true;
+        public int CallCount { get; set; }
+        public int DelayMs { get; set; }
+
+        public override async Task<bool> GetStateAsync()
+        {
+            if (DelayMs > 0)
+                await Task.Delay(DelayMs);
+            CallCount++;
+            return State;
+        }
+    }
+
+    private sealed class MultiToggleSetting : BaseCustomizeSetting
+    {
+        protected override IEnumerable<RegistryToggle> RegistryToggles =>
+            [
+                new() { Path = @"HKCU\Software\TestA", Name = "Val1" },
+                new() { Path = @"HKCU\Software\TestB", Name = "Val2" },
+                new() { Path = @"HKCU\Software\TestA", Name = "Val3" },
+            ];
+    }
+
+    #endregion
+
+    public BaseCustomizeSettingTests()
+    {
+        CleanupTestKeys();
+    }
+
+    public void Dispose()
+    {
+        CleanupTestKeys();
+    }
+
+    private static void CleanupTestKeys()
+    {
+        try
+        {
+            using var hkcu = Registry.CurrentUser;
+            hkcu.DeleteSubKeyTree(@"Software\TestOptimizerDuckCustomize", false);
+        }
+        catch
+        {
+            // Ignore if it doesn't exist
+        }
+    }
+
+    [Fact]
+    public async Task ApplyAsync_True_WritesCorrectValueToRegistry()
+    {
+        var setting = new TestCustomizeSetting { OwnerType = typeof(TestCustomizeSetting) };
+
+        Assert.True((await setting.ApplyAsync(true, NewCall())).Ok);
+
+        var value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "TestValue"));
+        Assert.Equal(1, value);
+    }
+
+    [Fact]
+    public async Task ApplyAsync_False_WritesCorrectValueToRegistry()
+    {
+        var setting = new TestCustomizeSetting { OwnerType = typeof(TestCustomizeSetting) };
+
+        Assert.True((await setting.ApplyAsync(false, NewCall())).Ok);
+
+        var value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "TestValue"));
+        Assert.Equal(0, value);
+    }
+
+    [Fact]
+    public async Task GetStateAsync_ReturnsCorrectState()
+    {
+        var setting = new TestCustomizeSetting { OwnerType = typeof(TestCustomizeSetting) };
+
+        var initialState = await setting.GetStateAsync();
+        Assert.False(initialState);
+
+        Assert.True((await setting.ApplyAsync(true, NewCall())).Ok);
+        var enabledState = await setting.GetStateAsync();
+        Assert.True(enabledState);
+
+        Assert.True((await setting.ApplyAsync(false, NewCall())).Ok);
+        var disabledState = await setting.GetStateAsync();
+        Assert.False(disabledState);
+    }
+
+    [Fact]
+    public async Task MultipleApplies_ExecutesSequentiallyWithoutCorruption()
+    {
+        var setting = new TestCustomizeSetting { OwnerType = typeof(TestCustomizeSetting) };
+
+        for (int i = 0; i < 10; i++)
+        {
+            Assert.True((await setting.ApplyAsync(true, NewCall())).Ok);
+            var enabledValue = RegistryService.Read<int>(
+                new RegistryItem(TestKeyPath, "TestValue")
+            );
+            Assert.Equal(1, enabledValue);
+
+            Assert.True((await setting.ApplyAsync(false, NewCall())).Ok);
+            var disabledValue = RegistryService.Read<int>(
+                new RegistryItem(TestKeyPath, "TestValue")
+            );
+            Assert.Equal(0, disabledValue);
+        }
+
+        var finalState = await setting.GetStateAsync();
+        Assert.False(finalState);
+    }
+
+    #region GetStateWithRetryAsync tests
+
+    [Fact]
+    public async Task GetStateWithRetryAsync_StableState_ReturnsTrue()
+    {
+        var setting = new StableStateSetting { State = true };
+
+        var result = await setting.GetStateWithRetryAsync(maxRetries: 3, delayMs: 10);
+
+        Assert.True(result);
+    }
+
+    [Fact]
+    public async Task GetStateWithRetryAsync_StableState_ReturnsFalse()
+    {
+        var setting = new StableStateSetting { State = false };
+
+        var result = await setting.GetStateWithRetryAsync(maxRetries: 3, delayMs: 10);
+
+        Assert.False(result);
+    }
+
+    [Fact]
+    public async Task GetStateWithRetryAsync_OscillatingState_UsesAllRetriesAndReturnsLast()
+    {
+        var setting = new OscillatingStateSetting();
+
+        var result = await setting.GetStateWithRetryAsync(maxRetries: 5, delayMs: 10);
+
+        // Five alternating reads never converge, so the last one (true) is returned.
+        Assert.True(result);
+    }
+
+    [Fact]
+    public async Task GetStateWithRetryAsync_WithNoToggles_ReturnsFalse()
+    {
+        // Empty toggles, so the base GetStateAsync returns false.
+        var setting = new EmptyTogglesSetting();
+
+        var result = await setting.GetStateWithRetryAsync(maxRetries: 2, delayMs: 10);
+
+        Assert.False(result);
+    }
+
+    [Fact]
+    public async Task GetStateWithRetryAsync_ThroughInterface_WorksCorrectly()
+    {
+        ICustomizeSetting setting = new StableStateSetting { State = true };
+
+        var result = await setting.GetStateWithRetryAsync(maxRetries: 2, delayMs: 10);
+
+        Assert.True(result);
+    }
+
+    [Fact]
+    public async Task GetStateWithRetryAsync_AfterApply_ReturnsCorrectState()
+    {
+        var setting = new TestCustomizeSetting { OwnerType = typeof(TestCustomizeSetting) };
+
+        Assert.True((await setting.ApplyAsync(true, NewCall())).Ok);
+        var result = await setting.GetStateWithRetryAsync(maxRetries: 3, delayMs: 10);
+
+        Assert.True(result);
+
+        Assert.True((await setting.ApplyAsync(false, NewCall())).Ok);
+        result = await setting.GetStateWithRetryAsync(maxRetries: 3, delayMs: 10);
+
+        Assert.False(result);
+    }
+
+    #endregion
+
+    #region WatchedRegistryPaths tests
+
+    [Fact]
+    public void WatchedRegistryPaths_WhenMultipleToggles_ReturnsDistinctPaths()
+    {
+        ICustomizeSetting setting = new MultiToggleSetting();
+
+        var paths = setting.WatchedRegistryPaths;
+
+        // 3 toggles but only 2 distinct paths
+        Assert.Equal(2, paths.Count);
+        Assert.Contains(@"HKCU\Software\TestA", paths);
+        Assert.Contains(@"HKCU\Software\TestB", paths);
+    }
+
+    [Fact]
+    public void WatchedRegistryPaths_WhenSingleToggle_ReturnsOnePath()
+    {
+        ICustomizeSetting setting = new TestCustomizeSetting();
+
+        var paths = setting.WatchedRegistryPaths;
+
+        Assert.Single(paths);
+        Assert.Equal(TestKeyPath, paths[0]);
+    }
+
+    [Fact]
+    public void WatchedRegistryPaths_WhenNoToggles_ReturnsEmpty()
+    {
+        // StableStateSetting declares no toggles, so the path list is empty.
+        ICustomizeSetting setting = new StableStateSetting();
+
+        var paths = setting.WatchedRegistryPaths;
+
+        Assert.Empty(paths);
+    }
+
+    #endregion
+
+    #region RefreshScope tests
+
+    private static readonly System.Reflection.PropertyInfo RefreshScopeProperty =
+        typeof(BaseCustomizeSetting).GetProperty(
+            "RefreshScope",
+            System.Reflection.BindingFlags.Instance
+                | System.Reflection.BindingFlags.NonPublic
+                | System.Reflection.BindingFlags.Public
+        )!;
+
+    private static readonly System.Reflection.PropertyInfo NeedsPostActionProperty =
+        typeof(BaseCustomizeSetting).GetProperty(
+            "NeedsPostAction",
+            System.Reflection.BindingFlags.Instance
+                | System.Reflection.BindingFlags.NonPublic
+                | System.Reflection.BindingFlags.Public
+        )!;
+
+    private static CustomizeRefreshScope GetRefreshScope(BaseCustomizeSetting s) =>
+        (CustomizeRefreshScope)RefreshScopeProperty.GetValue(s)!;
+
+    private static bool GetNeedsPostAction(BaseCustomizeSetting s) =>
+        (bool)NeedsPostActionProperty.GetValue(s)!;
+
+    private sealed class DefaultScopeSetting : BaseCustomizeSetting
+    {
+        public override Task<bool> GetStateAsync() => Task.FromResult(false);
+    }
+
+    private sealed class DefaultExplorerScopeSetting : BaseCustomizeSetting
+    {
+        protected override CustomizeRefreshScope RefreshScope => CustomizeRefreshScope.Default;
+
+        public override Task<bool> GetStateAsync() => Task.FromResult(false);
+    }
+
+    private sealed class DesktopIconsScopeSetting : BaseCustomizeSetting
+    {
+        protected override CustomizeRefreshScope RefreshScope => CustomizeRefreshScope.DesktopIcons;
+
+        public override Task<bool> GetStateAsync() => Task.FromResult(false);
+    }
+
+    private sealed class HideDesktopIconsScopeSetting : BaseCustomizeSetting
+    {
+        protected override CustomizeRefreshScope RefreshScope =>
+            CustomizeRefreshScope.HideDesktopIcons;
+
+        public override Task<bool> GetStateAsync() => Task.FromResult(false);
+    }
+
+    private sealed class TaskbarScopeSetting : BaseCustomizeSetting
+    {
+        protected override CustomizeRefreshScope RefreshScope =>
+            CustomizeRefreshScope.TaskbarSettings;
+
+        public override Task<bool> GetStateAsync() => Task.FromResult(false);
+    }
+
+    private sealed class MultiScopeSetting : BaseCustomizeSetting
+    {
+        protected override CustomizeRefreshScope RefreshScope =>
+            CustomizeRefreshScope.Settings
+            | CustomizeRefreshScope.Associations
+            | CustomizeRefreshScope.PolicyUpdate;
+
+        public override Task<bool> GetStateAsync() => Task.FromResult(false);
+    }
+
+    [Fact]
+    public void RefreshScope_ByDefault_IsNone_SoPostActionDoesNotRun()
+    {
+        var setting = new DefaultScopeSetting();
+
+        Assert.Equal(CustomizeRefreshScope.None, GetRefreshScope(setting));
+        Assert.False(GetNeedsPostAction(setting));
+    }
+
+    [Fact]
+    public void NeedsPostAction_IsDerivedFromRefreshScope()
+    {
+        Assert.True(GetNeedsPostAction(new DefaultExplorerScopeSetting()));
+        Assert.True(GetNeedsPostAction(new DesktopIconsScopeSetting()));
+        Assert.True(GetNeedsPostAction(new HideDesktopIconsScopeSetting()));
+        Assert.True(GetNeedsPostAction(new TaskbarScopeSetting()));
+        Assert.True(GetNeedsPostAction(new MultiScopeSetting()));
+        Assert.False(GetNeedsPostAction(new DefaultScopeSetting()));
+    }
+
+    [Fact]
+    public void RefreshScope_OnEachSubclass_MatchesExpectedValue()
+    {
+        Assert.Equal(
+            CustomizeRefreshScope.Default,
+            GetRefreshScope(new DefaultExplorerScopeSetting())
+        );
+        Assert.Equal(
+            CustomizeRefreshScope.DesktopIcons,
+            GetRefreshScope(new DesktopIconsScopeSetting())
+        );
+        Assert.Equal(
+            CustomizeRefreshScope.TaskbarSettings,
+            GetRefreshScope(new TaskbarScopeSetting())
+        );
+        Assert.Equal(
+            CustomizeRefreshScope.Settings
+                | CustomizeRefreshScope.Associations
+                | CustomizeRefreshScope.PolicyUpdate,
+            GetRefreshScope(new MultiScopeSetting())
+        );
+    }
+
+    [Fact]
+    public async Task ApplyAsync_WhenRefreshScopeIsNone_DoesNotCallPostAction()
+    {
+        var setting = new DefaultScopeSetting { OwnerType = typeof(DefaultScopeSetting) };
+
+        // With RefreshScope = None the base ApplyAsync skips ExecutePostActionAsync;
+        // NeedsPostAction is false, so no refresh runs.
+        Assert.False(GetNeedsPostAction(setting));
+        Assert.True((await setting.ApplyAsync(false, NewCall())).Ok); // must not throw
+    }
+
+    [Fact]
+    public async Task ApplyAsync_WhenRefreshScopeIsSet_RunsWithoutThrowing()
+    {
+        // Every declared scope variant must produce a working ApplyAsync that touches
+        // the registry and runs the refresh pipeline on a real Windows host.
+        var settings = new BaseCustomizeSetting[]
+        {
+            new DefaultExplorerScopeSetting { OwnerType = typeof(DefaultExplorerScopeSetting) },
+            new DesktopIconsScopeSetting { OwnerType = typeof(DesktopIconsScopeSetting) },
+            new TaskbarScopeSetting { OwnerType = typeof(TaskbarScopeSetting) },
+            new MultiScopeSetting { OwnerType = typeof(MultiScopeSetting) },
+        };
+
+        foreach (var setting in settings)
+        {
+            Assert.True((await setting.ApplyAsync(true, NewCall())).Ok);
+            Assert.True((await setting.ApplyAsync(false, NewCall())).Ok);
+        }
+    }
+
+    [Fact]
+    public void CustomizeRefreshScope_DefaultEqualsSettingsPlusAssociations()
+    {
+        Assert.Equal(
+            CustomizeRefreshScope.Settings | CustomizeRefreshScope.Associations,
+            CustomizeRefreshScope.Default
+        );
+    }
+
+    [Fact]
+    public void CustomizeRefreshScope_DesktopIconsEqualsSettingsPlusDesktop()
+    {
+        Assert.Equal(
+            CustomizeRefreshScope.Settings | CustomizeRefreshScope.Desktop,
+            CustomizeRefreshScope.DesktopIcons
+        );
+    }
+
+    [Fact]
+    public void CustomizeRefreshScope_TaskbarSettingsEqualsSettingsPlusTaskbar()
+    {
+        Assert.Equal(
+            CustomizeRefreshScope.Settings | CustomizeRefreshScope.Taskbar,
+            CustomizeRefreshScope.TaskbarSettings
+        );
+    }
+
+    [Fact]
+    public void CustomizeRefreshScope_ExplorerViewIncludesPolicyUpdate()
+    {
+        Assert.True(CustomizeRefreshScope.ExplorerView.HasFlag(CustomizeRefreshScope.PolicyUpdate));
+    }
+
+    [Fact]
+    public void CustomizeRefreshScope_AllFlagsCanBeCombined()
+    {
+        var all =
+            CustomizeRefreshScope.Settings
+            | CustomizeRefreshScope.Associations
+            | CustomizeRefreshScope.Desktop
+            | CustomizeRefreshScope.Taskbar
+            | CustomizeRefreshScope.PolicyUpdate
+            | CustomizeRefreshScope.Theme;
+
+        Assert.True(all.HasFlag(CustomizeRefreshScope.Settings));
+        Assert.True(all.HasFlag(CustomizeRefreshScope.Theme));
+    }
+
+    #endregion
+
+    #region RegistryToggle OnValues/OffValues tests
+
+    [Fact]
+    public void RegistryToggle_GetState_ReturnsTrueWhenValueMatchesOnValues()
+    {
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "OnValTest", 1));
+
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "OnValTest",
+            OnValues = [1],
+            OffValues = [0],
+        };
+
+        Assert.True(toggle.GetState());
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_ReturnsFalseWhenValueMatchesOffValues()
+    {
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "OffValTest", 0));
+
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "OffValTest",
+            OnValues = [1],
+            OffValues = [0],
+        };
+
+        Assert.False(toggle.GetState());
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_ReturnsTrueWhenKeyAbsentAndNullInOnValues()
+    {
+        // The key is absent, so the value is null, which is one of the OnValues.
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "MissingKeyTest",
+            OnValues = [1, null],
+            OffValues = [0],
+        };
+
+        Assert.True(toggle.GetState());
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_ReturnsFalseWhenKeyAbsentAndNullInOffValues()
+    {
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "MissingKeyTest2",
+            OnValues = [1],
+            OffValues = [0, null],
+        };
+
+        Assert.False(toggle.GetState());
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_ReturnsTrueWhenValueAbsentAndDefaultValueIsOn()
+    {
+        // Windows states only what differs from its own default, so an absent value is the
+        // declared default, not "off".
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "MissingDefaultOnTest",
+            OnValues = [0],
+            OffValues = [1],
+            DefaultValue = 0,
+        };
+
+        Assert.True(toggle.GetState());
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_ReturnsFalseWhenValueAbsentAndDefaultValueIsOff()
+    {
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "MissingDefaultOffTest",
+            OnValues = [0],
+            OffValues = [1],
+            DefaultValue = 1,
+        };
+
+        Assert.False(toggle.GetState());
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_KeyAbsentPrefersNullEntryOverDefaultValue()
+    {
+        // An explicit null entry already states the absent case, so it wins over the default.
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "MissingNullWinsTest",
+            OnValues = [1],
+            OffValues = [0, null],
+            DefaultValue = 1,
+        };
+
+        Assert.False(toggle.GetState());
+    }
+
+    [Fact]
+    public void RegistryToggle_SetState_WritesFirstValueFromList()
+    {
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "SetStateTest",
+            OnValues = [1],
+            OffValues = [0],
+        };
+
+        toggle.SetState(true, NewCall());
+        var value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "SetStateTest"));
+        Assert.Equal(1, value);
+
+        toggle.SetState(false, NewCall());
+        value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "SetStateTest"));
+        Assert.Equal(0, value);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_SetState_DeletesKeyWhenFirstValueIsNull()
+    {
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "NullSetTest", 1));
+
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "NullSetTest",
+            OnValues = [null],
+            OffValues = [0],
+        };
+
+        toggle.SetState(true, NewCall()); // Should delete the key
+
+        var value = RegistryService.Read<object>(new RegistryItem(TestKeyPath, "NullSetTest"));
+        Assert.Null(value);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_MatchesMultipleOnValues()
+    {
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "MultiOnTest", 1));
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "MultiOnTest",
+            OnValues = [1, 2],
+            OffValues = [0],
+        };
+        Assert.True(toggle.GetState());
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "MultiOnTest", 2));
+        Assert.True(toggle.GetState());
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_HwSchModeStyle_OnValue2_ReturnsTrue()
+    {
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "HwSchModeOnTest", 2));
+
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "HwSchModeOnTest",
+            OnValues = [2],
+            OffValues = [1],
+            DefaultValue = 1,
+        };
+
+        Assert.True(toggle.GetState());
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_HwSchModeStyle_OffValue1_ReturnsFalse()
+    {
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "HwSchModeOffTest", 1));
+
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "HwSchModeOffTest",
+            OnValues = [2],
+            OffValues = [1],
+            DefaultValue = 1,
+        };
+
+        Assert.False(toggle.GetState());
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_HwSchModeStyle_AbsentValue_ReturnsFalse()
+    {
+        var toggle = new RegistryToggle
+        {
+            Path = TestKeyPath,
+            Name = "HwSchModeAbsentTest",
+            OnValues = [2],
+            OffValues = [1],
+            DefaultValue = 1,
+        };
+
+        Assert.False(toggle.GetState());
+    }
+
+    [Fact]
+    public void RegistryToggle_GetState_FailedRead_ThrowsInsteadOfReadingAsOff()
+    {
+        var toggle = new RegistryToggle
+        {
+            Path = @"HKZZ\Software\TestOptimizerDuckCustomize",
+            Name = "HwSchModeFailTest",
+            OnValues = [2],
+            OffValues = [1],
+            DefaultValue = 1,
+        };
+
+        Assert.Throws<IOException>(() => toggle.GetState());
+    }
+
+    #endregion
+
+    #region SettingOption Bindings tests
+
+    [Fact]
+    public void SettingOption_PrimaryBinding_ReturnsFirstBinding()
+    {
+        var binding1 = new RegistryBinding(TestKeyPath, "Val1", 1);
+        var binding2 = new RegistryBinding(TestKeyPath, "Val2", 2);
+        var option = new SettingOption("Test", "value", [binding1, binding2]);
+
+        Assert.NotNull(option.PrimaryBinding);
+        Assert.Equal("Val1", option.PrimaryBinding.Name);
+    }
+
+    [Fact]
+    public void SettingOption_PrimaryBinding_ReturnsNullWhenNoBindings()
+    {
+        var option = new SettingOption("Test", "value");
+
+        Assert.Null(option.PrimaryBinding);
+    }
+
+    [Fact]
+    public void SettingOption_Bindings_DefaultsToNull()
+    {
+        var option = new SettingOption("Test", "value");
+
+        Assert.Null(option.Bindings);
+    }
+
+    #endregion
+
+    #region Dropdown auto-read/write tests
+
+    private class TestDropdownSetting : BaseCustomizeSetting
+    {
+        private const string RegPath = @"HKCU\Software\TestOptimizerDuckCustomize";
+        private const string RegName = "DropdownTest";
+
+        public override CustomizeControlType ControlType => CustomizeControlType.Dropdown;
+
+        protected override IReadOnlyList<SettingOption>? GetOptions() =>
+            [Option("OptionA", RegPath, RegName, 1), Option("OptionB", RegPath, RegName, 2)];
+
+        protected override CustomizeRefreshScope RefreshScope => CustomizeRefreshScope.Settings;
+    }
+
+    [Fact]
+    public async Task Dropdown_AutoRead_ReturnsMatchingOption()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 1));
+        Assert.Equal(1, setting.CurrentValue);
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 2));
+        Assert.Equal(2, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public async Task Dropdown_AutoRead_ReturnsRawValueWhenNoMatch()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 99));
+        Assert.Equal(99, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public async Task Dropdown_AutoWrite_WritesCorrectValue()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        Assert.True((await setting.ApplyAsync(1, NewCall())).Ok);
+        var value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "DropdownTest"));
+        Assert.Equal(1, value);
+
+        Assert.True((await setting.ApplyAsync(2, NewCall())).Ok);
+        value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "DropdownTest"));
+        Assert.Equal(2, value);
+
+        CleanupTestKeys();
+    }
+
+    #region Options (Custom option) tests
+
+    [Fact]
+    public void Options_ValueInScope_ReturnsDeclaredOptionsOnly()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 1));
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(2, effective!.Count);
+        Assert.DoesNotContain(effective, o => Equals(o.Value, 99));
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void Options_ValueOutOfScope_AppendsCustomOptionWithRawValue()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 99));
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(3, effective!.Count);
+        Assert.Equal(99, effective[2].Value);
+        Assert.Equal(
+            Loc.Instance[BaseCustomizeSetting.CustomOptionTranslationKey],
+            effective[2].DisplayName
+        );
+        Assert.Null(effective[2].Bindings);
+        Assert.Equal(99, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void Options_ValueReturnsInScope_RemovesCustomOption()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 99));
+        Assert.Equal(3, setting.Options!.Count);
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 2));
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(2, effective!.Count);
+        Assert.DoesNotContain(effective, o => Equals(o.Value, 99));
+        Assert.Equal(2, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void Options_ValueChangesOutOfScope_UpdatesCustomOptionValue()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 99));
+        Assert.Equal(99, setting.Options![2].Value);
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 123));
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(3, effective!.Count);
+        Assert.Equal(123, effective[2].Value);
+        Assert.Equal(123, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void Options_MissingValue_AddsCustomFallbackWithSentinel()
+    {
+        // A missing registry value must not leave the ComboBox empty: a synthetic
+        // fallback with a stable non-null sentinel (so WPF can select it) is appended.
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.DeleteValue(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest"));
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(3, effective!.Count);
+        Assert.Equal(
+            Loc.Instance[BaseCustomizeSetting.CustomOptionNotSetTranslationKey],
+            effective[2].DisplayName
+        );
+        Assert.Same(BaseCustomizeSetting.MissingValueSentinel, effective[2].Value);
+        Assert.Null(effective[2].Bindings);
+        Assert.Same(BaseCustomizeSetting.MissingValueSentinel, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public async Task ApplyAsync_MissingValueSentinel_IsSafeNoOp()
+    {
+        // The sentinel must never reach the registry: it matches no declared option, so
+        // the apply writes nothing.
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 1));
+        Assert.True(
+            (await setting.ApplyAsync(BaseCustomizeSetting.MissingValueSentinel, NewCall())).Ok
+        );
+
+        var value = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "DropdownTest"));
+        Assert.Equal(1, value);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void Options_MissingValueThenDeclaredValue_RemovesCustomFallback()
+    {
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.DeleteValue(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest"));
+        Assert.Equal(3, setting.Options!.Count);
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 2));
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(2, effective!.Count);
+        Assert.Equal(2, setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public void Options_NonDropdownSetting_ReturnsDeclaredOptions()
+    {
+        var setting = new TestCustomizeSetting { OwnerType = typeof(TestCustomizeSetting) };
+
+        Assert.Null(setting.Options);
+    }
+
+    [Fact]
+    public void Options_PartialMultiBindingMatch_ShowsCustomFallback()
+    {
+        var setting = new TestMultiBindingDropdown { OwnerType = typeof(TestMultiBindingDropdown) };
+
+        // Key A matches "On" but Key B does not, so the state is mixed. A "Custom" fallback
+        // with a distinct identity is selected, because a duplicate value would make
+        // SelectedValuePath ambiguous.
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "Key1", 1));
+        RegistryService.Write(
+            NewCall(),
+            new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Key2", 0)
+        );
+
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(3, effective!.Count);
+        Assert.Equal(
+            Loc.Instance[BaseCustomizeSetting.CustomOptionTranslationKey],
+            effective[2].DisplayName
+        );
+        Assert.Same(effective[2].Value, setting.CurrentValue);
+        Assert.NotEqual(1, effective[2].Value);
+
+        CleanupTestKeys();
+        try
+        {
+            using var hkcu = Microsoft.Win32.Registry.CurrentUser;
+            hkcu.DeleteSubKeyTree(@"Software\TestOptimizerDuckMultiKey", false);
+        }
+        catch { }
+    }
+
+    [Fact]
+    public void Options_CustomOptionIsMemoryOnly_NeverPersisted()
+    {
+        // The synthetic option is derived from live registry state and is never stored,
+        // so re-reading it must always reflect the current registry value.
+        var setting = new TestDropdownSetting { OwnerType = typeof(TestDropdownSetting) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "DropdownTest", 99));
+        var first = setting.Options!;
+        var second = setting.Options!;
+
+        Assert.Equal(99, first[2].Value);
+        Assert.Equal(99, second[2].Value);
+        Assert.NotSame(first, second);
+
+        CleanupTestKeys();
+    }
+
+    #endregion
+
+    private sealed class TestNotSetOptionDropdown : BaseCustomizeSetting
+    {
+        private const string RegPath = @"HKCU\Software\TestOptimizerDuckCustomize";
+        private const string RegName = "NotSetOptionTest";
+
+        public override CustomizeControlType ControlType => CustomizeControlType.Dropdown;
+
+        protected override IReadOnlyList<SettingOption>? GetOptions() =>
+            [
+                new SettingOption("Off", 0, [new RegistryBinding(RegPath, RegName, 0)]),
+                new SettingOption("On", 1, [new RegistryBinding(RegPath, RegName, 1)]),
+                new SettingOption(
+                    "NotSet",
+                    "notset",
+                    [new RegistryBinding(RegPath, RegName, null)]
+                ),
+            ];
+    }
+
+    [Fact]
+    public void Options_DeclaredNullBindingOption_MissingValue_MatchesDeclaredNotSet()
+    {
+        var setting = new TestNotSetOptionDropdown { OwnerType = typeof(TestNotSetOptionDropdown) };
+
+        RegistryService.DeleteValue(NewCall(), new RegistryItem(TestKeyPath, "NotSetOptionTest"));
+
+        // The declared null-binding option matches the missing state (null == null),
+        // so no synthetic fallback is appended; CurrentValue is the declared value.
+        var effective = setting.Options;
+
+        Assert.NotNull(effective);
+        Assert.Equal(3, effective!.Count);
+        Assert.Equal("notset", setting.CurrentValue);
+        Assert.DoesNotContain(
+            effective,
+            o => ReferenceEquals(o.Value, BaseCustomizeSetting.MissingValueSentinel)
+        );
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public async Task ApplyAsync_DeclaredNullBindingOption_DeletesValueLikeNotSet()
+    {
+        var setting = new TestNotSetOptionDropdown { OwnerType = typeof(TestNotSetOptionDropdown) };
+
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "NotSetOptionTest", 1));
+        Assert.Equal(1, setting.CurrentValue);
+
+        // Selecting the declared "NotSet" option deletes the registry value (binding null).
+        Assert.True((await setting.ApplyAsync("notset", NewCall())).Ok);
+
+        var value = RegistryService.Read<object>(new RegistryItem(TestKeyPath, "NotSetOptionTest"));
+        Assert.Null(value);
+        Assert.Equal("notset", setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    [Fact]
+    public async Task ApplyAsync_NullBindingOption_RoundTripsToDeclaredValue()
+    {
+        var setting = new TestNotSetOptionDropdown { OwnerType = typeof(TestNotSetOptionDropdown) };
+
+        // Absent, then written by "On", then deleted again by "NotSet".
+        RegistryService.DeleteValue(NewCall(), new RegistryItem(TestKeyPath, "NotSetOptionTest"));
+        Assert.Equal("notset", setting.CurrentValue);
+
+        Assert.True((await setting.ApplyAsync(1, NewCall())).Ok);
+        Assert.Equal(1, setting.CurrentValue);
+
+        Assert.True((await setting.ApplyAsync("notset", NewCall())).Ok);
+        var value = RegistryService.Read<object>(new RegistryItem(TestKeyPath, "NotSetOptionTest"));
+        Assert.Null(value);
+        Assert.Equal("notset", setting.CurrentValue);
+
+        CleanupTestKeys();
+    }
+
+    private class TestMultiBindingDropdown : BaseCustomizeSetting
+    {
+        private const string RegPathA = @"HKCU\Software\TestOptimizerDuckCustomize";
+        private const string RegPathB = @"HKCU\Software\TestOptimizerDuckMultiKey";
+
+        public override CustomizeControlType ControlType => CustomizeControlType.Dropdown;
+
+        protected override IReadOnlyList<SettingOption>? GetOptions() =>
+            [
+                new SettingOption(
+                    "Off",
+                    0,
+                    [
+                        new RegistryBinding(RegPathA, "Key1", 0),
+                        new RegistryBinding(RegPathB, "Key2", 0),
+                    ]
+                ),
+                new SettingOption(
+                    "On",
+                    1,
+                    [
+                        new RegistryBinding(RegPathA, "Key1", 1),
+                        new RegistryBinding(RegPathB, "Key2", 1),
+                    ]
+                ),
+            ];
+
+        protected override CustomizeRefreshScope RefreshScope => CustomizeRefreshScope.Settings;
+    }
+
+    [Fact]
+    public async Task Dropdown_MultiBinding_WritesAllKeys()
+    {
+        var setting = new TestMultiBindingDropdown { OwnerType = typeof(TestMultiBindingDropdown) };
+
+        Assert.True((await setting.ApplyAsync(1, NewCall())).Ok);
+
+        var valA = RegistryService.Read<int>(new RegistryItem(TestKeyPath, "Key1"));
+        var valB = RegistryService.Read<int>(
+            new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Key2")
+        );
+        Assert.Equal(1, valA);
+        Assert.Equal(1, valB);
+
+        CleanupTestKeys();
+        try
+        {
+            using var hkcu = Microsoft.Win32.Registry.CurrentUser;
+            hkcu.DeleteSubKeyTree(@"Software\TestOptimizerDuckMultiKey", false);
+        }
+        catch { }
+    }
+
+    [Fact]
+    public async Task Dropdown_MultiBinding_ReadsAllKeys()
+    {
+        var setting = new TestMultiBindingDropdown { OwnerType = typeof(TestMultiBindingDropdown) };
+
+        // Both keys hold 1, so the option "On" matches.
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "Key1", 1));
+        RegistryService.Write(
+            NewCall(),
+            new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Key2", 1)
+        );
+        Assert.Equal(1, setting.CurrentValue);
+
+        // Key A is 1 and Key B is 0, so the state is mixed: the "Custom" fallback is
+        // selected and applying it must not write anything.
+        RegistryService.Write(NewCall(), new RegistryItem(TestKeyPath, "Key1", 1));
+        RegistryService.Write(
+            NewCall(),
+            new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Key2", 0)
+        );
+
+        var options = setting.Options;
+        Assert.NotNull(options);
+        var fallback = options![2];
+        Assert.Equal(
+            Loc.Instance[BaseCustomizeSetting.CustomOptionTranslationKey],
+            fallback.DisplayName
+        );
+        Assert.Same(fallback.Value, setting.CurrentValue);
+        Assert.NotEqual(1, fallback.Value);
+
+        Assert.True((await setting.ApplyAsync(fallback.Value, NewCall())).Ok);
+        Assert.Equal(1, RegistryService.Read<int>(new RegistryItem(TestKeyPath, "Key1")));
+        Assert.Equal(
+            0,
+            RegistryService.Read<int>(
+                new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Key2")
+            )
+        );
+
+        CleanupTestKeys();
+        try
+        {
+            using var hkcu = Microsoft.Win32.Registry.CurrentUser;
+            hkcu.DeleteSubKeyTree(@"Software\TestOptimizerDuckMultiKey", false);
+        }
+        catch { }
+    }
+
+    [Fact]
+    public void Dropdown_WatchedPaths_IncludesAllBindingPaths()
+    {
+        var setting = new TestMultiBindingDropdown { OwnerType = typeof(TestMultiBindingDropdown) };
+
+        var paths = ((ICustomizeSetting)setting).WatchedRegistryPaths;
+
+        Assert.Equal(2, paths.Count);
+        Assert.Contains(TestKeyPath, paths);
+        Assert.Contains(@"HKCU\Software\TestOptimizerDuckMultiKey", paths);
+    }
+
+    private class OverrideWinsSetting : BaseCustomizeSetting
+    {
+        public override object? CurrentValue => "custom";
+
+        public override Task<OpResult> ApplyAsync(object? value, OpCall call) =>
+            Task.FromResult(OpResult.Success());
+
+        public override Task<bool> GetStateAsync() => Task.FromResult(true);
+    }
+
+    [Fact]
+    public void OverrideWins_CurrentValue_UsesOverride()
+    {
+        var setting = new OverrideWinsSetting { OwnerType = typeof(OverrideWinsSetting) };
+        Assert.Equal("custom", setting.CurrentValue);
+    }
+
+    private class TestMatchMissingDropdown : BaseCustomizeSetting
+    {
+        public override CustomizeControlType ControlType => CustomizeControlType.Dropdown;
+
+        protected override IReadOnlyList<SettingOption>? GetOptions() =>
+            [
+                Option("Center", TestKeyPath, "AlignTestKey", 1, matchMissingAsDefault: true),
+                Option("Left", TestKeyPath, "AlignTestKey", 0),
+            ];
+    }
+
+    [Fact]
+    public void Dropdown_MatchMissingAsDefault_MatchesWhenKeyAbsent()
+    {
+        var setting = new TestMatchMissingDropdown { OwnerType = typeof(TestMatchMissingDropdown) };
+
+        RegistryService.DeleteValue(NewCall(), new RegistryItem(TestKeyPath, "AlignTestKey"));
+
+        // Must match "Center" (value 1) without creating synthetic "Not set" fallback
+        Assert.Equal(1, setting.CurrentValue);
+        Assert.Equal(2, setting.Options?.Count);
+
+        CleanupTestKeys();
+    }
+
+    private class TestMultiBindingWithDefaultDropdown : BaseCustomizeSetting
+    {
+        private const string RegPathA = @"HKCU\Software\TestOptimizerDuckCustomize";
+        private const string RegPathB = @"HKCU\Software\TestOptimizerDuckMultiKey";
+
+        public override CustomizeControlType ControlType => CustomizeControlType.Dropdown;
+
+        protected override IReadOnlyList<SettingOption>? GetOptions() =>
+            [
+                Option(
+                    "Always",
+                    0,
+                    BindWithDefault(RegPathA, "Glom1", 0),
+                    BindWithDefault(RegPathB, "Glom2", 0)
+                ),
+                Option("WhenFull", 1, Bind(RegPathA, "Glom1", 1), Bind(RegPathB, "Glom2", 1)),
+                Option("Never", 2, Bind(RegPathA, "Glom1", 2), Bind(RegPathB, "Glom2", 2)),
+            ];
+    }
+
+    [Fact]
+    public async Task Dropdown_MultiBinding_WithDefault_MatchesWhenKeysAbsent()
+    {
+        var setting = new TestMultiBindingWithDefaultDropdown
+        {
+            OwnerType = typeof(TestMultiBindingWithDefaultDropdown),
+        };
+
+        // Both keys absent, so the option "Always" matches.
+        RegistryService.DeleteValue(NewCall(), new RegistryItem(TestKeyPath, "Glom1"));
+        RegistryService.DeleteValue(
+            NewCall(),
+            new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Glom2")
+        );
+
+        Assert.Equal(0, setting.CurrentValue);
+
+        // Applying "Never" writes both keys.
+        Assert.True((await setting.ApplyAsync(2, NewCall())).Ok);
+        Assert.Equal(2, setting.CurrentValue);
+        Assert.Equal(2, RegistryService.Read<int>(new RegistryItem(TestKeyPath, "Glom1")));
+        Assert.Equal(
+            2,
+            RegistryService.Read<int>(
+                new RegistryItem(@"HKCU\Software\TestOptimizerDuckMultiKey", "Glom2")
+            )
+        );
+
+        CleanupTestKeys();
+        try
+        {
+            using var hkcu = Microsoft.Win32.Registry.CurrentUser;
+            hkcu.DeleteSubKeyTree(@"Software\TestOptimizerDuckMultiKey", false);
+        }
+        catch { }
+    }
+
+    #endregion
+}

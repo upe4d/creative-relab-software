@@ -1,0 +1,15 @@
+DRAFT ONLY - NOT SENT. Replace every angle-bracket field before sending.
+To: fsfcomm@microsoft.com
+Subject: Filter altitude request
+
+Company name: <legal publisher name>
+Contact e-mail: <long-term company email alias>
+Product name: PC Guard
+Product URL: <public product or company URL>
+Product/Filter description: PC Guard is a file-system minifilter under development for Windows x64. It checks SHA-256 of executable files in selected directories and restricts untrusted writes, deletion, renaming and writable mappings in selected data directories. Allowed editors are identified by executable path and hash. It is planned for public distribution after kernel validation and compatibility testing. It does not replace or disable existing antivirus products.
+Filter filename: PCGuardFilter.sys
+Filter type: FileSystem
+Filter start-type: Demand
+Requested filter load order group: FSFilter Anti-Virus
+Requested altitude: <request an available integer altitude in 320000-329999 after confirming load-order group>
+Additional information: <publisher contact and confirmed release/test details>

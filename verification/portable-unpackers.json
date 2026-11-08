@@ -1,0 +1,38 @@
+[
+  {
+    "product": "PC Care",
+    "version": "1.1.2",
+    "checks": 8,
+    "failures": 0,
+    "preservedData": true,
+    "backupVerified": true,
+    "traversalRejected": true,
+    "driveCRejected": true,
+    "extractedExecutableVerified": true,
+    "unpackerSHA256": "84DB0B5E433414073D4C2E9B01B2ED8A47D4E627B3FA87CA7BB0EFCF0F086F94"
+  },
+  {
+    "product": "PC Guard",
+    "version": "3.4.0",
+    "checks": 8,
+    "failures": 0,
+    "preservedData": true,
+    "backupVerified": true,
+    "traversalRejected": true,
+    "driveCRejected": true,
+    "extractedExecutableVerified": true,
+    "unpackerSHA256": "20BD775996F331679BDEF7E4C4372EE85931DA98A86583ED10D7B89A54FC235C"
+  },
+  {
+    "product": "PC Tune",
+    "version": "1.0.1",
+    "checks": 8,
+    "failures": 0,
+    "preservedData": true,
+    "backupVerified": true,
+    "traversalRejected": true,
+    "driveCRejected": true,
+    "extractedExecutableVerified": true,
+    "unpackerSHA256": "19324276959500E4B5DEF1D432187D52BE23D2385275103435567ABB8E06222A"
+  }
+]

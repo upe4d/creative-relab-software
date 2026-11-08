@@ -1,0 +1,2525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:schema id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+  </resheader>
+  <data name="Dashboard.Header.Title" xml:space="preserve">
+    <value>ダッシュボード</value>
+  </data>
+  <data name="Optimizer.AI.DisableRecall.ShortDescription" xml:space="preserve">
+    <value>画面のスナップショットをキャプチャしてインデックス化する Windows Recall AI 機能を無効にします。また、Recall コンポーネントを削除し、以前に保存されたスナップショットを削除します。有効にするには再起動が必要です。</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableNewsAndInterests.ShortDescription" xml:space="preserve">
+    <value>ニュースと関心事項フィードをオフにしてタスクバー ボタンを非表示にし (Windows 10)、ウィジェット ボードを無効にします (Windows 11)。</value>
+  </data>
+  <data name="Sidebar.Dashboard" xml:space="preserve">
+    <value>ダッシュボード</value>
+  </data>
+  <data name="Sidebar.Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Button.Close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Cpu.Cores" xml:space="preserve">
+    <value>{0} コア</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Storage.DiskInfo" xml:space="preserve">
+    <value>{1} GB 中 {0} GB 使用中（{2} GB 空き）</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Ram.Modules" xml:space="preserve">
+    <value>{0} モジュール</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Cpu.Threads" xml:space="preserve">
+    <value>{0} スレッド</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Storage.System" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Storage.Header" xml:space="preserve">
+    <value>ストレージ</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Ram.Used" xml:space="preserve">
+    <value>{0} GB 使用中</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Ram.Available" xml:space="preserve">
+    <value>{0} GB 利用可能</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Loading" xml:space="preserve">
+    <value>システム情報を取得しています…</value>
+  </data>
+  <data name="Sidebar.Optimize" xml:space="preserve">
+    <value>最適化</value>
+  </data>
+  <data name="Customize.Description" xml:space="preserve">
+    <value>Windows の設定と日常的な動作をカスタマイズします。</value>
+  </data>
+  <data name="Customize.Preferences.Name" xml:space="preserve">
+    <value>環境設定</value>
+  </data>
+  <data name="Customize.Preferences.Description" xml:space="preserve">
+    <value>Windows の見た目と操作感を調整します。</value>
+  </data>
+  <data name="Customize.Gaming.Name" xml:space="preserve">
+    <value>ゲーム</value>
+  </data>
+  <data name="Customize.Gaming.Description" xml:space="preserve">
+    <value>ゲーム向けのグラフィック、入力、録画の設定です。</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Gpu.More" xml:space="preserve">
+    <value>GPU あと {0} 個</value>
+  </data>
+  <data name="Dashboard.Actions.Discord.Title" xml:space="preserve">
+    <value>Discord コミュニティ</value>
+  </data>
+  <data name="Dashboard.Actions.Discord.Description" xml:space="preserve">
+    <value>Discord コミュニティに参加して、サポートを受けたり一緒にゲームを楽しんだりしましょう</value>
+  </data>
+  <data name="Dashboard.Actions.GitHub.Title" xml:space="preserve">
+    <value>GitHub リポジトリ</value>
+  </data>
+  <data name="Dashboard.Actions.GitHub.Description" xml:space="preserve">
+    <value>GitHub でプロジェクトを探索、レビュー、貢献できます</value>
+  </data>
+  <data name="Dashboard.Actions.SupportMe.Title" xml:space="preserve">
+    <value>貢献する</value>
+  </data>
+  <data name="Dashboard.Actions.SupportMe.Description" xml:space="preserve">
+    <value>GitHub でスターを付けたり、友達と共有したり、寄付したり - どんな小さな支援もプロジェクトの成長に役立ちます！</value>
+  </data>
+  <data name="Button.Ok" xml:space="preserve">
+    <value>ＯＫ</value>
+  </data>
+  <data name="Settings.Header.Title" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Settings.Appearance.Header" xml:space="preserve">
+    <value>外観</value>
+  </data>
+  <data name="Settings.Appearance.LanguageSelector.Title" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="Settings.Appearance.LanguageSelector.Description" xml:space="preserve">
+    <value>希望の言語を選択してください</value>
+  </data>
+  <data name="Settings.Appearance.ThemeSelector.Title" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="Settings.Appearance.ThemeSelector.Description" xml:space="preserve">
+    <value>アプリの希望テーマを選択してください</value>
+  </data>
+  <data name="Settings.Appearance.ThemeSelector.Light" xml:space="preserve">
+    <value>ライト</value>
+  </data>
+  <data name="Settings.Appearance.ThemeSelector.Dark" xml:space="preserve">
+    <value>ダーク</value>
+  </data>
+  <data name="Settings.Appearance.ThemeSelector.HighContrast" xml:space="preserve">
+    <value>高コントラスト</value>
+  </data>
+  <data name="Common.AppliedSecondsAgo" xml:space="preserve">
+    <value>{0} 秒前に適用</value>
+  </data>
+  <data name="Common.AppliedMinutesAgo" xml:space="preserve">
+    <value>{0} 分前に適用</value>
+  </data>
+  <data name="Common.AppliedHoursAgo" xml:space="preserve">
+    <value>{0} 時間前に適用</value>
+  </data>
+  <data name="Common.AppliedDaysAgo" xml:space="preserve">
+    <value>{0} 日前に適用</value>
+  </data>
+  <data name="Common.AppliedMonthsAgo" xml:space="preserve">
+    <value>{0} か月前に適用</value>
+  </data>
+  <data name="Common.AppliedYearsAgo" xml:space="preserve">
+    <value>{0} 年前に適用</value>
+  </data>
+  <data name="Optimizer.UI.Risk.Safe" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  <data name="Optimizer.UI.Risk.Moderate" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="Optimizer.UI.Risk.Risky" xml:space="preserve">
+    <value>上級者向け</value>
+  </data>
+  <data name="OptimizationDetailsDialog.DetailedDescription" xml:space="preserve">
+    <value>詳細な説明</value>
+  </data>
+  <data name="Optimizer.Performance.ConsolidateServiceHosts.ShortDescription" xml:space="preserve">
+    <value>サービス ホストの分割しきい値をシステムの合計 RAM に引き上げ、サービスをより少ないプロセスに統合したままにすることで、メモリ使用量とプロセス数を削減します。</value>
+  </data>
+  <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.DetectActivePlanFailed" xml:space="preserve">
+    <value>現在のアクティブな電源プランを検出できませんでした</value>
+  </data>
+  <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ImportFailed" xml:space="preserve">
+    <value>optimizerDuck の電源プランをインポートできませんでした</value>
+  </data>
+  <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Error.ActivateFailed" xml:space="preserve">
+    <value>optimizerDuck の電源プランを有効化できませんでした</value>
+  </data>
+  <data name="Optimizer.UI.Tags.System" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Ram" xml:space="preserve">
+    <value>RAM</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Disk" xml:space="preserve">
+    <value>ディスク</value>
+  </data>
+  <data name="Optimizer.UI.Tags.NetworkRequired" xml:space="preserve">
+    <value>ネットワーク接続が必要</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Network" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Privacy" xml:space="preserve">
+    <value>プライバシー</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Audio" xml:space="preserve">
+    <value>オーディオ</value>
+  </data>
+<data name="Optimizer.UI.Tags.Nvidia" xml:space="preserve">
+    <value>NVIDIA 向け</value>
+  </data>
+<data name="Optimizer.UI.Tags.Amd" xml:space="preserve">
+    <value>AMD 向け</value>
+  </data>
+<data name="Optimizer.UI.Tags.Intel" xml:space="preserve">
+    <value>Intel 向け</value>
+  </data>
+
+  <data name="Optimizer.UI.Tags.Power" xml:space="preserve">
+    <value>電源</value>
+  </data>
+  <data name="Revert.Error.NoDataFound" xml:space="preserve">
+    <value>{0} の元に戻すデータが見つかりません</value>
+  </data>
+  <data name="Optimization.Revert.Reverting" xml:space="preserve">
+    <value>元に戻しています…</value>
+  </data>
+  <data name="Optimization.Revert.Success" xml:space="preserve">
+    <value>{0} を正常に元に戻しました！</value>
+  </data>
+  <data name="Optimization.Revert.Error.FailedWithSteps" xml:space="preserve">
+    <value>{0} を元に戻しましたが、{1} 個のステップが失敗しました</value>
+  </data>
+  <data name="Optimization.Revert.ExecutingStep" xml:space="preserve">
+    <value>元に戻すステップを実行中: {0}/{1} ({2})</value>
+  </data>
+  <data name="Revert.Registry.Description.RestoreKey" xml:space="preserve">
+    <value>レジストリ キーを復元: {0}</value>
+  </data>
+  <data name="Revert.Registry.Description.DeleteKey" xml:space="preserve">
+    <value>レジストリ キーを削除: {0}</value>
+  </data>
+  <data name="Revert.Registry.Description.RevertUnknown" xml:space="preserve">
+    <value>レジストリを元に戻す: {0}</value>
+  </data>
+  <data name="Revert.Error.NoSteps" xml:space="preserve">
+    <value>元に戻すステップが見つかりません</value>
+  </data>
+  <data name="Revert.Error.StepFailed" xml:space="preserve">
+    <value>元に戻すステップが失敗しました</value>
+  </data>
+  <data name="Revert.UsbPower.Description" xml:space="preserve">
+    <value>USB 選択的サスペンドの電源状態を復元</value>
+  </data>
+  <data name="Revert.Hibernation.Description" xml:space="preserve">
+    <value>休止状態を復元</value>
+  </data>
+  <data name="Revert.Hibernation.Error.RestoreFailed" xml:space="preserve">
+    <value>休止状態を復元できませんでした：{0}</value>
+  </data>
+  <data name="Optimization.Apply.Processing" xml:space="preserve">
+    <value>変更を適用しています…</value>
+  </data>
+  <data name="Optimization.Apply.Completed" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="Optimization.Apply.Success" xml:space="preserve">
+    <value>{0} を正常に適用しました</value>
+  </data>
+  <data name="Optimization.Apply.Error.FailedWithSteps" xml:space="preserve">
+    <value>{0} を適用しましたが、{1} 個のステップが失敗しました</value>
+  </data>
+  <data name="Optimization.Apply.Error.Failed" xml:space="preserve">
+    <value>{0} の適用に失敗しました</value>
+  </data>
+  <data name="Optimization.Apply.Error.Unknown" xml:space="preserve">
+    <value>{0} の結果が不明です</value>
+  </data>
+  <data name="Service.Shell.Error.ExitCode" xml:space="preserve">
+    <value>終了コード {0}</value>
+  </data>
+  <data name="Service.Shell.Error.TimedOut" xml:space="preserve">
+    <value>タイムアウト</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other.OpenRevertFile.Title" xml:space="preserve">
+    <value>元に戻すファイル</value>
+  </data>
+  <data name="OptimizationResultDialog.Header" xml:space="preserve">
+    <value>失敗したステップ {0} 個</value>
+  </data>
+  <data name="OptimizationResultDialog.Description" xml:space="preserve">
+    <value>一部のステップが正常に完了しませんでした。失敗したステップのみ再試行できます</value>
+  </data>
+  <data name="OptimizationResultDialog.Details" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="Button.Retry" xml:space="preserve">
+    <value>再試行</value>
+  </data>
+  <data name="Settings.About.Duck.Description" xml:space="preserve">
+    <value>現在のバージョン: {0}</value>
+  </data>
+  <data name="Settings.Advanced.Header" xml:space="preserve">
+    <value>詳細設定</value>
+  </data>
+  <data name="Settings.Optimize.Header" xml:space="preserve">
+    <value>最適化</value>
+  </data>
+  <data name="Settings.Optimize.ShellTimeout.Title" xml:space="preserve">
+    <value>シェル サービスのタイムアウト</value>
+  </data>
+  <data name="Settings.Optimize.ShellTimeout.Description" xml:space="preserve">
+    <value>各シェル コマンド実行のタイムアウト（ミリ秒）</value>
+  </data>
+  <data name="Settings.Advanced.ClearDownloads.Title" xml:space="preserve">
+    <value>ダウンロードをクリア</value>
+  </data>
+  <data name="Settings.Advanced.ClearDownloads.Description" xml:space="preserve">
+    <value>最適化プロセス中にダウンロードされたすべてのファイルを削除します</value>
+  </data>
+  <data name="Settings.Advanced.ClearRevertDatas.Title" xml:space="preserve">
+    <value>すべての元に戻すデータをクリア</value>
+  </data>
+  <data name="Settings.Advanced.ClearRevertDatas.Description" xml:space="preserve">
+    <value>最適化のすべてのロールバック データをクリアします</value>
+  </data>
+  <data name="Button.Clear" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="Settings.Advanced.OpenRootDir.Title" xml:space="preserve">
+    <value>ルート ディレクトリを開く</value>
+  </data>
+  <data name="Settings.Advanced.OpenRootDir.Description" xml:space="preserve">
+    <value>必要なファイルがすべて保存されているアプリケーションのルート ディレクトリを開きます</value>
+  </data>
+  <data name="Settings.Appearance.SmoothScrolling.Title" xml:space="preserve">
+    <value>スムーズ スクロール</value>
+  </data>
+  <data name="Settings.Appearance.SmoothScrolling.Description" xml:space="preserve">
+    <value>より滑らかなスクロール体験のためにスムーズ スクロール アニメーションを有効にします。遅延を感じる場合はオフにしてください</value>
+  </data>
+  <data name="Settings.About.Header" xml:space="preserve">
+    <value>バージョン情報</value>
+  </data>
+  <data name="Dialog.AreYouSure.Title" xml:space="preserve">
+    <value>本当に続行しますか？</value>
+  </data>
+  <data name="Settings.ClearDownloads.Description" xml:space="preserve">
+    <value>最適化プロセス中にダウンロードされたすべてのファイルを削除しようとしています。この操作は永久的で元に戻せません。続行する前に十分ご確認ください</value>
+  </data>
+  <data name="Button.Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Button.Skip" xml:space="preserve">
+    <value>スキップ</value>
+  </data>
+  <data name="Settings.ClearRevertData.Description" xml:space="preserve">
+    <value>最適化後に生成されたすべてのロールバック データを削除しようとしています。削除後は最適化前の状態に復元できなくなります。慎重にご判断ください</value>
+  </data>
+  <data name="ProcessingOptimizationDialog.Warning.DontCloseAppOrRestart" xml:space="preserve">
+    <value>変更の適用または元に戻す操作中は、アプリを閉じたり再起動したりしないでください</value>
+  </data>
+  <data name="Common.AppliedJustNow" xml:space="preserve">
+    <value>たった今適用</value>
+  </data>
+  <data name="Optimization.Apply.Snackbar.Error.Title" xml:space="preserve">
+      <value>最適化を完全に適用できませんでした</value>
+    </data>
+  <data name="Optimization.Revert.Snackbar.Error.Title" xml:space="preserve">
+    <value>最適化を元に戻せませんでした</value>
+  </data>
+  <data name="Optimization.Apply.Snackbar.Success.Title" xml:space="preserve">
+    <value>最適化が正常に適用されました</value>
+  </data>
+  <data name="Optimization.Apply.Error.AllStepsFailed" xml:space="preserve">
+    <value>すべての手順が失敗しました。</value>
+  </data>
+  <data name="Optimization.Revert.Snackbar.Success.Title" xml:space="preserve">
+    <value>最適化が正常に元に戻されました</value>
+  </data>
+  <data name="Optimization.Toggle.Snackbar.Error.Title" xml:space="preserve">
+    <value>最適化の切り替えに失敗しました</value>
+  </data>
+  <data name="Optimization.Toggle.Snackbar.Error.Message" xml:space="preserve">
+    <value>エラーが発生しました: {0}</value>
+  </data>
+  <data name="Optimization.Retry.Processing" xml:space="preserve">
+    <value>失敗したステップを再試行しています…</value>
+  </data>
+  <data name="Optimization.RetryStep.Processing" xml:space="preserve">
+    <value>{0} ステップを再試行中 ({1}/{2})</value>
+  </data>
+  <data name="Optimization.Revert.Error.Failed" xml:space="preserve">
+    <value>{0} の元に戻す操作に失敗しました</value>
+  </data>
+  <data name="Dashboard.Header.Menu.Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Dashboard.Header.Menu.RunTaskManager" xml:space="preserve">
+    <value>タスク マネージャー</value>
+  </data>
+  <data name="Common.Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="Common.Recommendation.On" xml:space="preserve">
+    <value>推奨</value>
+  </data>
+  <data name="Common.Recommendation.Off" xml:space="preserve">
+    <value>非推奨</value>
+  </data>
+  <data name="Common.Recommendation.Experimental" xml:space="preserve">
+    <value>実験的</value>
+  </data>
+  <data name="Common.Recommendation.Depends" xml:space="preserve">
+    <value>状況による</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Security" xml:space="preserve">
+    <value>セキュリティ</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Performance" xml:space="preserve">
+    <value>パフォーマンス</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Latency" xml:space="preserve">
+    <value>レイテンシ</value>
+  </data>
+  <data name="Optimizer.Performance" xml:space="preserve">
+    <value>パフォーマンス</value>
+  </data>
+  <data name="Optimizer.PowerManagement" xml:space="preserve">
+    <value>電源管理</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy" xml:space="preserve">
+    <value>セキュリティとプライバシー</value>
+  </data>
+  <data name="Optimizer.BloatwareAndServices" xml:space="preserve">
+    <value>不要なアプリとサービス</value>
+  </data>
+  <data name="Optimizer.Performance.DisableBackgroundApps.Name" xml:space="preserve">
+    <value>バックグラウンド アプリを無効化</value>
+  </data>
+  <data name="Optimizer.Performance.DisableBackgroundApps.ShortDescription" xml:space="preserve">
+    <value>非アクティブなアプリケーションがバックグラウンドで実行されないようにして RAM を解放し、CPU オーバーヘッドを削減します</value>
+  </data>
+  <data name="Optimizer.Performance.ConsolidateServiceHosts.Name" xml:space="preserve">
+    <value>サービス ホストの統合</value>
+  </data>
+  <data name="Optimizer.Performance.ConsolidateServiceHosts.Error.InvalidRAM" xml:space="preserve">
+    <value>無効な RAM: {0}</value>
+  </data>
+  <data name="Optimizer.Performance.ProcessPriority.Name" xml:space="preserve">
+    <value>アクティブなアプリを優先</value>
+  </data>
+  <data name="Optimizer.Performance.ProcessPriority.ShortDescription" xml:space="preserve">
+    <value>現在使用中のアプリケーションにより多くの CPU リソースを割り当て、より高速で応答性の高い体験を提供します</value>
+  </data>
+  <data name="Optimizer.Performance.OptimizeMultimediaScheduler.Name" xml:space="preserve">
+    <value>マルチメディア スケジューラーを最適化</value>
+  </data>
+  <data name="Optimizer.Performance.OptimizeMultimediaScheduler.ShortDescription" xml:space="preserve">
+    <value>MMCSS をゲームと低遅延向けに構成し、マルチメディア ワークロードを優先してネットワーク スロットリングを無効化します</value>
+  </data>
+  <data name="Optimizer.Performance.KeyboardLatencyOptimization.Name" xml:space="preserve">
+    <value>キーボード リピートを最適化</value>
+  </data>
+  <data name="Optimizer.Performance.KeyboardLatencyOptimization.ShortDescription" xml:space="preserve">
+    <value>最も速いキーボード リピート遅延とリピート レートを設定し、より応答性の高い入力を実現します</value>
+  </data>
+  <data name="Optimizer.Performance.DisableAccessibilityKeyboardHotkeys.Name" xml:space="preserve">
+    <value>アクセシビリティ キーボード ショートカットを無効化</value>
+  </data>
+  <data name="Optimizer.Performance.DisableAccessibilityKeyboardHotkeys.ShortDescription" xml:space="preserve">
+    <value>スティッキーキー、フィルター キー、トグル キーのショートカットを無効化し、ゲームや入力中の誤ったポップアップを防ぎます</value>
+  </data>
+  <data name="Optimizer.PowerManagement.DisableHibernateAndFastStartup.Name" xml:space="preserve">
+    <value>休止状態と高速スタートアップを無効化</value>
+  </data>
+  <data name="Optimizer.PowerManagement.DisableHibernateAndFastStartup.ShortDescription" xml:space="preserve">
+    <value>休止状態と高速スタートアップをオフにしてディスク容量を回収し、完全シャットダウンで起動時のハードウェア初期化を確実にします</value>
+  </data>
+  <data name="Optimizer.PowerManagement.DisableUSBPowerSaving.Name" xml:space="preserve">
+    <value>USB 省電力を無効化</value>
+  </data>
+  <data name="Optimizer.PowerManagement.DisableUSBPowerSaving.ShortDescription" xml:space="preserve">
+    <value>Windows が USB ポートの電源を切らないようにして、マウス、キーボード、その他の周辺機器のウェイクアップ遅延を解消します</value>
+  </data>
+  <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Name" xml:space="preserve">
+    <value>最適化された電源プランを適用</value>
+  </data>
+  <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.ShortDescription" xml:space="preserve">
+    <value>パフォーマンス重視のカスタム電源プランをインストールし、システムが常に最大速度で動作するようにします。警告：一部のシステムでタスクマネージャーが CPU 使用率を 100% と誤表示する可能性がありますが、実際の CPU 負荷に影響はありません。</value>
+  </data>
+  <data name="Optimizer.PowerManagement.InstallOptimizerDuckPowerPlan.Progress.Importing" xml:space="preserve">
+    <value>電源プランをインポートして有効化しています…</value>
+  </data>
+  <data name="Optimizer.PowerManagement.DisablePowerSaving.Name" xml:space="preserve">
+    <value>システム電源スロットリングを無効化</value>
+  </data>
+  <data name="Optimizer.PowerManagement.DisablePowerSaving.ShortDescription" xml:space="preserve">
+    <value>Windows が CPU パフォーマンスを制限（電源スロットリング）しないようにして、アクティブなタスクで最大性能を維持します</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableTelemetry.Name" xml:space="preserve">
+    <value>データ収集（テレメトリ）を無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableTelemetry.ShortDescription" xml:space="preserve">
+    <value>Windows テレメトリと使用状況追跡サービスを無効化して、プライバシーを強化しバックグラウンド アクティビティを削減します</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableTelemetry.Progress.EditRegistry" xml:space="preserve">
+    <value>ポリシーとレジストリの変更を適用しています…</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableTelemetry.Progress.DisableServices" xml:space="preserve">
+    <value>テレメトリ サービスを無効化しています…</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableTelemetry.Progress.DisableTasks" xml:space="preserve">
+    <value>スケジュールされたテレメトリ タスクを無効化しています…</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableErrorReporting.Name" xml:space="preserve">
+    <value>エラー レポートを無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableErrorReporting.ShortDescription" xml:space="preserve">
+    <value>Windows エラー レポートとプログラム互換性アシスタント サービスを無効化します</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableAdvertisingAndSuggestions.Name" xml:space="preserve">
+    <value>広告と提案を無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableAdvertisingAndSuggestions.ShortDescription" xml:space="preserve">
+    <value>パーソナライズされた広告、Windows コンシューマー機能、システムの提案を無効化します</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableActivityHistory.Name" xml:space="preserve">
+    <value>アクティビティ履歴を無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableActivityHistory.ShortDescription" xml:space="preserve">
+    <value>Windows がアクティビティ履歴を収集・同期するのを防ぎます</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableLocationAndSensors.Name" xml:space="preserve">
+    <value>位置情報とセンサーを無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableLocationAndSensors.ShortDescription" xml:space="preserve">
+    <value>位置情報の追跡、システム センサー、オフライン マップの更新を無効化します</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableAutoLogger.Name" xml:space="preserve">
+    <value>バックグラウンド ロギングを無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableAutoLogger.ShortDescription" xml:space="preserve">
+    <value>必須ではない WMI/ETW AutoLogger セッション (Diagtrack-Listener、SQMLogger など) が起動時に開始されないようにして、バックグラウンドのディスクと CPU のアクティビティを削減します。注: AutoLogger の変更は診断トレースを変更するため、セキュリティ ソフトウェアが警告する可能性があります。</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableCortana.Name" xml:space="preserve">
+    <value>Cortana と Web 検索を無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableCortana.ShortDescription" xml:space="preserve">
+    <value>Cortana 音声アシスタントをオフにし、Windows 検索のクラウド検索と Web 結果を無効にします (Windows 10 のみ)。</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableCopilot.Name" xml:space="preserve">
+    <value>Windows Copilot を無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableCopilot.ShortDescription" xml:space="preserve">
+    <value>タスクバーとシステム シェルから AI Copilot アシスタントを削除して、メモリと画面スペースを解放します</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableContentDeliveryManager.Name" xml:space="preserve">
+    <value>クラウド コンテンツ配信を無効化</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableContentDeliveryManager.ShortDescription" xml:space="preserve">
+    <value>システムのヒント、スポットライトの提案、コンシューマー機能の自動配信など、Windows クラウド配信コンテンツをオフにします</value>
+  </data>
+  <data name="Optimizer.BloatwareAndServices.DisablePreinstalledApps.Name" xml:space="preserve">
+    <value>プリインストールされた不要アプリをブロック</value>
+  </data>
+  <data name="Optimizer.BloatwareAndServices.DisablePreinstalledApps.ShortDescription" xml:space="preserve">
+    <value>Windows が不要なサードパーティ アプリやプロモーション ソフトウェアを自動的に再インストールするのを防ぎます</value>
+  </data>
+  <data name="Optimizer.BloatwareAndServices.ConfigureServices.Name" xml:space="preserve">
+    <value>システム サービスの最適化</value>
+  </data>
+  <data name="Optimizer.BloatwareAndServices.ConfigureServices.ShortDescription" xml:space="preserve">
+    <value>必要な Windows 機能を維持しながら、非必須のバックグラウンド サービスを調整してリソースを解放します</value>
+  </data>
+  <data name="Optimizer.BloatwareAndServices.ConfigureServices.Progress.ChangeServiceStartupType" xml:space="preserve">
+    <value>{0} の開始タイプを {1} に設定しています…</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Display" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Visual" xml:space="preserve">
+    <value>ビジュアル</value>
+  </data>
+<data name="Optimizer.Gpu" xml:space="preserve">
+    <value>グラフィックス</value>
+  </data>
+
+  <data name="Optimizer.UserExperience" xml:space="preserve">
+    <value>ユーザー エクスペリエンス</value>
+  </data>
+  <data name="Optimizer.UserExperience.SpeedUpExplorerAndMenus.Name" xml:space="preserve">
+    <value>エクスプローラーとメニューを高速化</value>
+  </data>
+  <data name="Optimizer.UserExperience.SpeedUpExplorerAndMenus.ShortDescription" xml:space="preserve">
+    <value>StartupDelayInMSec=0、MenuShowDelay=0 を設定してエクスプローラーの起動遅延を解消し、メニューのホバー遅延を最小にします</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableVisualEffects.Name" xml:space="preserve">
+    <value>ビジュアル効果を無効化</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableVisualEffects.ShortDescription" xml:space="preserve">
+    <value>タスクバー アニメーション、リスト ビューの影、ウィンドウの透明度、Aero Peek を無効化して GPU/CPU リソースを解放し、パフォーマンスを向上させます</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisableUlps.Name" xml:space="preserve">
+    <value>AMD ULPS を無効化</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisableUlps.ShortDescription" xml:space="preserve">
+    <value>AMD GPU レジストリで EnableULPS=0 を設定し、Ultra Low Power State のウェイクアップ遅延とマルチモニター問題を防ぎます。アイドル時の省電力は減少します</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisablePowerGating.Name" xml:space="preserve">
+    <value>AMD パワー ゲーティングを無効化</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisablePowerGating.ShortDescription" xml:space="preserve">
+    <value>DisablePowerGating=1、PP_GPUPowerDownEnabled=0、DisableDynamicPstate=1 を設定して AMD GPU の電源状態遷移を防ぎます。アイドル電力は増加しますが、クロックは安定します</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisableVideoClockGating.Name" xml:space="preserve">
+    <value>AMD ビデオ クロック ゲーティングを無効化</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisableVideoClockGating.ShortDescription" xml:space="preserve">
+    <value>AMD ビデオ エンジン (VCE/UVD) に DisableVCEPowerGating=1、DisableVceClockGating=1、EnableUvdClockGating=0 を設定してエンコード/デコードの安定性を向上します。ビデオ再生時の電力消費が増加します</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisableAspm.Name" xml:space="preserve">
+    <value>AMD ASPM を無効化</value>
+  </data>
+<data name="Optimizer.Gpu.AmdDisableAspm.ShortDescription" xml:space="preserve">
+    <value>EnableAspmL0s=0、EnableAspmL1=0 を設定して AMD GPU の Active State Power Management を無効化し、PCIe バスの遅延を削減します。スロットの電力消費が増加します</value>
+  </data>
+<data name="Optimizer.Gpu.NvidiaDisableDynamicPstate.Name" xml:space="preserve">
+    <value>NVIDIA Dynamic P-State を無効化</value>
+  </data>
+<data name="Optimizer.Gpu.NvidiaDisableDynamicPstate.ShortDescription" xml:space="preserve">
+    <value>DisableDynamicPstate=1 を設定して NVIDIA GPU を固定パフォーマンス状態にロックし、クロック速度の変動を防ぎます。アイドル時の電力消費が増加します</value>
+  </data>
+<data name="Optimizer.Gpu.NvidiaDisableAsyncPstates.Name" xml:space="preserve">
+    <value>NVIDIA Async P-State を無効化</value>
+  </data>
+<data name="Optimizer.Gpu.NvidiaDisableAsyncPstates.ShortDescription" xml:space="preserve">
+    <value>DisableASyncPstates=1 を設定して NVIDIA の非同期電源状態切り替えを防ぎ、VR/リアルタイム アプリに決定論的なパフォーマンスを提供します</value>
+  </data>
+<data name="Optimizer.Gpu.IntelDisableAsyncFlips.Name" xml:space="preserve">
+    <value>Intel Async Flip を無効化</value>
+  </data>
+<data name="Optimizer.Gpu.IntelDisableAsyncFlips.ShortDescription" xml:space="preserve">
+    <value>Display1_DisableAsyncFlips=1 を設定して Intel iGPU で同期バッファ フリップを強制し、入力から表示までの遅延と画面のちらつきを削減します</value>
+  </data>
+<data name="Optimizer.Gpu.IntelDisableAdaptiveVsync.Name" xml:space="preserve">
+    <value>Intel Adaptive V-Sync を無効化</value>
+  </data>
+<data name="Optimizer.Gpu.IntelDisableAdaptiveVsync.ShortDescription" xml:space="preserve">
+    <value>AdaptiveVsyncEnable=0 を設定して、フレーム レートに動的に調整される Intel の Adaptive V-Sync を無効化し、安定したタイミングのため固定 V-Sync を使用します</value>
+  </data>
+
+  <data name="Customize.Preferences.Section.Taskbar" xml:space="preserve">
+    <value>タスクバー</value>
+  </data>
+  <data name="Customize.Preferences.Section.Appearance" xml:space="preserve">
+    <value>外観</value>
+  </data>
+  <data name="Customize.Preferences.Section.Explorer" xml:space="preserve">
+    <value>エクスプローラー</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarWidgets.Name" xml:space="preserve">
+    <value>タスクバーのウィジェット</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarWidgets.Description" xml:space="preserve">
+    <value>タスクバーのウィジェット ボタンを表示または非表示にします。ニュース、天気、更新情報などをすばやく確認できます。</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarWidgets.Recommendation.Reason" xml:space="preserve">
+    <value>ウィジェットをオフにすると、ニュースや天気を取得するバックグラウンド Web サービスが削除され、アイドル時のネットワークとメモリ使用量が減ります</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarAlignment.Name" xml:space="preserve">
+    <value>タスクバーの配置</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarAlignment.Description" xml:space="preserve">
+    <value>タスクバーのアイコンを中央に配置するか、左揃えにするかを選びます。</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarAlignment.Options.Center" xml:space="preserve">
+    <value>中央</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarAlignment.Options.Left" xml:space="preserve">
+    <value>左</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerCompactMode.Name" xml:space="preserve">
+    <value>エクスプローラー コンパクト モード</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerCompactMode.Description" xml:space="preserve">
+    <value>エクスプローラーの項目間隔を狭くして、よりコンパクトに表示します。</value>
+  </data>
+  <data name="Customize.Preferences.SnapAssistFlyout.Name" xml:space="preserve">
+    <value>スナップ レイアウト フライアウト</value>
+  </data>
+  <data name="Customize.Preferences.SnapAssistFlyout.Description" xml:space="preserve">
+    <value>最大化ボタンにカーソルを合わせたときのスナップ レイアウト メニューを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerItemCheckboxes.Name" xml:space="preserve">
+    <value>エクスプローラーの項目チェック ボックス</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerItemCheckboxes.Description" xml:space="preserve">
+    <value>エクスプローラーの項目にチェック ボックスを表示し、複数のファイルを選びやすくします。</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarTaskViewButton.Name" xml:space="preserve">
+    <value>タスクバーのタスク ビュー ボタン</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarTaskViewButton.Description" xml:space="preserve">
+    <value>タスクバーのタスク ビュー ボタンを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarEndTask.Name" xml:space="preserve">
+    <value>タスクバーのタスク終了</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarEndTask.Description" xml:space="preserve">
+    <value>タスクバーの右クリック メニューに「タスクの終了」を追加し、タスク マネージャーを開かずに応答しないアプリを閉じられるようにします。</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarEndTask.Recommendation.Reason" xml:space="preserve">
+    <value>タスクバーのタスク終了を使うと、タスク マネージャーを開かずにフリーズしたアプリを即座に終了できます</value>
+  </data>
+  <data name="Customize.Preferences.DarkMode.Name" xml:space="preserve">
+    <value>ダーク モード</value>
+  </data>
+  <data name="Customize.Preferences.DarkMode.Description" xml:space="preserve">
+    <value>Windows アプリ、設定、その他のシェル要素をダーク カラーで表示します。</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerSyncNotifications.Name" xml:space="preserve">
+    <value>エクスプローラーの同期通知</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerSyncNotifications.Description" xml:space="preserve">
+    <value>エクスプローラーで OneDrive などのクラウド同期サービスからの通知を表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.ExplorerSyncNotifications.Recommendation.Reason" xml:space="preserve">
+    <value>同期通知を無効にすると、OneDrive のポップアップがエクスプローラーでのファイル閲覧を中断しなくなります</value>
+  </data>
+  <data name="Customize.Preferences.SystemSuggestions.Name" xml:space="preserve">
+    <value>システムの提案</value>
+  </data>
+  <data name="Customize.Preferences.SystemSuggestions.Description" xml:space="preserve">
+    <value>設定に表示される Windows のヒントやアプリのおすすめを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.SystemSuggestions.Recommendation.Reason" xml:space="preserve">
+    <value>システムの提案をオフにすると、Windows が求めていないアプリや設定を推奨しなくなります</value>
+  </data>
+  <data name="Customize.Preferences.ToastNotifications.Name" xml:space="preserve">
+    <value>トースト通知</value>
+  </data>
+  <data name="Customize.Preferences.ToastNotifications.Description" xml:space="preserve">
+    <value>デスクトップやロック画面に表示される通知を管理します。</value>
+  </data>
+  <data name="Customize.Preferences.ShowFileExtensions.Name" xml:space="preserve">
+    <value>ファイル拡張子</value>
+  </data>
+  <data name="Customize.Preferences.ShowFileExtensions.Description" xml:space="preserve">
+    <value>エクスプローラーで .txt や .exe などの拡張子を表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.ShowFileExtensions.Recommendation.Reason" xml:space="preserve">
+    <value>ファイル拡張子を表示すると、不審なファイル形式を見つけやすく、偽アイコンの背後にマルウェアが隠れるのを防げます</value>
+  </data>
+  <data name="Customize.Preferences.ShowHiddenFiles.Name" xml:space="preserve">
+    <value>隠しファイル</value>
+  </data>
+  <data name="Customize.Preferences.ShowHiddenFiles.Description" xml:space="preserve">
+    <value>エクスプローラーで隠しファイルと隠しフォルダーを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.ShowHiddenFiles.Recommendation.Reason" xml:space="preserve">
+    <value>隠しファイルには管理が必要なシステムと構成データが含まれます。表示するとシステム全体を把握できます</value>
+  </data>
+  <data name="Customize.Preferences.ClipboardHistory.Name" xml:space="preserve">
+    <value>クリップボード履歴</value>
+  </data>
+  <data name="Customize.Preferences.ClipboardHistory.Description" xml:space="preserve">
+    <value>Win+V で確認できるコピー項目の履歴を保存します。</value>
+  </data>
+  <data name="Customize.Preferences.ClipboardHistory.Recommendation.Reason" xml:space="preserve">
+    <value>クリップボード履歴を使うと Win+V で過去のコピーを呼び出せ、反復的なコピー＆ペースト作業が効率化されます</value>
+  </data>
+  <data name="Customize.Preferences.WindowShake.Name" xml:space="preserve">
+    <value>ウィンドウ シェイク</value>
+  </data>
+  <data name="Customize.Preferences.WindowShake.Description" xml:space="preserve">
+    <value>アクティブなウィンドウを振って他のウィンドウを最小化する動作を、オンまたはオフにします。</value>
+  </data>
+  <data name="Customize.Preferences.ClassicContextMenu.Name" xml:space="preserve">
+    <value>クラシック コンテキスト メニュー</value>
+  </data>
+  <data name="Customize.Preferences.ClassicContextMenu.Description" xml:space="preserve">
+    <value>Windows 11 の簡略化されたメニューの代わりに、Windows 10 スタイルの従来のコンテキスト メニューを使います。</value>
+  </data>
+  <data name="Customize.Preferences.ClassicContextMenu.Recommendation.Reason" xml:space="preserve">
+    <value>クラシック メニューは、Windows 11 の省略メニューを展開するための追加クリックなしですべてのオプションを一度に表示します</value>
+  </data>
+  <data name="Customize.Preferences.ShowSecondsInSystemClock.Name" xml:space="preserve">
+    <value>システム時計の秒表示</value>
+  </data>
+  <data name="Customize.Preferences.ShowSecondsInSystemClock.Description" xml:space="preserve">
+    <value>タスクバーの時計に秒を表示します。</value>
+  </data>
+  <data name="Customize.Gaming.Section.GameSettings" xml:space="preserve">
+    <value>ゲーム設定</value>
+  </data>
+  <data name="Customize.Gaming.Section.Input" xml:space="preserve">
+    <value>入力</value>
+  </data>
+  <data name="Customize.Gaming.Section.Display" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="Customize.Gaming.GameMode.Name" xml:space="preserve">
+    <value>ゲーム モード</value>
+  </data>
+  <data name="Customize.Gaming.GameMode.Description" xml:space="preserve">
+    <value>ゲームにシステム リソースの優先権を与え、プレイ中の Windows Update の動作を調整します。</value>
+  </data>
+  <data name="Customize.Gaming.GameMode.Recommendation.Reason" xml:space="preserve">
+    <value>ゲーム モードはゲーム プロセスを自動的に優先し、ゲーム中の Windows Update 通知を一時停止してスムーズなパフォーマンスを実現します</value>
+  </data>
+  <data name="Customize.Gaming.GameBar.Name" xml:space="preserve">
+    <value>Xbox ゲーム バー</value>
+  </data>
+  <data name="Customize.Gaming.GameBar.Description" xml:space="preserve">
+    <value>Xbox Game Bar と関連するオーバーレイやバックグラウンド機能を表示します。</value>
+  </data>
+  <data name="Customize.Gaming.GameBar.Recommendation.Reason" xml:space="preserve">
+    <value>Game Bar を無効にするとシステム リソースが解放され、バックグラウンド オーバーレイがゲームを妨げなくなります</value>
+  </data>
+  <data name="Customize.Gaming.BackgroundRecording.Name" xml:space="preserve">
+    <value>バックグラウンド録画 (DVR)</value>
+  </data>
+  <data name="Customize.Gaming.BackgroundRecording.Description" xml:space="preserve">
+    <value>Game DVR を使ってゲームやアプリの動作をバックグラウンドで録画します。</value>
+  </data>
+  <data name="Customize.Gaming.BackgroundRecording.Recommendation.Reason" xml:space="preserve">
+    <value>バックグラウンド録画を無効にすると、DVR がゲームプレイを静かにキャプチャしなくなり、CPU とディスク書き込みを節約できます</value>
+  </data>
+  <data name="Customize.Gaming.MouseAcceleration.Name" xml:space="preserve">
+    <value>マウス加速</value>
+  </data>
+  <data name="Customize.Gaming.MouseAcceleration.Description" xml:space="preserve">
+    <value>マウスの速度に応じたカーソルの動き方を調整します。</value>
+  </data>
+  <data name="Customize.Gaming.MouseAcceleration.Recommendation.Reason" xml:space="preserve">
+    <value>加速を無効にすると、より正確なエイムと筋肉記憶の一貫性のために生の線形マウス入力が得られます</value>
+  </data>
+  <data name="Customize.Gaming.FullscreenOptimizations.Name" xml:space="preserve">
+    <value>全画面最適化</value>
+  </data>
+  <data name="Customize.Gaming.FullscreenOptimizations.Description" xml:space="preserve">
+    <value>Windows の全画面最適化を適用します。一部のゲームで互換性が向上する場合があります。</value>
+  </data>
+  <data name="Customize.Gaming.FullscreenOptimizations.Recommendation.Reason" xml:space="preserve">
+    <value>ゲーム内のカクつき、入力遅延、黒画面（特に競技系シューティング）が発生する場合は無効にしてください</value>
+  </data>
+  <data name="Customize.Gaming.HardwareAcceleratedGpuScheduling.Name" xml:space="preserve">
+    <value>ハードウェア アクセラレータ付き GPU スケジューリング</value>
+  </data>
+  <data name="Customize.Gaming.HardwareAcceleratedGpuScheduling.Description" xml:space="preserve">
+    <value>ビデオ メモリのスケジュール処理を GPU に任せます。対応するグラフィック ドライバーが必要です。</value>
+  </data>
+  <data name="Customize.Gaming.HardwareAcceleratedGpuScheduling.Recommendation.Reason" xml:space="preserve">
+    <value>GPU スケジューリングはフレーム管理を CPU から GPU にオフロードし、表示遅延を削減してフレーム配分を改善します</value>
+  </data>
+  <data name="Settings.Optimize.ShellTimeout.Warning" xml:space="preserve">
+    <value>何をしているか正確に理解している場合のみ変更してください</value>
+  </data>
+  <data name="Settings.About.Acknowledgements.Title" xml:space="preserve">
+    <value>謝辞</value>
+  </data>
+  <data name="Settings.About.Acknowledgements.Description" xml:space="preserve">
+    <value>optimizerDuck は以下のオープンソース ソフトウェアとリソースによって実現されています</value>
+  </data>
+  <data name="RestorePoint.Title" xml:space="preserve">
+    <value>システムの復元</value>
+  </data>
+  <data name="RestorePointDialog.Description" xml:space="preserve">
+    <value>復元ポイントを使うと、システムを以前の状態に戻せます。
+変更を適用する前に Windows を保護する安全措置です</value>
+  </data>
+  <data name="RestorePointDialog.Help" xml:space="preserve">
+    <value>アプリケーションは自動的にシステムの復元を有効化し、「optimizerDuck…」という名前のチェックポイントを作成します。
+問題が発生してもいつでも元に戻せます</value>
+  </data>
+  <data name="RestorePoint.Snackbar.Error.Title" xml:space="preserve">
+    <value>システムの復元を作成または有効化できません</value>
+  </data>
+  <data name="RestorePoint.Snackbar.Error.Message" xml:space="preserve">
+    <value>システムの復元の作成または有効化中にエラーが発生しました。手動で作成してみてください</value>
+  </data>
+  <data name="RestorePoint.Snackbar.Warning.LimitReached" xml:space="preserve">
+    <value>過去 24 時間以内に復元ポイントがすでに作成されています</value>
+  </data>
+  <data name="RestorePoint.Progress.Creating" xml:space="preserve">
+    <value>復元ポイントを作成しています…</value>
+  </data>
+  <data name="RestorePoint.Progress.Enabling" xml:space="preserve">
+    <value>システムの復元を有効化しています…</value>
+  </data>
+  <data name="RestorePoint.Progress.Retrying" xml:space="preserve">
+    <value>復元ポイントの作成を再試行しています…</value>
+  </data>
+  <data name="RestorePoint.Snackbar.Success.Title" xml:space="preserve">
+    <value>復元ポイントが正常に作成されました</value>
+  </data>
+  <data name="RestorePoint.Snackbar.Success.Message" xml:space="preserve">
+    <value>名前「{0}」の復元ポイントが作成されました</value>
+  </data>
+  <data name="Snackbar.OpenLinkFailed.Title" xml:space="preserve">
+    <value>パスを開けません</value>
+  </data>
+  <data name="Snackbar.OpenLinkFailed.Message" xml:space="preserve">
+    <value>パスを開く際にエラーが発生しました。ログを確認してください</value>
+  </data>
+  <data name="Snackbar.OpenFailed.Message" xml:space="preserve">
+    <value>フォルダーまたはファイルを開く際にエラーが発生しました。ログを確認してください</value>
+  </data>
+  <data name="Snackbar.OpenFailed.Title" xml:space="preserve">
+    <value>フォルダーまたはファイルを開けません</value>
+  </data>
+  <data name="BloatwareDialog.Title" xml:space="preserve">
+    <value>AppX パッケージ {0} 個を削除中</value>
+  </data>
+  <data name="BloatwareDialog.Removing" xml:space="preserve">
+    <value>{0} を削除中 ({1}/{2})</value>
+  </data>
+  <data name="Bloatware.Header.Title" xml:space="preserve">
+    <value>不要なアプリ</value>
+  </data>
+  <data name="Bloatware.Menu.Remove" xml:space="preserve">
+    <value>削除 ({0})</value>
+  </data>
+  <data name="Bloatware.Menu.Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Bloatware.Empty.Title" xml:space="preserve">
+    <value>不要なアプリは見つかりませんでした ¯\_(ツ)_/¯</value>
+  </data>
+  <data name="Bloatware.Empty.Description" xml:space="preserve">
+    <value>optimizerDuck は削除可能な AppX パッケージを見つけられませんでした。すでにきれいな状態です…</value>
+  </data>
+  <data name="Bloatware.Loading" xml:space="preserve">
+    <value>削除可能なアプリを検索しています…</value>
+  </data>
+  <data name="Bloatware.Loading.Hint" xml:space="preserve">
+    <value>インストール済みパッケージをスキャンするため、少し時間がかかる場合があります</value>
+  </data>
+  <data name="Sidebar.Bloatware" xml:space="preserve">
+    <value>不要なアプリ</value>
+  </data>
+  <data name="BloatwareDialog.Confirmation.Title" xml:space="preserve">
+    <value>{0} 個のアプリを削除しますか？</value>
+  </data>
+  <data name="BloatwareDialog.Confirmation.Description" xml:space="preserve">
+    <value>削除前に選択したアプリを確認してください。確信がある場合のみ続行してください</value>
+  </data>
+  <data name="BloatwareDialog.Confirmation.SelectedList" xml:space="preserve">
+    <value>選択したアプリケーション</value>
+  </data>
+  <data name="Settings.Bloatware.Header" xml:space="preserve">
+    <value>不要なアプリ</value>
+  </data>
+  <data name="Settings.Bloatware.RemoveProvisioned.Title" xml:space="preserve">
+    <value>プロビジョニング済みパッケージを削除</value>
+  </data>
+  <data name="Settings.Bloatware.RemoveProvisioned.Description" xml:space="preserve">
+    <value>インストール済み AppX パッケージを削除する際、対応するプロビジョニング済みパッケージも削除して、新しいユーザーへの自動再インストールを防ぎます</value>
+  </data>
+  <data name="Dashboard.UpdateInfoBar.Message" xml:space="preserve">
+    <value>optimizerDuck (v{0}) が利用可能です！
+今すぐ更新して、最新の機能、改善、バグ修正をお楽しみください</value>
+  </data>
+  <data name="Common.Search.Placeholder" xml:space="preserve">
+    <value>検索…</value>
+  </data>
+  <data name="Common.Filter.All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Common.SortBy.Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="Common.SortBy.Risk" xml:space="preserve">
+    <value>リスク</value>
+  </data>
+  <data name="Common.SortBy.Publisher" xml:space="preserve">
+    <value>発行元</value>
+  </data>
+  <data name="Common.SortBy.Size" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="Common.SortBy.Path" xml:space="preserve">
+    <value>パス</value>
+  </data>
+  <data name="Optimizer.Menu.ViewSource" xml:space="preserve">
+    <value>ソースを表示</value>
+  </data>
+  <data name="Bloatware.Menu.SelectAllSafe" xml:space="preserve">
+    <value>安全な項目をすべて選択</value>
+  </data>
+  <data name="Bloatware.Menu.DeselectAllSafe" xml:space="preserve">
+    <value>安全な項目の選択をすべて解除</value>
+  </data>
+  <data name="Optimizer.Menu.HideApplied" xml:space="preserve">
+    <value>完了した項目を非表示</value>
+  </data>
+  <data name="Bloatware.Search.NoResults" xml:space="preserve">
+    <value>結果が見つかりません。別の検索語またはフィルターをお試しください</value>
+  </data>
+  <data name="Common.Filter" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="Common.SortBy" xml:space="preserve">
+    <value>並べ替え</value>
+  </data>
+  <data name="Sidebar.DiskCleanup" xml:space="preserve">
+    <value>ディスク クリーンアップ</value>
+  </data>
+  <data name="DiskCleanup.Header.Title" xml:space="preserve">
+    <value>ディスク クリーンアップ</value>
+  </data>
+  <data name="DiskCleanup.Header.Description" xml:space="preserve">
+    <value>一時ファイルとキャッシュを削除してディスク容量を解放します</value>
+  </data>
+  <data name="DiskCleanup.TotalSpace" xml:space="preserve">
+    <value>回収可能な合計容量</value>
+  </data>
+  <data name="DiskCleanup.Button.Scan" xml:space="preserve">
+    <value>スキャン</value>
+  </data>
+  <data name="DiskCleanup.Button.SelectAll" xml:space="preserve">
+    <value>すべて選択</value>
+  </data>
+  <data name="DiskCleanup.Button.DeselectAll" xml:space="preserve">
+    <value>すべて選択解除</value>
+  </data>
+  <data name="DiskCleanup.Loading" xml:space="preserve">
+    <value>クリーンアップ項目を読み込んでいます…</value>
+  </data>
+  <data name="DiskCleanup.Complete.Title" xml:space="preserve">
+    <value>クリーンアップ完了</value>
+  </data>
+  <data name="DiskCleanup.Complete.Message" xml:space="preserve">
+    <value>{1} で {0} のディスク容量を解放しました</value>
+  </data>
+  <data name="DiskCleanup.Error.Title" xml:space="preserve">
+    <value>クリーンアップ エラー</value>
+  </data>
+  <data name="DiskCleanup.Error.Message" xml:space="preserve">
+    <value>一部のファイルを削除できませんでした。別のプロセスが使用中の可能性があります</value>
+  </data>
+  <data name="DiskCleanup.Item.TempFiles" xml:space="preserve">
+    <value>一時ファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.TempFiles.Description" xml:space="preserve">
+    <value>アプリケーションによって作成されたユーザー一時ファイル（.net temp ディレクトリを除く）</value>
+  </data>
+  <data name="DiskCleanup.Item.SystemTemp" xml:space="preserve">
+    <value>システム一時ファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.SystemTemp.Description" xml:space="preserve">
+    <value>Windows システムの一時ファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.WindowsUpdate" xml:space="preserve">
+    <value>Windows Update キャッシュ</value>
+  </data>
+  <data name="DiskCleanup.Item.WindowsUpdate.Description" xml:space="preserve">
+    <value>不要になったダウンロード済み Windows Update ファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.Prefetch" xml:space="preserve">
+    <value>プリフェッチ ファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.Prefetch.Description" xml:space="preserve">
+    <value>読み込み速度向上に使用されるアプリケーションのプリフェッチ データ</value>
+  </data>
+  <data name="DiskCleanup.Item.Thumbnails" xml:space="preserve">
+    <value>サムネイル キャッシュ</value>
+  </data>
+  <data name="DiskCleanup.Item.Thumbnails.Description" xml:space="preserve">
+    <value>エクスプローラーのファイル プレビュー用にキャッシュされたサムネイル画像</value>
+  </data>
+  <data name="DiskCleanup.Item.RecycleBin" xml:space="preserve">
+    <value>ごみ箱</value>
+  </data>
+  <data name="DiskCleanup.Item.RecycleBin.Description" xml:space="preserve">
+    <value>ごみ箱に残っている削除済みファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.ErrorReports" xml:space="preserve">
+    <value>エラー レポート</value>
+  </data>
+  <data name="DiskCleanup.Item.ErrorReports.Description" xml:space="preserve">
+    <value>Windows エラー レポートとクラッシュ ダンプ ファイル</value>
+  </data>
+  <data name="DiskCleanup.Item.OldWindowsInstallation" xml:space="preserve">
+    <value>以前の Windows インストール (Windows.old)</value>
+  </data>
+  <data name="DiskCleanup.Item.OldWindowsInstallation.Description" xml:space="preserve">
+    <value>メジャー更新またはアップグレード後に保持された以前の Windows インストール ファイル</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Os.DeviceType.Laptop" xml:space="preserve">
+    <value>ノート PC</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Os.DeviceType.Desktop" xml:space="preserve">
+    <value>デスクトップ</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Os.Build" xml:space="preserve">
+    <value>ビルド {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Platform.Header" xml:space="preserve">
+    <value>プラットフォームとセキュリティ</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Firmware" xml:space="preserve">
+    <value>ファームウェア: {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.SecureBoot" xml:space="preserve">
+    <value>セキュア ブート: {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Vbs" xml:space="preserve">
+    <value>VBS: {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.MemoryIntegrity" xml:space="preserve">
+    <value>メモリ整合性: {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.PowerPlan" xml:space="preserve">
+    <value>電源プラン: {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Uptime.Label" xml:space="preserve">
+    <value>稼働時間</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Memory.Speed" xml:space="preserve">
+    <value>{0} MT/s</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Cpu.Frequency" xml:space="preserve">
+    <value>{0} MHz</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Gpu.Driver" xml:space="preserve">
+    <value>ドライバー {0}</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Ram.Total" xml:space="preserve">
+    <value>{0} GB RAM</value>
+  </data>
+  <data name="Dashboard.SystemInfo.Gpu.Memory" xml:space="preserve">
+    <value>{0} GB</value>
+  </data>
+  <data name="Bloatware.Header.Description" xml:space="preserve">
+    <value>不要なプリインストール アプリを管理・削除します</value>
+  </data>
+  <data name="DiskCleanup.Button.Clean" xml:space="preserve">
+    <value>クリーンアップ</value>
+  </data>
+  <data name="DiskCleanup.Button.CleanSelected" xml:space="preserve">
+    <value>選択項目をクリーンアップ ({0})</value>
+  </data>
+  <data name="DiskCleanup.EmptySize" xml:space="preserve">
+    <value>サイズなし</value>
+  </data>
+  <data name="DiskCleanup.FilesCount" xml:space="preserve">
+    <value>{0} ファイル</value>
+  </data>
+  <data name="DiskCleanup.ItemsAndFilesSelected" xml:space="preserve">
+    <value>{0} 選択 • {1} 項目 • {2} ファイル</value>
+  </data>
+  <data name="Settings.About.NeedHelp.Title" xml:space="preserve">
+      <value>ヘルプが必要ですか？</value>
+    </data>
+  <data name="Sidebar.StartupManager" xml:space="preserve">
+    <value>スタートアップ</value>
+  </data>
+  <data name="StartupManager.Header.Title" xml:space="preserve">
+    <value>スタートアップ マネージャー</value>
+  </data>
+  <data name="StartupManager.Header.Description" xml:space="preserve">
+    <value>Windows 起動時に自動実行されるアプリケーションとタスクを管理します</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other.OpenRevertFile.Description" xml:space="preserve">
+    <value>この最適化の元に戻すデータを含む JSON ファイルを開きます</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other.ViewSource.Description" xml:space="preserve">
+    <value>ブラウザーでこの最適化のソース コードを開きます</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other.ViewSource.Title" xml:space="preserve">
+    <value>GitHub でソースを表示</value>
+  </data>
+  <data name="OptimizationDetailsDialog.TechnicalDetails" xml:space="preserve">
+    <value>技術的な詳細</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Id" xml:space="preserve">
+    <value>最適化 ID</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Class" xml:space="preserve">
+    <value>クラス名</value>
+  </data>
+  <data name="StartupManager.Apps.Title" xml:space="preserve">
+    <value>スタートアップ アプリ</value>
+  </data>
+  <data name="StartupManager.Apps.Description" xml:space="preserve">
+    <value>Windows 起動時に自動実行されるアプリケーション</value>
+  </data>
+  <data name="StartupManager.Apps.CountSuffix" xml:space="preserve">
+    <value>{0} 項目</value>
+  </data>
+  <data name="StartupManager.Tasks.Title" xml:space="preserve">
+    <value>スケジュールされたタスク（ログオン）</value>
+  </data>
+  <data name="StartupManager.Tasks.Description" xml:space="preserve">
+    <value>ログオン時またはスケジュールで実行されるように構成された Windows タスク</value>
+  </data>
+  <data name="StartupManager.Tasks.CountSuffix" xml:space="preserve">
+    <value>{0} タスク</value>
+  </data>
+  <data name="StartupManager.Loading" xml:space="preserve">
+    <value>スタートアップ項目をスキャンしています…</value>
+  </data>
+  <data name="StartupManager.Loading.Hint" xml:space="preserve">
+    <value>レジストリとスタートアップ フォルダーをスキャンするため、少し時間がかかる場合があります</value>
+  </data>
+  <data name="StartupManager.Empty.Title" xml:space="preserve">
+    <value>スタートアップ項目なし</value>
+  </data>
+  <data name="StartupManager.Empty.Description" xml:space="preserve">
+    <value>このシステムでスタートアップ アプリケーションまたはスケジュールされたタスクが見つかりませんでした</value>
+  </data>
+  <data name="StartupManager.Menu.Refresh" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Common.Toggle.On" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="Common.Toggle.Off" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="Common.SortBy.Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="Common.SortBy.RiskAndStatus" xml:space="preserve">
+    <value>リスク &amp; 状態</value>
+  </data>
+  <data name="StartupManager.Menu.OpenSettings" xml:space="preserve">
+    <value>設定を開く</value>
+  </data>
+  <data name="StartupManager.Tasks.HideMicrosoft" xml:space="preserve">
+    <value>Microsoft タスクを非表示</value>
+  </data>
+  <data name="Sidebar.ScheduledTasks" xml:space="preserve">
+    <value>スケジュールされたタスク</value>
+  </data>
+  <data name="ScheduledTasks.Header.Title" xml:space="preserve">
+    <value>スケジュールされたタスク</value>
+  </data>
+  <data name="ScheduledTasks.Header.Description" xml:space="preserve">
+    <value>Windows のスケジュールされたタスクを表示・管理します</value>
+  </data>
+  <data name="ScheduledTasks.Loading" xml:space="preserve">
+    <value>スケジュールされたタスクを読み込んでいます…</value>
+  </data>
+  <data name="ScheduledTasks.Loading.Hint" xml:space="preserve">
+    <value>システム上のすべてのスケジュールされたタスクをスキャンするため、少し時間がかかる場合があります…</value>
+  </data>
+  <data name="ScheduledTasks.HideMicrosoft" xml:space="preserve">
+    <value>Microsoft タスクを非表示</value>
+  </data>
+  <data name="ScheduledTasks.Action.Details" xml:space="preserve">
+    <value>詳細を表示</value>
+  </data>
+  <data name="ScheduledTasks.Action.Run" xml:space="preserve">
+    <value>実行</value>
+  </data>
+  <data name="ScheduledTasks.Action.Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="ScheduledTasks.Action.Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="ScheduledTasks.Dialog.DeleteTitle" xml:space="preserve">
+    <value>スケジュールされたタスクの削除</value>
+  </data>
+  <data name="ScheduledTasks.Details.Path" xml:space="preserve">
+    <value>パス</value>
+  </data>
+  <data name="ScheduledTasks.Details.Description" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="ScheduledTasks.Details.Author" xml:space="preserve">
+    <value>作成者</value>
+  </data>
+  <data name="ScheduledTasks.Details.Triggers" xml:space="preserve">
+    <value>トリガー</value>
+  </data>
+  <data name="ScheduledTasks.Details.Action" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="ScheduledTasks.Details.LastRun" xml:space="preserve">
+    <value>前回の実行</value>
+  </data>
+  <data name="ScheduledTasks.Details.NextRun" xml:space="preserve">
+    <value>次回の実行</value>
+  </data>
+  <data name="ScheduledTasks.Details.LastResult" xml:space="preserve">
+    <value>前回の結果</value>
+  </data>
+  <data name="Common.Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Common.Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Common.SortBy.State" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="ScheduledTasks.Menu.OpenSettings" xml:space="preserve">
+    <value>タスク スケジューラを開く</value>
+  </data>
+  <data name="ScheduledTasks.Details.Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Enabled.Title" xml:space="preserve">
+    <value>タスクが有効化されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Disabled.Title" xml:space="preserve">
+    <value>タスクが無効化されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Toggle.Message" xml:space="preserve">
+    <value>{0} が正常に更新されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Run.Title" xml:space="preserve">
+    <value>タスクが開始されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Run.Message" xml:space="preserve">
+    <value>{0} が実行中です</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Stop.Title" xml:space="preserve">
+    <value>タスクが停止されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Stop.Message" xml:space="preserve">
+    <value>{0} が停止されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Delete.Title" xml:space="preserve">
+    <value>タスクが削除されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Delete.Message" xml:space="preserve">
+    <value>{0} が削除されました</value>
+  </data>
+  <data name="ScheduledTasks.Snackbar.Error.Title" xml:space="preserve">
+
+    <value>エラー</value>
+  </data>
+  <data name="Settings.About.NeedHelp.Description" xml:space="preserve">
+      <value>最適化のヘルプや質問がある場合は、コミュニティに参加して迅速なサポートを受けてください</value>
+    </data>
+  <data name="ScheduledTasks.Error.TaskNotFound" xml:space="preserve">
+      <value>タスクが見つかりません: {0}</value>
+    </data>
+  <data name="Revert.Registry.Description.Restore" xml:space="preserve">
+    <value>レジストリ値を復元: {0}\{1}</value>
+  </data>
+  <data name="Revert.Registry.Description.Delete" xml:space="preserve">
+    <value>レジストリ値を削除: {0}\{1}</value>
+  </data>
+  <data name="Revert.Service.Description.Restore" xml:space="preserve">
+    <value>サービス '{0}' を {1} 開始に復元</value>
+  </data>
+  <data name="Revert.ScheduledTask.Description.Enable" xml:space="preserve">
+    <value>スケジュールされたタスクを有効化: {0}</value>
+  </data>
+  <data name="Revert.ScheduledTask.Description.Disable" xml:space="preserve">
+    <value>スケジュールされたタスクを無効化: {0}</value>
+  </data>
+  <data name="Revert.Shell.Description.Run" xml:space="preserve">
+    <value>{0} コマンドを実行: {1}</value>
+  </data>
+  <data name="Revert.Shell.Error.UnknownShellType" xml:space="preserve">
+    <value>不明なシェル タイプ</value>
+  </data>
+  <data name="Revert.Shell.Error.CommandFailed" xml:space="preserve">
+    <value>終了コード {0} で元に戻すコマンドが失敗しました</value>
+  </data>
+  <data name="Revert.UsbPower.Error.RestoreFailed" xml:space="preserve">
+    <value>USB の電力状態を復元できませんでした</value>
+  </data>
+  <data name="Settings.Optimize.ShowCompletionNotification.Title" xml:space="preserve">
+    <value>完了通知を表示</value>
+  </data>
+  <data name="Settings.Optimize.ShowCompletionNotification.Description" xml:space="preserve">
+    <value>最適化が正常に適用または元に戻されたときに通知を表示します</value>
+  </data>
+  <data name="Optimizations.Loading" xml:space="preserve">
+    <value>最適化を読み込んでいます…</value>
+  </data>
+  <data name="Optimizations.Loading.Hint" xml:space="preserve">
+    <value>お待ちください…</value>
+  </data>
+  <data name="Common.OpenFolder" xml:space="preserve">
+    <value>フォルダーを開く</value>
+  </data>
+  <data name="Common.Other" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="Sidebar.Customize" xml:space="preserve">
+    <value>カスタマイズ</value>
+  </data>
+  <data name="Customize.Title" xml:space="preserve">
+    <value>カスタマイズ</value>
+  </data>
+  <data name="Customize.SystemFeatures.Name" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="Customize.SystemFeatures.Description" xml:space="preserve">
+    <value>便利な Windows 機能とシステム動作の設定です。</value>
+  </data>
+  <data name="Customize.SystemFeatures.Section.Input" xml:space="preserve">
+    <value>入力設定</value>
+  </data>
+  <data name="Customize.SystemFeatures.NumLockOnBoot.Name" xml:space="preserve">
+    <value>起動時の NumLock</value>
+  </data>
+  <data name="Customize.SystemFeatures.NumLockOnBoot.Description" xml:space="preserve">
+    <value>Windows のサインイン画面で Num Lock をオンにするかどうかを設定します。</value>
+  </data>
+  <data name="Customize.SystemFeatures.NumLockOnBoot.Recommendation.Reason" xml:space="preserve">
+    <value>起動時に NumLock を有効にすると、ログイン後すぐにテンキーが使えるようになり、毎回手動で切り替える必要がなくなります</value>
+  </data>
+  <data name="Customize.SystemFeatures.Section.Power" xml:space="preserve">
+    <value>電源設定</value>
+  </data>
+  <data name="Customize.Desktop.Name" xml:space="preserve">
+    <value>デスクトップ</value>
+  </data>
+  <data name="Customize.Desktop.Description" xml:space="preserve">
+    <value>デスクトップ アイコンとショートカットの表示を調整します。</value>
+  </data>
+  <data name="Customize.Desktop.Section.Icons" xml:space="preserve">
+    <value>デスクトップのアイコン</value>
+  </data>
+  <data name="Customize.Desktop.Section.Behaviors" xml:space="preserve">
+    <value>ショートカットの動作</value>
+  </data>
+  <data name="Customize.Desktop.ShowThisPc.Name" xml:space="preserve">
+    <value>PC</value>
+  </data>
+  <data name="Customize.Desktop.ShowThisPc.Description" xml:space="preserve">
+    <value>デスクトップの「PC」を表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Desktop.ShowRecycleBin.Name" xml:space="preserve">
+    <value>ごみ箱</value>
+  </data>
+  <data name="Customize.Desktop.ShowRecycleBin.Description" xml:space="preserve">
+    <value>デスクトップのごみ箱を表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Desktop.ShowUserFiles.Name" xml:space="preserve">
+    <value>ユーザーのファイル</value>
+  </data>
+  <data name="Customize.Desktop.ShowUserFiles.Description" xml:space="preserve">
+    <value>デスクトップにユーザーフォルダーを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Desktop.ShowNetwork.Name" xml:space="preserve">
+    <value>ネットワーク</value>
+  </data>
+  <data name="Customize.Desktop.ShowNetwork.Description" xml:space="preserve">
+    <value>デスクトップのネットワーク アイコンを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Desktop.ShowControlPanel.Name" xml:space="preserve">
+    <value>コントロール パネル</value>
+  </data>
+  <data name="Customize.Desktop.ShowControlPanel.Description" xml:space="preserve">
+    <value>デスクトップのコントロール パネルを表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Desktop.ShowDesktopIcons.Name" xml:space="preserve">
+    <value>デスクトップ アイコン</value>
+  </data>
+  <data name="Customize.Desktop.ShowDesktopIcons.Description" xml:space="preserve">
+    <value>デスクトップ アイコンをまとめて表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Desktop.ShortcutArrow.Name" xml:space="preserve">
+    <value>ショートカット矢印</value>
+  </data>
+  <data name="Customize.Desktop.ShortcutArrow.Description" xml:space="preserve">
+    <value>デスクトップのショートカットに付く矢印を表示または非表示にします。</value>
+  </data>
+  <data name="Customize.Preferences.LaunchToThisPc.Name" xml:space="preserve">
+    <value>エクスプローラーの起動場所</value>
+  </data>
+  <data name="Customize.Preferences.LaunchToThisPc.Description" xml:space="preserve">
+    <value>エクスプローラーを「PC」とクイック アクセスのどちらで開くかを選びます。</value>
+  </data>
+  <data name="Customize.Preferences.BingSearch.Name" xml:space="preserve">
+    <value>Bing 検索</value>
+  </data>
+  <data name="Customize.Preferences.BingSearch.Description" xml:space="preserve">
+    <value>Windows 検索やスタート メニューのローカル検索結果に Bing のウェブ結果を含めます。</value>
+  </data>
+  <data name="Customize.Preferences.BingSearch.Recommendation.Reason" xml:space="preserve">
+    <value>Bing 検索をオフにすると、Web クエリがローカル検索結果を乱さず、検索速度が向上します</value>
+  </data>
+  <data name="Button.Accept" xml:space="preserve">
+    <value>同意</value>
+  </data>
+  <data name="LegalDialog.Title" xml:space="preserve">
+    <value>法的同意</value>
+  </data>
+  <data name="LegalDialog.Intro.Title" xml:space="preserve">
+    <value>optimizerDuckへようこそ！</value>
+  </data>
+  <data name="LegalDialog.Intro.Description" xml:space="preserve">
+    <value>言語とテーマを選択し、利用規約、プライバシーポリシー、免責事項をご確認のうえ、準備完了です。</value>
+  </data>
+  <data name="LegalDialog.Link.TermsOfService" xml:space="preserve">
+    <value>利用規約</value>
+  </data>
+  <data name="LegalDialog.Link.PrivacyPolicy" xml:space="preserve">
+    <value>プライバシー ポリシー</value>
+  </data>
+  <data name="LegalDialog.Link.Disclaimer" xml:space="preserve">
+    <value>免責事項</value>
+  </data>
+  <data name="LegalDialog.Language.Title" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LegalDialog.Language.Description" xml:space="preserve">
+    <value>お好みの言語を選択してください</value>
+  </data>
+  <data name="LegalDialog.Theme.Title" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="LegalDialog.Theme.Description" xml:space="preserve">
+    <value>お好みのテーマを選択してください</value>
+  </data>
+  <data name="LegalDialog.Preferences.Header" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="LegalDialog.Extras.Header" xml:space="preserve">
+    <value>探索</value>
+  </data>
+  <data name="LegalDialog.Extras.GitHub.Title" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="LegalDialog.Extras.GitHub.Description" xml:space="preserve">
+    <value>ソースコードと課題</value>
+  </data>
+  <data name="LegalDialog.Extras.Docs.Title" xml:space="preserve">
+    <value>ドキュメント</value>
+  </data>
+  <data name="LegalDialog.Extras.Docs.Description" xml:space="preserve">
+    <value>ガイドと入門</value>
+  </data>
+  <data name="LegalDialog.Extras.Discord.Title" xml:space="preserve">
+    <value>Discord</value>
+  </data>
+  <data name="LegalDialog.Extras.Discord.Description" xml:space="preserve">
+    <value>コミュニティとサポート</value>
+  </data>
+  <data name="LegalDialog.Extras.Acknowledgements.Title" xml:space="preserve">
+    <value>謝辞</value>
+  </data>
+  <data name="LegalDialog.Extras.Acknowledgements.Description" xml:space="preserve">
+    <value>サードパーティの通知</value>
+  </data>
+  <data name="LegalDialog.Warning.Title" xml:space="preserve">
+    <value>自己責任でご利用ください</value>
+  </data>
+  <data name="LegalDialog.Warning.Message" xml:space="preserve">
+    <value>変更を適用する前にバックアップを作成することをお勧めします</value>
+  </data>
+  <data name="Dialog.PendingChanges.Title" xml:space="preserve">
+    <value>変更を適用</value>
+  </data>
+  <data name="Dialog.PendingChanges.Content" xml:space="preserve">
+    <value>一部の変更を適用するには再起動が必要です。終了前にどうしますか？</value>
+  </data>
+  <data name="Dialog.PendingChanges.CloseButton" xml:space="preserve">
+    <value>そのまま終了</value>
+  </data>
+  <data name="Dialog.PendingChanges.PrimaryButton" xml:space="preserve">
+    <value>PC を再起動</value>
+  </data>
+  <data name="Dialog.PendingChanges.SecondaryButton" xml:space="preserve">
+    <value>エクスプローラーを再起動</value>
+  </data>
+  <data name="Settings.About.Documentation.Title" xml:space="preserve">
+    <value>ドキュメント</value>
+  </data>
+  <data name="Settings.About.Documentation.Description" xml:space="preserve">
+    <value>ドキュメント、使用ガイド、FAQ を表示します</value>
+  </data>
+  <data name="TitleBar.Support" xml:space="preserve">
+    <value>プロジェクトを支援</value>
+  </data>
+  <data name="TitleBar.Discord" xml:space="preserve">
+    <value>Discord コミュニティに参加</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Windows10Only" xml:space="preserve">
+    <value>Windows 10のみ</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Windows11Only" xml:space="preserve">
+    <value>Windows 11のみ</value>
+  </data>
+  <data name="Customize.SystemFeatures.Section.Developer" xml:space="preserve">
+    <value>開発者</value>
+  </data>
+  <data name="Customize.SystemFeatures.DeveloperMode.Name" xml:space="preserve">
+    <value>開発者モード</value>
+  </data>
+  <data name="Customize.SystemFeatures.DeveloperMode.Description" xml:space="preserve">
+    <value>アプリのサイドロード、デバイス ポータル、SSH など、開発に役立つ機能を利用できます。</value>
+  </data>
+  <data name="Customize.SystemFeatures.DeveloperMode.Recommendation.Reason" xml:space="preserve">
+    <value>開発者モードは、アプリ開発とデバッグに不可欠なサイドローディングおよび診断機能を有効にします。</value>
+  </data>
+  <data name="Customize.SystemFeatures.AllowAllTrustedApps.Name" xml:space="preserve">
+    <value>信頼されたアプリ</value>
+  </data>
+  <data name="Customize.SystemFeatures.AllowAllTrustedApps.Description" xml:space="preserve">
+    <value>開発者モードを有効にしなくても、信頼できる Windows アプリをインストールできます。</value>
+  </data>
+  <data name="Customize.SystemFeatures.AllowAllTrustedApps.Recommendation.Reason" xml:space="preserve">
+    <value>信頼できるアプリをすべて許可すると、開発者モードなしでサイドローディングが可能になります。無効にすると、Microsoftストアのみのインストールに制限されます。</value>
+  </data>
+  <data name="Customize.SystemFeatures.LongPathsEnabled.Name" xml:space="preserve">
+    <value>長いパスのサポート（260文字以上）</value>
+  </data>
+  <data name="Customize.SystemFeatures.LongPathsEnabled.Description" xml:space="preserve">
+    <value>対応アプリで、従来の260文字制限を超えるファイル パスを扱えるようにします。</value>
+  </data>
+  <data name="Customize.SystemFeatures.LongPathsEnabled.Recommendation.Reason" xml:space="preserve">
+    <value>長いパスのサポートにより、深くネストされたディレクトリや長い名前のプロジェクトを扱う際のファイルアクセスエラーを防ぎます。</value>
+  </data>
+  <data name="Customize.Preferences.SearchBoxTaskbarMode.Name" xml:space="preserve">
+    <value>検索ボックスの表示</value>
+  </data>
+  <data name="Customize.Preferences.SearchBoxTaskbarMode.Description" xml:space="preserve">
+    <value>タスクバーに検索ボックス、検索アイコン、または検索コントロールなしのどれを表示するか選びます。</value>
+  </data>
+  <data name="Customize.Preferences.SearchBoxTaskbarMode.Options.Hidden" xml:space="preserve">
+    <value>非表示</value>
+  </data>
+  <data name="Customize.Preferences.SearchBoxTaskbarMode.Options.Icon" xml:space="preserve">
+    <value>アイコンのみ</value>
+  </data>
+  <data name="Customize.Preferences.SearchBoxTaskbarMode.Options.IconAndLabel" xml:space="preserve">
+    <value>アイコン＋ラベル</value>
+  </data>
+  <data name="Customize.Preferences.SearchBoxTaskbarMode.Options.SearchBox" xml:space="preserve">
+    <value>検索ボックス</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarLastActiveClick.Name" xml:space="preserve">
+    <value>最後にアクティブなクリック</value>
+  </data>
+  <data name="Customize.Preferences.TaskbarLastActiveClick.Description" xml:space="preserve">
+    <value>タスクバーのアプリ アイコンをクリックしたとき、そのアプリで最後に使ったウィンドウを開きます。</value>
+  </data>
+  <data name="Customize.SystemFeatures.ShowBatteryPercentage.Name" xml:space="preserve">
+    <value>バッテリー残量</value>
+  </data>
+  <data name="Customize.SystemFeatures.ShowBatteryPercentage.Description" xml:space="preserve">
+    <value>通知領域のバッテリー アイコンの横に現在の残量を表示します。</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableStartMenuWebSearch.Name" xml:space="preserve">
+    <value>スタートメニューのウェブ検索を無効化</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableStartMenuWebSearch.ShortDescription" xml:space="preserve">
+    <value>Windows のスタートメニューのウェブ検索をオフにして、ローカル検索結果の読み込みを高速化します。</value>
+  </data>
+  <data name="DiskCleanup.Dialog.Confirmation.Warning" xml:space="preserve">
+    <value>ファイルは完全に削除されます。この操作は元に戻せません。</value>
+  </data>
+  <data name="DiskCleanup.Dialog.Confirmation.Title" xml:space="preserve">
+    <value>{0}件の選択項目をクリーンアップ</value>
+  </data>
+  <data name="DiskCleanup.Dialog.Confirmation.Summary" xml:space="preserve">
+    <value>{1}件中{0}件（{2}ファイル）を削除しようとしています。以下の項目を確認してください。</value>
+  </data>
+  <data name="ScheduledTasks.Dialog.DeleteWarning" xml:space="preserve">
+    <value>スケジュールタスクの削除は永続的です。タスクは自動的に実行されなくなります。</value>
+  </data>
+  <data name="ScheduledTasks.Dialog.Settings" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="ScheduledTasks.State.Disabled" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="ScheduledTasks.State.Queued" xml:space="preserve">
+    <value>キュー済み</value>
+  </data>
+  <data name="ScheduledTasks.State.Ready" xml:space="preserve">
+    <value>準備完了</value>
+  </data>
+  <data name="ScheduledTasks.State.Running" xml:space="preserve">
+    <value>実行中</value>
+  </data>
+  <data name="Common.Empty" xml:space="preserve">
+    <value>空</value>
+  </data>
+  <data name="Customize.CustomOption" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="Customize.CustomOption.NotSet" xml:space="preserve">
+    <value>未設定</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableNewsAndInterests.Name" xml:space="preserve">
+    <value>ニュースと関心事項を無効にする</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.HideMeetNowButton.Name" xml:space="preserve">
+    <value>Meet Now ボタンを非表示にする</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.HideMeetNowButton.ShortDescription" xml:space="preserve">
+    <value>タスクバーの通知領域から Meet Now (Skype) ボタンを非表示にします。Windows 10 のみ。</value>
+  </data>
+  <data name="Customize.Preferences.LaunchToThisPc.Options.QuickAccess" xml:space="preserve">
+    <value>クイック アクセス</value>
+  </data>
+  <data name="Customize.Preferences.LaunchToThisPc.Options.ThisPc" xml:space="preserve">
+    <value>PC</value>
+  </data>
+  <data name="Optimizer.AI" xml:space="preserve">
+    <value>AI</value>
+  </data>
+  <data name="Optimizer.AI.DisableClickToDo.Name" xml:space="preserve">
+    <value>Click To Do を無効にする</value>
+  </data>
+  <data name="Optimizer.AI.DisableClickToDo.ShortDescription" xml:space="preserve">
+    <value>画面上のテキストや画像を分析する AI 搭載の Click To Do オーバーレイをオフにします。</value>
+  </data>
+  <data name="Optimizer.AI.DisableRecall.Name" xml:space="preserve">
+    <value>Windows Recall を無効にする</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableDeliveryOptimization.Name" xml:space="preserve">
+    <value>配信の最適化 (P2P) を無効にする</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableDeliveryOptimization.ShortDescription" xml:space="preserve">
+    <value>Windows が他の PC とピアツーピアで更新ファイルを共有またはダウンロードするのを止め、更新が Microsoft サーバーからのみ配信されるようにします。</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableFindMyDevice.Name" xml:space="preserve">
+    <value>デバイスの検索を無効にする</value>
+  </data>
+  <data name="Optimizer.SecurityAndPrivacy.DisableFindMyDevice.ShortDescription" xml:space="preserve">
+    <value>デバイスの位置情報を定期的に Microsoft に報告する「デバイスの検索」機能を無効にします。</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableSettings365Ads.Name" xml:space="preserve">
+    <value>設定の Microsoft 365 広告を無効にする</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableSettings365Ads.ShortDescription" xml:space="preserve">
+    <value>設定のホーム ページから Microsoft 365 と Copilot のプロモーション コンテンツを削除します。</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableStartRecommended.Name" xml:space="preserve">
+    <value>スタート メニューのおすすめセクションを非表示にする</value>
+  </data>
+  <data name="Optimizer.UserExperience.DisableStartRecommended.ShortDescription" xml:space="preserve">
+    <value>スタート メニューのおすすめセクションを非表示にしてスッキリさせ、最近使ったファイルやアプリも表示されないようにします。</value>
+  </data>
+  <data name="Condition.Error.Title" xml:space="preserve">
+    <value>互換性チェックに失敗しました</value>
+  </data>
+  <data name="Condition.Error.Description" xml:space="preserve">
+    <value>optimizerDuck は、この項目がシステムでサポートされているかどうかを判断できませんでした。</value>
+  </data>
+  <data name="Condition.Windows11.Title" xml:space="preserve">
+    <value>Windows 11 が必要です</value>
+  </data>
+  <data name="Condition.Windows11.Description" xml:space="preserve">
+    <value>この項目には Windows 11 が必要です。</value>
+  </data>
+  <data name="Condition.Windows10.Title" xml:space="preserve">
+    <value>Windows 10 が必要です</value>
+  </data>
+  <data name="Condition.Windows10.Description" xml:space="preserve">
+    <value>この項目には Windows 10 が必要です。</value>
+  </data>
+  <data name="Condition.Windows11_24H2.Title" xml:space="preserve">
+    <value>Windows 11 24H2 以降が必要です</value>
+  </data>
+  <data name="Condition.Windows11_24H2.Description" xml:space="preserve">
+    <value>この項目には Windows 11 24H2 (ビルド 26100) 以降が必要です。</value>
+  </data>
+  <data name="Condition.Cpu.Intel.Title" xml:space="preserve">
+    <value>Intel CPU が必要です</value>
+  </data>
+  <data name="Condition.Cpu.Intel.Description" xml:space="preserve">
+    <value>この項目は Intel プロセッサ搭載システムでのみ動作します。</value>
+  </data>
+  <data name="Condition.Cpu.Amd.Title" xml:space="preserve">
+    <value>AMD CPU が必要です</value>
+  </data>
+  <data name="Condition.Cpu.Amd.Description" xml:space="preserve">
+    <value>この項目は AMD プロセッサ搭載システムでのみ動作します。</value>
+  </data>
+  <data name="Condition.Gpu.Nvidia.Title" xml:space="preserve">
+    <value>NVIDIA GPU が必要です</value>
+  </data>
+  <data name="Condition.Gpu.Nvidia.Description" xml:space="preserve">
+    <value>この項目は NVIDIA グラフィックス カード搭載システムでのみ動作します。</value>
+  </data>
+  <data name="Condition.Gpu.Amd.Title" xml:space="preserve">
+    <value>AMD GPU が必要です</value>
+  </data>
+  <data name="Condition.Gpu.Amd.Description" xml:space="preserve">
+    <value>この項目は AMD グラフィックス カード搭載システムでのみ動作します。</value>
+  </data>
+  <data name="Condition.Gpu.Intel.Title" xml:space="preserve">
+    <value>Intel GPU が必要です</value>
+  </data>
+  <data name="Condition.Gpu.Intel.Description" xml:space="preserve">
+    <value>この項目は Intel グラフィックス カード搭載システムでのみ動作します。</value>
+  </data>
+  <data name="Condition.Ram.16.Title" xml:space="preserve">
+    <value>16 GB の RAM が必要です</value>
+  </data>
+  <data name="Condition.Ram.16.Description" xml:space="preserve">
+    <value>この項目には 16 GB 以上の RAM が必要です。</value>
+  </data>
+  <data name="Condition.Recall.Title" xml:space="preserve">
+    <value>Windows Recall を利用できません</value>
+  </data>
+  <data name="Condition.Recall.Description" xml:space="preserve">
+    <value>Windows Recall には、Windows の AI コンポーネントがインストールされた Windows 11 24H2 以降が必要です。</value>
+  </data>
+  <data name="Optimizer.Condition.BlockedTitle" xml:space="preserve">
+    <value>このシステムではサポートされていません</value>
+  </data>
+  <data name="Optimizer.Condition.FailedTitle" xml:space="preserve">
+    <value>条件を満たしていません</value>
+  </data>
+  <data name="Optimizer.Condition.Hide" xml:space="preserve">
+    <value>非表示</value>
+  </data>
+  <data name="Optimizer.Condition.Hide.Tooltip" xml:space="preserve">
+    <value>この最適化を再度表示し、強制的に適用できるようにします。</value>
+  </data>
+  <data name="Optimizer.Condition.WhatIsThis" xml:space="preserve">
+    <value>これは何ですか?</value>
+  </data>
+  <data name="Optimizer.Condition.WhatIsThis.Tooltip" xml:space="preserve">
+    <value>互換性条件は、項目がシステムでサポートされているかどうか(Windows のバージョンやインストールされている GPU など)を確認します。条件を満たさない場合、機能しない可能性があるため、項目は既定で非表示になります。操作に慣れている場合は、この警告を非表示にして項目を適用できます。</value>
+  </data>
+  <data name="Customize.UI.UnsupportedSettings.Header" xml:space="preserve">
+    <value>サポートされていない設定 ({0})</value>
+  </data>
+  <data name="Customize.UI.UnsupportedSettings.Description" xml:space="preserve">
+    <value>一部の設定は、現在のシステムでは利用できません。</value>
+  </data>
+  <data name="Optimizer.Performance.LiftWebDavFileSizeLimit.Name" xml:space="preserve">
+    <value>WebDAV 50MB 制限を解除</value>
+  </data>
+  <data name="Optimizer.Performance.LiftWebDavFileSizeLimit.ShortDescription" xml:space="preserve">
+    <value>WebDAV マウントの WebClient ファイルサイズ制限を 50MB から 4GB に引き上げ、ネットワーク上の大容量ファイル転送の失敗を防止します。</value>
+  </data>
+  <data name="Optimizer.UserExperience.MaximizeUpdatePauseLimit.Name" xml:space="preserve">
+    <value>更新プログラムの一時停止上限を最大化</value>
+  </data>
+  <data name="Optimizer.UserExperience.MaximizeUpdatePauseLimit.ShortDescription" xml:space="preserve">
+    <value>Windows Update の一時停止上限をサポートされている最大値に設定します。この設定をサポートしている Windows バージョンでのみ有効です。有効期間中はセキュリティ更新プログラムも停止されます。</value>
+  </data>
+  <data name="Customize.Gaming.DlssIndicator.Name" xml:space="preserve">
+    <value>DLSS オーバーレイ インジケーター</value>
+  </data>
+  <data name="Customize.Gaming.DlssIndicator.Description" xml:space="preserve">
+    <value>ゲームが実際にどの DLSS バージョンでレンダリングされているかを確認するための画面上の DLSS インジケーター オーバーレイを制御します。</value>
+  </data>
+  <data name="Customize.Gaming.DlssIndicator.Recommendation.Reason" xml:space="preserve">
+    <value>診断用オーバーレイです。DLSS の動作を確認する場合以外はオフのままにしてください。</value>
+  </data>
+  <data name="Customize.Gaming.DlssIndicator.Options.Off" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="Customize.Gaming.DlssIndicator.Options.DebugOnly" xml:space="preserve">
+    <value>デバッグ DLL のみ</value>
+  </data>
+  <data name="Customize.Gaming.DlssIndicator.Options.AllVersions" xml:space="preserve">
+    <value>すべての DLSS バージョン</value>
+  </data>
+  <data name="Customize.SystemFeatures.Section.Boot" xml:space="preserve">
+    <value>ブート設定</value>
+  </data>
+  <data name="Customize.SystemFeatures.Section.Network" xml:space="preserve">
+    <value>ネットワーク設定</value>
+  </data>
+  <data name="Customize.SystemFeatures.VerboseStatus.Name" xml:space="preserve">
+    <value>詳細なステータス メッセージ</value>
+  </data>
+  <data name="Customize.SystemFeatures.VerboseStatus.Description" xml:space="preserve">
+    <value>起動、シャットダウン、更新時に、一般的なスピナーの代わりに処理中の正確なサービス、ドライバー、または手順を表示します。</value>
+  </data>
+  <data name="Customize.SystemFeatures.UtcHardwareClock.Name" xml:space="preserve">
+    <value>ハードウェア クロックで UTC を使用</value>
+  </data>
+  <data name="Customize.SystemFeatures.UtcHardwareClock.Description" xml:space="preserve">
+    <value>ハードウェア クロックを UTC として解釈します。Windows/Linux のデュアルブートで両システムの時刻を一致させるために必要です。シングルブート環境では無効にするまでタイムゾーンのオフセット分ずれます。</value>
+  </data>
+  <data name="Customize.SystemFeatures.UtcHardwareClock.Recommendation.Reason" xml:space="preserve">
+    <value>このマシンの別の OS でもハードウェア クロックを UTC として扱っている場合にのみ有効にしてください。</value>
+  </data>
+  <data name="Customize.SystemFeatures.DisableSmartNameResolution.Name" xml:space="preserve">
+    <value>DNS リーク保護</value>
+  </data>
+  <data name="Customize.SystemFeatures.DisableSmartNameResolution.Description" xml:space="preserve">
+    <value>スマート マルチホーム名前解決を無効にし、すべてのネットワーク アダプターから同時に DNS クエリが送信されるのを防ぎます。VPN 使用時にクエリがトンネルをバイパスするのを防止します。</value>
+  </data>
+  <data name="Customize.Preferences.CombineTaskbarButtons.Name" xml:space="preserve">
+    <value>タスクバーボタンを結合する</value>
+  </data>
+  <data name="Customize.Preferences.CombineTaskbarButtons.Description" xml:space="preserve">
+    <value>すべてのディスプレイでタスクバーボタンをいつ結合し、ラベルを非表示にするかを選択します。</value>
+  </data>
+  <data name="Customize.Preferences.CombineTaskbarButtons.Options.Always" xml:space="preserve">
+    <value>常に</value>
+  </data>
+  <data name="Customize.Preferences.CombineTaskbarButtons.Options.WhenFull" xml:space="preserve">
+    <value>タスクバーがいっぱいになったとき</value>
+  </data>
+  <data name="Customize.Preferences.CombineTaskbarButtons.Options.Never" xml:space="preserve">
+    <value>結合しない</value>
+  </data>
+  <data name="Customize.Loading" xml:space="preserve">
+    <value>設定を読み込んでいます…</value>
+  </data>
+  <data name="BloatwareDialog.UnusualWarning.Title" xml:space="preserve">
+    <value>警告:パッケージ名が異常です</value>
+  </data>
+  <data name="BloatwareDialog.UnusualWarning.Description" xml:space="preserve">
+    <value>次のパッケージは識別子が異常であるか、名前形式が未検証です。異常な名前のパッケージを削除すると、エラーが発生したり意図しないファイルが削除されたりする可能性があります。続行する前に慎重に確認してください。</value>
+  </data>
+  <data name="BloatwareDialog.UnusualWarning.SelectedList" xml:space="preserve">
+    <value>異常なパッケージが検出されました</value>
+  </data>
+  <data name="Startup.Location.CommonStartupFolder" xml:space="preserve">
+    <value>スタートアップ フォルダー (すべてのユーザー)</value>
+  </data>
+  <data name="Startup.Location.RegistryHKCURun" xml:space="preserve">
+    <value>レジストリ (現在のユーザー)</value>
+  </data>
+  <data name="Startup.Location.RegistryHKCURunOnce" xml:space="preserve">
+    <value>レジストリ RunOnce (現在のユーザー)</value>
+  </data>
+  <data name="Startup.Location.RegistryHKLMRun" xml:space="preserve">
+    <value>レジストリ (ローカル コンピューター)</value>
+  </data>
+  <data name="Startup.Location.RegistryHKLMRun32" xml:space="preserve">
+    <value>レジストリ (ローカル コンピューター、32 ビット)</value>
+  </data>
+  <data name="Startup.Location.RegistryHKLMRunOnce" xml:space="preserve">
+    <value>レジストリ RunOnce (ローカル コンピューター)</value>
+  </data>
+  <data name="Startup.Location.RegistryHKLMRunOnce32" xml:space="preserve">
+    <value>レジストリ RunOnce (ローカル コンピューター、32 ビット)</value>
+  </data>
+  <data name="Startup.Location.UserStartupFolder" xml:space="preserve">
+    <value>スタートアップ フォルダー (現在のユーザー)</value>
+  </data>
+  <data name="Startup.Location.UwpStartupTask" xml:space="preserve">
+    <value>Microsoft Store アプリ</value>
+  </data>
+  <data name="Revert.PowerPlan.Description" xml:space="preserve">
+    <value>以前のアクティブな電源プラン {0} を復元します</value>
+  </data>
+  <data name="Revert.PowerPlan.Description.Set" xml:space="preserve">
+    <value>インストールされた電源プラン {0}</value>
+  </data>
+  <data name="Revert.PowerPlan.Error.RestoreFailed" xml:space="preserve">
+    <value>以前の電源プランを復元できませんでした: {0}。</value>
+  </data>
+  <data name="Revert.PowerPlan.Error.DeleteFailed" xml:space="preserve">
+    <value>optimizerDuck の電源プランを削除できませんでした: {0}</value>
+  </data>
+  <data name="Revert.PowerPlan.Error.NothingToDo" xml:space="preserve">
+    <value>復元する内容がありません: 以前の電源プランもインストールされた電源プランも記録されていません。</value>
+  </data>
+  <data name="Revert.PowerPlan.Error.VerifyFailed" xml:space="preserve">
+    <value>電源プラン {0} を復元しましたが、アクティブなプランを確認できませんでした。</value>
+  </data>
+  <data name="Revert.PowerPlan.Error.VerifyMismatch" xml:space="preserve">
+    <value>電源プランの確認に失敗しました: {0} であるはずが、アクティブは {1} です。</value>
+  </data>
+  <data name="Revert.PowerSetting.Description" xml:space="preserve">
+    <value>電源設定 {0}/{1}/{2} を復元します</value>
+  </data>
+  <data name="Common.OperationCancelled" xml:space="preserve">
+    <value>操作はキャンセルされました。</value>
+  </data>
+  <data name="Enum.CpuVendor.Intel" xml:space="preserve">
+    <value>Intel</value>
+  </data>
+  <data name="Enum.CpuVendor.Amd" xml:space="preserve">
+    <value>AMD</value>
+  </data>
+  <data name="Enum.GpuVendor.Nvidia" xml:space="preserve">
+    <value>NVIDIA</value>
+  </data>
+  <data name="Enum.GpuVendor.Amd" xml:space="preserve">
+    <value>AMD</value>
+  </data>
+  <data name="Enum.GpuVendor.Intel" xml:space="preserve">
+    <value>Intel</value>
+  </data>
+  <data name="Enum.Architecture.X64" xml:space="preserve">
+    <value>64 ビット</value>
+  </data>
+  <data name="Enum.Architecture.X86" xml:space="preserve">
+    <value>32 ビット</value>
+  </data>
+  <data name="Enum.Architecture.Arm64" xml:space="preserve">
+    <value>ARM64</value>
+  </data>
+  <data name="Enum.FirmwareMode.Uefi" xml:space="preserve">
+    <value>UEFI</value>
+  </data>
+  <data name="Enum.FirmwareMode.Legacy" xml:space="preserve">
+    <value>レガシ BIOS</value>
+  </data>
+  <data name="Enum.SecureBootState.Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Enum.SecureBootState.Disabled" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Enum.SecureBootState.Unavailable" xml:space="preserve">
+    <value>利用不可</value>
+  </data>
+  <data name="Enum.VbsState.Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Enum.VbsState.Disabled" xml:space="preserve">
+    <value>無効</value>
+  </data>
+  <data name="Enum.VbsState.Unavailable" xml:space="preserve">
+    <value>利用不可</value>
+  </data>
+  <data name="Enum.MemoryType.Ddr" xml:space="preserve">
+    <value>DDR</value>
+  </data>
+  <data name="Enum.MemoryType.Ddr2" xml:space="preserve">
+    <value>DDR2</value>
+  </data>
+  <data name="Enum.MemoryType.Ddr3" xml:space="preserve">
+    <value>DDR3</value>
+  </data>
+  <data name="Enum.MemoryType.Ddr4" xml:space="preserve">
+    <value>DDR4</value>
+  </data>
+  <data name="Enum.MemoryType.Ddr5" xml:space="preserve">
+    <value>DDR5</value>
+  </data>
+  <data name="Enum.MemoryType.Sdram" xml:space="preserve">
+    <value>SDRAM</value>
+  </data>
+  <data name="Enum.MemoryType.Other" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="Enum.MemoryType.Lpddr" xml:space="preserve">
+    <value>LPDDR</value>
+  </data>
+  <data name="Enum.MemoryType.Hbm" xml:space="preserve">
+    <value>HBM</value>
+  </data>
+  <data name="Enum.StorageMediaType.Hdd" xml:space="preserve">
+    <value>HDD</value>
+  </data>
+  <data name="Enum.StorageMediaType.Ssd" xml:space="preserve">
+    <value>SSD</value>
+  </data>
+  <data name="Enum.StorageMediaType.Nvme" xml:space="preserve">
+    <value>NVMe</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Event" xml:space="preserve">
+    <value>イベント時</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Time" xml:space="preserve">
+    <value>指定した時刻</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Daily" xml:space="preserve">
+    <value>毎日</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Weekly" xml:space="preserve">
+    <value>毎週</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Monthly" xml:space="preserve">
+    <value>毎月</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.MonthlyDOW" xml:space="preserve">
+    <value>毎月</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Idle" xml:space="preserve">
+    <value>アイドル時</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Registration" xml:space="preserve">
+    <value>登録時</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Boot" xml:space="preserve">
+    <value>スタートアップ時</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Logon" xml:space="preserve">
+    <value>ログオン時</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.SessionStateChange" xml:space="preserve">
+    <value>セッション変更時</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Other" xml:space="preserve">
+    <value>トリガー</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Session.Lock" xml:space="preserve">
+    <value>セッションのロック</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Session.Unlock" xml:space="preserve">
+    <value>セッションのロック解除</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Session.ConsoleConnect" xml:space="preserve">
+    <value>コンソール接続</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Session.ConsoleDisconnect" xml:space="preserve">
+    <value>コンソール切断</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Session.RemoteConnect" xml:space="preserve">
+    <value>リモート接続</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Session.RemoteDisconnect" xml:space="preserve">
+    <value>リモート切断</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Week.First" xml:space="preserve">
+    <value>第 1</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Week.Second" xml:space="preserve">
+    <value>第 2</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Week.Third" xml:space="preserve">
+    <value>第 3</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Week.Fourth" xml:space="preserve">
+    <value>第 4</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Week.Last" xml:space="preserve">
+    <value>最終</value>
+  </data>
+  <data name="ScheduledTasks.Trigger.Week.Every" xml:space="preserve">
+    <value>毎</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.Time" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.Daily" xml:space="preserve">
+    <value>{0} 日ごと、{1}</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.Weekly" xml:space="preserve">
+    <value>{0} 週間ごとの {1}、{2}</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.Monthly" xml:space="preserve">
+    <value>{1} の {0} 日</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.MonthlyDOW" xml:space="preserve">
+    <value>{2} の{0} {1}</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.User" xml:space="preserve">
+    <value>ユーザー {0} 向け</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.UserDelay" xml:space="preserve">
+    <value>ユーザー {0} 向け、{1} 後</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.Delay" xml:space="preserve">
+    <value>{0} 後</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.Repeat" xml:space="preserve">
+    <value> ({0} ごとに繰り返し)</value>
+  </data>
+  <data name="ScheduledTasks.TriggerDetail.RepeatFor" xml:space="preserve">
+    <value> ({0} ごとに {1} まで繰り返し)</value>
+  </data>
+  <data name="Optimizer.UI.State.AlreadyOptimal" xml:space="preserve">
+    <value>既に最適化済み</value>
+  </data>
+  <data name="Optimizer.UI.State.AlreadyOptimal.Tooltip" xml:space="preserve">
+    <value>この PC は既にこの最適化に一致しているため、変更する必要はありません。</value>
+  </data>
+  <data name="Optimization.Apply.NothingToDo" xml:space="preserve">
+    <value>変更はありません。{0} は既にこの PC に一致しています。</value>
+  </data>
+  <data name="Optimization.Apply.Snackbar.NothingToDo.Title" xml:space="preserve">
+    <value>変更はありません</value>
+  </data>
+  <data name="Revert.Error.UnreadableData" xml:space="preserve">
+    <value>{0} の復元データを読み取れなかったため、何も復元していません。ファイルは {1} にそのまま残しています。</value>
+  </data>
+  <data name="Revert.Hibernation.Description.Unknown" xml:space="preserve">
+    <value>適用時の休止状態が不明だったため、復元する内容はありません</value>
+  </data>
+  <data name="Bloatware.Remove.Failed.Title" xml:space="preserve">
+    <value>一部のパッケージを削除できませんでした</value>
+  </data>
+  <data name="Bloatware.Remove.Failed.Message" xml:space="preserve">
+    <value>Windows は次のパッケージを削除しませんでした: {0}</value>
+  </data>
+  <data name="Optimizer.UI.State.Applied.Tooltip" xml:space="preserve">
+    <value>クリックすると前回の適用の各手順を表示します。{0}</value>
+  </data>
+  <data name="Optimizer.UI.State.Applied.Tooltip.NoSummary" xml:space="preserve">
+    <value>クリックすると前回の適用の各手順を表示します。</value>
+  </data>
+  <data name="Optimizer.UI.State.Applied.Summary" xml:space="preserve">
+    <value>{0} 件の手順を変更、{1} 件は既に一致、{2} 件は対象外、{3} 件は Windows に拒否されました</value>
+  </data>
+  <data name="Optimizer.Details.Record.Title" xml:space="preserve">
+    <value>最後に記録された実行</value>
+  </data>
+  <data name="Optimizer.Details.Record.Empty" xml:space="preserve">
+    <value>この項目の記録はまだありません。</value>
+  </data>
+  <data name="Optimizer.Details.Step.Changed" xml:space="preserve">
+    <value>変更しました</value>
+  </data>
+  <data name="Optimizer.Details.Step.AlreadyCorrect" xml:space="preserve">
+    <value>既に一致</value>
+  </data>
+  <data name="Optimizer.Details.Step.NotApplicable" xml:space="preserve">
+    <value>対象外</value>
+  </data>
+  <data name="Optimizer.Details.Step.Refused" xml:space="preserve">
+    <value>Windows に拒否</value>
+  </data>
+  <data name="Optimizer.Details.Step.Irreversible" xml:space="preserve">
+    <value>元に戻せません</value>
+  </data>
+  <data name="Optimizer.Details.Step.Failed" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Security.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows のセキュリティ設定に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Privacy.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows が収集・送信するデータに関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.System.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows の中核部分、つまりコンポーネントやポリシーに関わるので、内容を確認してから有効にしてください。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Performance.Tooltip" xml:space="preserve">
+    <value>この最適化はパフォーマンスとバックグラウンドの処理に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Latency.Tooltip" xml:space="preserve">
+    <value>この最適化は入力、ゲーム、音の遅延に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Disk.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows がディスクをどう使うかに関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Ram.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows がメモリをどう使うかに関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Display.Tooltip" xml:space="preserve">
+    <value>この最適化は画面やグラフィックの出力に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Nvidia.Tooltip" xml:space="preserve">
+    <value>この最適化は NVIDIA のグラフィックカードを搭載した PC だけに関わり、他の PC には影響しません。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Amd.Tooltip" xml:space="preserve">
+    <value>この最適化は AMD のグラフィックカードを搭載した PC だけに関わり、他の PC には影響しません。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Intel.Tooltip" xml:space="preserve">
+    <value>この最適化は Intel のグラフィックカードを搭載した PC だけに関わり、他の PC には影響しません。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Power.Tooltip" xml:space="preserve">
+    <value>この最適化は電力、つまりバッテリー持ち、発熱、ファンの音に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Network.Tooltip" xml:space="preserve">
+    <value>この最適化はネットワーク、接続、そしてその通信量に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.NetworkRequired.Tooltip" xml:space="preserve">
+    <value>この最適化は何かをダウンロードするため、インターネット接続が必要です。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Audio.Tooltip" xml:space="preserve">
+    <value>この最適化は音の再生と処理の方法に関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Visual.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows の見た目、効果、アニメーションに関わるものです。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Windows10Only.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows 10 専用で、Windows 11 では何も行いません。</value>
+  </data>
+  <data name="Optimizer.UI.Tags.Windows11Only.Tooltip" xml:space="preserve">
+    <value>この最適化は Windows 11 専用で、Windows 10 ではブロックされます。</value>
+  </data>
+  <data name="Optimizer.Details.Record.Apply" xml:space="preserve">
+    <value>適用日時 {0}</value>
+  </data>
+  <data name="Optimizer.Details.Record.Revert" xml:space="preserve">
+    <value>元に戻した日時 {0}</value>
+  </data>
+  <data name="Optimizer.Details.Op.RegistrySet" xml:space="preserve">
+    <value>値 {0} を書き込み</value>
+  </data>
+  <data name="Optimizer.Details.Op.RegistryDelete" xml:space="preserve">
+    <value>値 {0} を削除</value>
+  </data>
+  <data name="Optimizer.Details.Op.RegistryCreateKey" xml:space="preserve">
+    <value>レジストリ キーを作成</value>
+  </data>
+  <data name="Optimizer.Details.Op.RegistryDeleteKey" xml:space="preserve">
+    <value>レジストリ キーを削除</value>
+  </data>
+  <data name="Optimizer.Details.Field.Path" xml:space="preserve">
+    <value>パス</value>
+  </data>
+  <data name="Optimizer.Details.Field.Type" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="Optimizer.Details.Field.Previous" xml:space="preserve">
+    <value>変更前の値</value>
+  </data>
+  <data name="Optimizer.Details.Field.Previous.None" xml:space="preserve">
+    <value>存在しません</value>
+  </data>
+  <data name="Optimizer.Details.Field.New" xml:space="preserve">
+    <value>変更後の値</value>
+  </data>
+  <data name="Optimizer.Details.Field.New.None" xml:space="preserve">
+    <value>削除済み</value>
+  </data>
+  <data name="Optimizer.Details.Op.ServiceStartup" xml:space="preserve">
+    <value>サービス {0} を変更</value>
+  </data>
+  <data name="Optimizer.Details.Op.TaskEnable" xml:space="preserve">
+    <value>タスク {0} を有効化</value>
+  </data>
+  <data name="Optimizer.Details.Op.TaskDisable" xml:space="preserve">
+    <value>タスク {0} を無効化</value>
+  </data>
+  <data name="Optimizer.Details.Op.PowerPlanActivate" xml:space="preserve">
+    <value>電源プラン {0} を設定</value>
+  </data>
+  <data name="Optimizer.Details.Op.PowerPlanInstall" xml:space="preserve">
+    <value>電源プラン {0} をインストール</value>
+  </data>
+  <data name="Optimizer.Details.Op.PowerSetting" xml:space="preserve">
+    <value>電源設定 {0} を変更</value>
+  </data>
+  <data name="Optimizer.Details.Op.Hibernation" xml:space="preserve">
+    <value>休止状態と高速スタートアップを無効化</value>
+  </data>
+  <data name="Optimizer.Details.Op.UsbPower" xml:space="preserve">
+    <value>USB の省電力をオフ</value>
+  </data>
+  <data name="Optimizer.Details.Field.Service" xml:space="preserve">
+    <value>サービス</value>
+  </data>
+  <data name="Optimizer.Details.Field.Task" xml:space="preserve">
+    <value>タスク</value>
+  </data>
+  <data name="Optimizer.Details.Field.PowerPlan" xml:space="preserve">
+    <value>電源プラン</value>
+  </data>
+  <data name="Optimizer.Details.Field.Setting" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Optimizer.Details.Field.Devices" xml:space="preserve">
+    <value>デバイス数</value>
+  </data>
+  <data name="Optimizer.Details.Value.Startup.Automatic" xml:space="preserve">
+    <value>自動</value>
+  </data>
+  <data name="Optimizer.Details.Value.Startup.AutomaticDelayed" xml:space="preserve">
+    <value>自動（遅延開始）</value>
+  </data>
+  <data name="Optimizer.Details.Value.Startup.Manual" xml:space="preserve">
+    <value>手動</value>
+  </data>
+  <data name="Optimizer.Details.Value.Startup.Disabled" xml:space="preserve">
+    <value>オフ</value>
+  </data>
+  <data name="Optimizer.Details.Value.Enabled" xml:space="preserve">
+    <value>オン</value>
+  </data>
+  <data name="Optimizer.Details.Value.Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="Optimizer.Details.Op.RegistryRestore" xml:space="preserve">
+    <value>値 {0} を元に戻す</value>
+  </data>
+  <data name="Optimizer.Details.Op.RegistryRestoreKey" xml:space="preserve">
+    <value>レジストリ キーを元に戻す</value>
+  </data>
+  <data name="Optimizer.Details.Op.ServiceRestore" xml:space="preserve">
+    <value>サービス {0} を元に戻す</value>
+  </data>
+  <data name="Optimizer.Details.Op.PowerPlanRestore" xml:space="preserve">
+    <value>電源プラン {0} を元に戻す</value>
+  </data>
+  <data name="Optimizer.Details.Op.PowerPlanUninstall" xml:space="preserve">
+    <value>電源プラン {0} を削除</value>
+  </data>
+  <data name="Optimizer.Details.Op.PowerSettingRestore" xml:space="preserve">
+    <value>電源設定 {0} を元に戻す</value>
+  </data>
+  <data name="Optimizer.Details.Op.HibernationRestore" xml:space="preserve">
+    <value>休止状態と高速スタートアップを元に戻す</value>
+  </data>
+  <data name="Optimizer.Details.Op.HibernationEnable" xml:space="preserve">
+    <value>休止状態と高速スタートアップを再び有効にする</value>
+  </data>
+  <data name="Optimizer.Details.Op.UsbPowerRestore" xml:space="preserve">
+    <value>USB の省電力を再び有効にする</value>
+  </data>
+  <data name="Optimizer.Details.Field.StartupState" xml:space="preserve">
+    <value>開始の種類</value>
+  </data>
+  <data name="Optimizer.Details.Field.TaskState" xml:space="preserve">
+    <value>タスクの状態</value>
+  </data>
+  <data name="Optimizer.Details.Field.HibernationState" xml:space="preserve">
+    <value>休止状態の状態</value>
+  </data>
+  <data name="Optimizer.Details.Field.Value" xml:space="preserve">
+    <value>値</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other.OpenRecordFile.Title" xml:space="preserve">
+    <value>記録ファイルを表示</value>
+  </data>
+  <data name="OptimizationDetailsDialog.Other.OpenRecordFile.Description" xml:space="preserve">
+    <value>この最適化が何をしたかを optimizerDuck が書き留めたファイルを開きます。元に戻した後も残るので、後から確認できます。</value>
+  </data>
+  <data name="Optimizer.Details.Provider.Registry" xml:space="preserve">
+    <value>レジストリ</value>
+  </data>
+  <data name="Optimizer.Details.Provider.Service" xml:space="preserve">
+    <value>サービス</value>
+  </data>
+  <data name="Optimizer.Details.Provider.ScheduledTask" xml:space="preserve">
+    <value>スケジュールされたタスク</value>
+  </data>
+  <data name="Optimizer.Details.Provider.PowerPlan" xml:space="preserve">
+    <value>電源プラン</value>
+  </data>
+  <data name="Optimizer.Details.Provider.Hibernation" xml:space="preserve">
+    <value>休止状態</value>
+  </data>
+  <data name="Optimizer.Details.Provider.UsbPower" xml:space="preserve">
+    <value>USB の省電力</value>
+  </data>
+  <data name="Optimizer.Details.Provider.Shell" xml:space="preserve">
+    <value>シェル</value>
+  </data>
+  <data name="Optimizer.Details.Field.ValueName" xml:space="preserve">
+    <value>値の名前</value>
+  </data>
+  <data name="Optimizer.Details.Field.Reason" xml:space="preserve">
+    <value>理由</value>
+  </data>
+  <data name="Optimizer.Details.Reason.ServiceNotFound" xml:space="preserve">
+    <value>このサービスはこの PC にありません</value>
+  </data>
+  <data name="Optimizer.Details.Reason.TaskNotFound" xml:space="preserve">
+    <value>このタスクはこの PC にありません</value>
+  </data>
+  <data name="Optimizer.Details.Reason.RegistryValueAbsent" xml:space="preserve">
+    <value>そもそもこの値がありません</value>
+  </data>
+  <data name="Optimizer.Details.Reason.RegistryKeyExists" xml:space="preserve">
+    <value>このキーは既にありました</value>
+  </data>
+  <data name="Optimizer.Details.Reason.RegistryKeyAbsent" xml:space="preserve">
+    <value>そもそもこのキーがありません</value>
+  </data>
+  <data name="Optimizer.Details.Reason.UsbNoDevices" xml:space="preserve">
+    <value>この PC に USB ルート ハブがありません</value>
+  </data>
+  <data name="Optimizer.Details.Field.Took" xml:space="preserve">
+    <value>所要時間</value>
+  </data>
+  <data name="Optimizer.Details.Field.At" xml:space="preserve">
+    <value>日時</value>
+  </data>
+  <data name="Optimizer.Details.Field.ErrorCode" xml:space="preserve">
+    <value>エラー コード</value>
+  </data>
+  <data name="Optimizer.Details.Field.Attempt" xml:space="preserve">
+    <value>試行</value>
+  </data>
+  <data name="Optimizer.Details.Record.Version" xml:space="preserve">
+    <value>アプリのバージョン</value>
+  </data>
+  <data name="Optimizer.Details.Record.Windows" xml:space="preserve">
+    <value>Windows のバージョン</value>
+  </data>
+  <data name="Optimizer.Details.Record.Took" xml:space="preserve">
+    <value>所要時間</value>
+  </data>
+  <data name="Error.Unhandled.Title" xml:space="preserve">
+    <value>問題が発生しました</value>
+  </data>
+  <data name="Error.Unhandled.Message" xml:space="preserve">
+    <value>最後の操作を完了できませんでした: {0}</value>
+  </data>
+  <data name="Error.Unhandled.LogHint" xml:space="preserve">
+    <value>詳細はログ ファイルに記録されています。</value>
+  </data>
+<data name="Partner.Label" xml:space="preserve"><value>Advertisement · 18+</value></data>
+<data name="Partner.Description" xml:space="preserve"><value>Hookah mix builder. Flavor combinations and proportions.</value></data>
+<data name="Partner.Open" xml:space="preserve"><value>zabivki.ru ↗</value></data>
+<data name="Partner.OpenFailed" xml:space="preserve"><value>Could not open browser. Website: https://zabivki.ru/</value></data>
+<data name="Family.Author" xml:space="preserve"><value>Creator: @creativerelab</value></data>
+<data name="Family.Care" xml:space="preserve"><value>PC maintenance: cleanup, startup and large files.</value></data>
+<data name="Family.Catalog" xml:space="preserve"><value>All apps and latest versions</value></data>
+<data name="Family.Company" xml:space="preserve"><value>Creative Relab</value></data>
+<data name="Family.Details" xml:space="preserve"><value>Learn more</value></data>
+<data name="Family.Guard" xml:space="preserve"><value>File scanning, quarantine, vault and security tools.</value></data>
+<data name="Optimizer.Gpu.NoCompatibleHardware" xml:space="preserve"><value>No compatible adapter with an available settings path was found.</value></data>
+</root>

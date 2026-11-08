@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/Data/
+**/node_modules/
+*.pfx
+*.key
+*.user
+*.suo
+/releases/
+/private/

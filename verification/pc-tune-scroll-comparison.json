@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-08T11:31:40.3453009+03:00",
+  "before": {
+    "rows": 1000,
+    "createdContainers": 1000,
+    "layoutMs": 13129.0737,
+    "scrollMedianMs": 5.4181,
+    "scrollP95Ms": 14.0651,
+    "allocatedBytes": 699788616,
+    "canContentScroll": false,
+    "virtualizing": true,
+    "recycling": "Standard",
+    "physicalMouseTest": false
+  },
+  "after": {
+    "rows": 1000,
+    "createdContainers": 4,
+    "layoutMs": 87.9676,
+    "scrollMedianMs": 12.0914,
+    "scrollP95Ms": 18.814,
+    "allocatedBytes": 23465840,
+    "canContentScroll": true,
+    "virtualizing": true,
+    "recycling": "Recycling",
+    "physicalMouseTest": false
+  },
+  "containerReductionPercent": 99.6,
+  "layoutSpeedup": 149.24897007534594,
+  "allocationReductionPercent": 96.64672453031159,
+  "sameScenario": "1000 repeated task rows; WPF layout and programmatic scroll; no tasks changed",
+  "physicalWheelValidated": false
+}

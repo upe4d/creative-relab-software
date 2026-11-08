@@ -1,0 +1,39 @@
+using System.Globalization;
+using System.Windows.Data;
+using System.Windows.Media;
+using optimizerDuck.Common.Helpers;
+
+namespace optimizerDuck.Common.Converters;
+
+/// <summary>Maps a progress percentage to green below 50%, yellow below 80%, red above.</summary>
+public class ProgressBarValueToBrushConverter : IValueConverter
+{
+    private static readonly SolidColorBrush DefaultBrush = new(Color.FromArgb(0x0, 0x0, 0x0, 0x0));
+
+    public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
+    {
+        if (value is not double percent)
+            return DefaultBrush;
+
+        return percent switch
+        {
+            < 0 => DefaultBrush,
+            < 50 => ThemeResource.Get<Brush>("SystemFillColorSuccessBrush")
+                ?? new SolidColorBrush(Color.FromRgb(0, 180, 0)),
+            < 80 => ThemeResource.Get<Brush>("SystemFillColorCautionBrush")
+                ?? new SolidColorBrush(Color.FromRgb(255, 140, 0)),
+            _ => ThemeResource.Get<Brush>("SystemFillColorCriticalBrush")
+                ?? new SolidColorBrush(Color.FromRgb(220, 0, 0)),
+        };
+    }
+
+    public object ConvertBack(
+        object? value,
+        Type targetType,
+        object? parameter,
+        CultureInfo culture
+    )
+    {
+        throw new NotImplementedException();
+    }
+}

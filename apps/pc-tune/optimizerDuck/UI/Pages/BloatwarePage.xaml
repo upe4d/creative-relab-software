@@ -1,0 +1,322 @@
+<Page
+    x:Class="optimizerDuck.UI.Pages.BloatwarePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:bloatware1="clr-namespace:optimizerDuck.Domain.Optimizations.Models.Bloatware"
+    xmlns:controls="clr-namespace:optimizerDuck.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:optimizerDuck.Common.Extensions"
+    xmlns:local="clr-namespace:optimizerDuck.UI.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="BloatwarePage"
+    d:DataContext="{d:DesignInstance local:BloatwarePage}"
+    d:DesignHeight="1200"
+    d:DesignWidth="800"
+    ui:Design.Background="{DynamicResource PCTuneWindowBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Style="{StaticResource PageRootStyle}"
+    mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto *">
+        <StackPanel Style="{StaticResource PageHeaderStyle}">
+            <ui:TextBlock Style="{StaticResource PageTitleStyle}" Text="{ext:Loc Bloatware.Header.Title}" />
+            <ui:TextBlock Style="{StaticResource PageDescriptionStyle}" Text="{ext:Loc Bloatware.Header.Description}" />
+        </StackPanel>
+
+        <!--  Empty (truly no packages installed)  -->
+        <controls:EmptyStateView
+            Grid.Row="1"
+            ActionButtonText="{ext:Loc Bloatware.Menu.Refresh}"
+            ActionCommand="{Binding ViewModel.RefreshCommand}"
+            Description="{ext:Loc Bloatware.Empty.Description}"
+            Symbol="DeleteOff24"
+            Title="{ext:Loc Bloatware.Empty.Title}">
+            <controls:EmptyStateView.Style>
+                <Style TargetType="controls:EmptyStateView">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ViewModel.HasData}" Value="False" />
+                                <Condition Binding="{Binding ViewModel.IsLoading}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </controls:EmptyStateView.Style>
+        </controls:EmptyStateView>
+
+        <!--  Loading  -->
+        <controls:LoadingStateOverlay
+            Grid.Row="1"
+            IsLoading="{Binding ViewModel.IsLoading}"
+            Subtitle="{ext:Loc Bloatware.Loading.Hint}"
+            Title="{ext:Loc Bloatware.Loading}" />
+
+        <Border Grid.Row="1" Visibility="{Binding ViewModel.HasData, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid RowDefinitions="Auto,Auto,*">
+                <!--  Search / Filter / Sort toolbar  -->
+                <Border Grid.Row="0" Style="{StaticResource ToolbarSurfaceStyle}">
+                    <WrapPanel Orientation="Horizontal">
+                        <!--  Search  -->
+                        <ui:TextBox
+                            Icon="{ui:SymbolIcon Search24}"
+                            PlaceholderText="{ext:Loc Common.Search.Placeholder}"
+                            Style="{StaticResource SearchBoxStyle}"
+                            Text="{Binding ViewModel.SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <!--  Filter by Risk  -->
+                        <ComboBox
+                            SelectedIndex="{Binding ViewModel.SelectedRiskFilterIndex}"
+                            ToolTip="{ext:Loc Common.Filter}"
+                            ToolTipService.BetweenShowDelay="160"
+                            ToolTipService.Placement="Top">
+                            <ComboBoxItem HorizontalContentAlignment="Left">
+                                <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                    <ui:SymbolIcon
+                                        Margin="0,0,6,0"
+                                        HorizontalAlignment="Left"
+                                        Symbol="Filter24" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        Text="{ext:Loc Common.Filter.All}" />
+                                </Grid>
+                            </ComboBoxItem>
+                            <ComboBoxItem HorizontalContentAlignment="Left">
+                                <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                    <ui:SymbolIcon
+                                        Margin="0,0,6,0"
+                                        HorizontalAlignment="Left"
+                                        Foreground="{DynamicResource SystemFillColorSuccessBrush}"
+                                        Symbol="ShieldCheckmark24" />
+                                    <TextBlock Grid.Column="1" Text="{ext:Loc Optimizer.UI.Risk.Safe}" />
+                                </Grid>
+                            </ComboBoxItem>
+                            <ComboBoxItem HorizontalContentAlignment="Left">
+                                <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                    <ui:SymbolIcon
+                                        Margin="0,0,6,0"
+                                        HorizontalAlignment="Left"
+                                        Foreground="{DynamicResource SystemFillColorCautionBrush}"
+                                        Symbol="Warning24" />
+                                    <TextBlock Grid.Column="1" Text="{ext:Loc Optimizer.UI.Risk.Moderate}" />
+                                </Grid>
+                            </ComboBoxItem>
+                        </ComboBox>
+                        <!--  Sort By  -->
+                        <ComboBox
+                            SelectedIndex="{Binding ViewModel.SelectedSortByIndex}"
+                            ToolTip="{ext:Loc Common.SortBy}"
+                            ToolTipService.BetweenShowDelay="160"
+                            ToolTipService.Placement="Top">
+                            <ComboBoxItem HorizontalContentAlignment="Left">
+                                <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                    <ui:SymbolIcon
+                                        Margin="0,0,6,0"
+                                        HorizontalAlignment="Left"
+                                        Symbol="TextSortAscending24" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        Text="{ext:Loc Common.SortBy.Name}" />
+                                </Grid>
+                            </ComboBoxItem>
+                            <ComboBoxItem HorizontalContentAlignment="Left">
+                                <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                    <ui:SymbolIcon
+                                        Margin="0,0,6,0"
+                                        HorizontalAlignment="Left"
+                                        Symbol="Certificate24" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        Text="{ext:Loc Common.SortBy.Publisher}" />
+                                </Grid>
+                            </ComboBoxItem>
+                            <ComboBoxItem HorizontalContentAlignment="Left">
+                                <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                    <ui:SymbolIcon
+                                        Margin="0,0,6,0"
+                                        HorizontalAlignment="Left"
+                                        Symbol="Shield24" />
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        HorizontalAlignment="Left"
+                                        Text="{ext:Loc Common.SortBy.Risk}" />
+                                </Grid>
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </WrapPanel>
+                </Border>
+
+                <!--  Action buttons  -->
+                <StackPanel
+                    Grid.Row="1"
+                    Margin="0,0,0,12"
+                    Orientation="Horizontal">
+                    <ui:Button
+                        Appearance="Danger"
+                        Command="{Binding ViewModel.RemoveSelectedCommand}"
+                        Content="{ext:Loc Bloatware.Menu.Remove,
+                                          {Binding ViewModel.SelectedCount}}"
+                        Cursor="Hand"
+                        Icon="{ui:SymbolIcon Delete24,
+                                             FontSize=18}" />
+
+                    <Separator Margin="4,0,4,0" Visibility="{Binding ViewModel.HasSafePackages, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                    <ui:Button
+                        Command="{Binding ViewModel.SelectAllSafeCommand}"
+                        Cursor="Hand"
+                        Visibility="{Binding ViewModel.HasSafePackages, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <ui:Button.Style>
+                            <Style BasedOn="{StaticResource {x:Type ui:Button}}" TargetType="ui:Button">
+                                <Setter Property="Appearance" Value="Success" />
+                                <Setter Property="Content" Value="{ext:Loc Bloatware.Menu.SelectAllSafe}" />
+                                <Setter Property="Icon">
+                                    <Setter.Value>
+                                        <ui:SymbolIcon FontSize="18" Symbol="ShieldCheckmark24" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ViewModel.IsAllSafeSelected}" Value="True">
+                                        <Setter Property="Appearance" Value="Danger" />
+                                        <Setter Property="Content" Value="{ext:Loc Bloatware.Menu.DeselectAllSafe}" />
+                                        <Setter Property="Icon">
+                                            <Setter.Value>
+                                                <ui:SymbolIcon FontSize="18" Symbol="CheckboxUnchecked24" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ui:Button.Style>
+                    </ui:Button>
+
+                    <Separator Margin="4,0,4,0" />
+
+                    <ui:Button
+                        Appearance="Primary"
+                        Command="{Binding ViewModel.RefreshCommand}"
+                        Content="{ext:Loc Bloatware.Menu.Refresh}"
+                        Cursor="Hand"
+                        Icon="{ui:SymbolIcon ArrowClockwise24,
+                                             FontSize=18}" />
+                </StackPanel>
+
+                <!--  No search results  -->
+                <controls:EmptyStateView
+                    Grid.Row="2"
+                    Description="{ext:Loc Bloatware.Search.NoResults}"
+                    Symbol="SearchInfo24"
+                    Visibility="{Binding ViewModel.AppxPackages.Count, Converter={StaticResource ZeroToVisibilityConverter}}" />
+
+                <ItemsControl
+                    Grid.Row="2"
+                    ItemsSource="{Binding ViewModel.AppxPackages}"
+                    Visibility="{Binding ViewModel.AppxPackages.Count, Converter={StaticResource GreaterThanZeroToVisibilityConverter}}">
+                    <ItemsControl.Template>
+                        <ControlTemplate TargetType="ItemsControl">
+                            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type bloatware1:AppXPackage}">
+                            <Border Style="{StaticResource ListRowStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--  Checkbox  -->
+                                    <CheckBox
+                                        Grid.Column="0"
+                                        Margin="0,4,12,0"
+                                        VerticalAlignment="Top"
+                                        IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+
+                                    <!--  Logo Image  -->
+                                    <Image
+                                        Grid.Column="1"
+                                        Width="36"
+                                        Height="36"
+                                        Margin="0,0,12,0"
+                                        VerticalAlignment="Top"
+                                        Source="{Binding LogoImage}"
+                                        Stretch="UniformToFill" />
+
+                                    <!--  Content  -->
+                                    <StackPanel Grid.Column="2">
+                                        <!--  Top row  -->
+                                        <DockPanel LastChildFill="False">
+                                            <!--  App Name  -->
+                                            <ui:TextBlock FontTypography="BodyStrong" Text="{Binding Name}" />
+
+                                            <Border
+                                                Margin="8,0,0,0"
+                                                Padding="4,1"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Style="{StaticResource SubtlePillStyle}">
+                                                <!--  Version  -->
+                                                <ui:TextBlock
+                                                    VerticalAlignment="Center"
+                                                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                                                    FontTypography="Body"
+                                                    Text="{Binding Version}" />
+                                            </Border>
+
+                                            <controls:RiskBadge
+                                                Margin="8,0,0,0"
+                                                Risk="{Binding Risk}"
+                                                RiskVisual="{Binding RiskVisual}"
+                                                Visibility="{Binding ShouldVisibleRisk, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                        </DockPanel>
+
+                                        <!--  Publisher  -->
+                                        <ui:TextBlock
+                                            Margin="0,2,0,0"
+                                            FontTypography="Body"
+                                            Foreground="{DynamicResource TextFillColorDisabledBrush}"
+                                            Text="{Binding Publisher}"
+                                            TextTrimming="CharacterEllipsis" />
+
+                                        <!--  Install location  -->
+                                        <ui:TextBlock
+                                            Margin="0,2,0,0"
+                                            FontTypography="Body"
+                                            Foreground="{DynamicResource TextFillColorDisabledBrush}"
+                                            Text="{Binding InstallLocation}"
+                                            TextTrimming="CharacterEllipsis" />
+
+                                        <!--  Package full name  -->
+                                        <ui:TextBlock
+                                            Margin="0,4,0,0"
+                                            FontTypography="Caption"
+                                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                            Text="{Binding PackageFullName}"
+                                            TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

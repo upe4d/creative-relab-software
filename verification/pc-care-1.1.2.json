@@ -1,0 +1,8 @@
+{
+  "version": "1.1.2",
+  "selfTests": 27,
+  "selfTestFailures": 0,
+  "uiSmokeChecks": 34,
+  "uiSmokeFailures": 0,
+  "executableSHA256": "6A9565A965529CE4FA6C9BD724FAE180C2284FC3DD8F570D341010CFFC75EC15"
+}

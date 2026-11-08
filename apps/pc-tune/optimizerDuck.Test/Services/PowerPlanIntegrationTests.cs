@@ -1,0 +1,234 @@
+using Microsoft.Extensions.Logging.Abstractions;
+using optimizerDuck.Domain.Optimizations.Models.Power;
+using optimizerDuck.Services.System;
+
+namespace optimizerDuck.Test.Services;
+
+/// <summary>
+/// Windows integration tests against real powrprof.dll. No mocks:
+/// every test touches the live API and restores what it changed.
+/// </summary>
+public class PowerPlanIntegrationTests
+{
+    [Fact]
+    public void ListSchemes_ContainsActiveScheme()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+
+        var schemes = service.ListSchemes();
+        var activeId = service.GetActiveSchemeId();
+
+        Assert.NotNull(activeId);
+        Assert.NotEmpty(schemes);
+        Assert.Contains(schemes, s => s.Id == activeId.Value && s.IsActive);
+        Assert.All(schemes, s => Assert.False(string.IsNullOrWhiteSpace(s.Name)));
+    }
+
+    [Fact]
+    public void GetScheme_ActiveScheme_ReturnsMetadata()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+        var activeId = service.GetActiveSchemeId();
+        Assert.NotNull(activeId);
+
+        var scheme = service.GetScheme(activeId.Value);
+
+        Assert.NotNull(scheme);
+        Assert.Equal(activeId.Value, scheme.Id);
+        Assert.True(scheme.IsActive);
+        Assert.False(string.IsNullOrWhiteSpace(scheme.Name));
+    }
+
+    [Fact]
+    public void GetScheme_UnknownGuid_ReturnsNull()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+
+        Assert.Null(service.GetScheme(Guid.NewGuid()));
+        Assert.False(service.SchemeExists(Guid.NewGuid()));
+    }
+
+    [Fact]
+    public void ListGroupsAndSettings_ActiveScheme_HasEntries()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+        var activeId = service.GetActiveSchemeId();
+        Assert.NotNull(activeId);
+
+        var groups = service.ListGroups(activeId.Value);
+
+        Assert.NotEmpty(groups);
+        var first = groups[0];
+        var settings = service.ListSettings(activeId.Value, first.Id);
+        Assert.NotNull(settings);
+    }
+
+    /// <summary>
+    ///     Pins the range-vs-indexed decision against real powrprof metadata. Maximum processor
+    ///     state is a range (0-100); System cooling policy is an indexed list. Both live in
+    ///     SUB_PROCESSOR, which every Windows 10/11 installation exposes.
+    /// </summary>
+    [Theory]
+    [InlineData(
+        "54533251-82be-4824-96c1-47b60b740d00",
+        "bc5038f7-23e0-4960-96da-33abaf5935ec",
+        PowerValueKind.Range
+    )]
+    [InlineData(
+        "54533251-82be-4824-96c1-47b60b740d00",
+        "94d3a615-a899-4ac5-ae2b-e4d8f634367f",
+        PowerValueKind.Indexed
+    )]
+    public void GetSetting_KnownRangeAndIndexedSettings_ReportDocumentedKind(
+        string subgroupId,
+        string settingId,
+        PowerValueKind expectedKind
+    )
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+        var activeId = service.GetActiveSchemeId();
+        Assert.NotNull(activeId);
+
+        var setting = service.GetSetting(
+            activeId.Value,
+            Guid.Parse(subgroupId),
+            Guid.Parse(settingId)
+        );
+
+        Assert.NotNull(setting);
+        Assert.Equal(expectedKind, setting.Kind);
+
+        if (expectedKind == PowerValueKind.Range)
+        {
+            Assert.NotNull(setting.MinValue);
+            Assert.NotNull(setting.MaxValue);
+            Assert.NotNull(setting.Increment);
+        }
+        else
+        {
+            Assert.NotNull(setting.PossibleValues);
+            Assert.NotEmpty(setting.PossibleValues!);
+        }
+    }
+
+    [Fact]
+    public void SettingValue_RoundTrip_RestoresExactValues()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+        var activeId = service.GetActiveSchemeId();
+        Assert.NotNull(activeId);
+
+        // Find the first setting with readable AC/DC values.
+        PowerSetting? target = null;
+        foreach (var group in service.ListGroups(activeId.Value))
+        {
+            foreach (var setting in service.ListSettings(activeId.Value, group.Id))
+            {
+                target = setting;
+                break;
+            }
+            if (target is not null)
+                break;
+        }
+        Assert.NotNull(target);
+
+        var origAc = service.GetSettingValue(
+            activeId.Value,
+            target.GroupId,
+            target.Id,
+            PowerSource.Ac
+        );
+        var origDc = service.GetSettingValue(
+            activeId.Value,
+            target.GroupId,
+            target.Id,
+            PowerSource.Dc
+        );
+        Assert.NotNull(origAc);
+        Assert.NotNull(origDc);
+
+        try
+        {
+            // Write back the same values: exercises the write path with no semantic change.
+            var write = service.SetSetting(
+                activeId.Value,
+                target.GroupId,
+                target.Id,
+                origAc.Value,
+                origDc.Value,
+                NullLogger.Instance
+            );
+            Assert.True(write.Result.Ok);
+            Assert.Equal(origAc, write.PreviousAcValue);
+            Assert.Equal(origDc, write.PreviousDcValue);
+
+            var rereadAc = service.GetSettingValue(
+                activeId.Value,
+                target.GroupId,
+                target.Id,
+                PowerSource.Ac
+            );
+            var rereadDc = service.GetSettingValue(
+                activeId.Value,
+                target.GroupId,
+                target.Id,
+                PowerSource.Dc
+            );
+            Assert.Equal(origAc.Value, rereadAc);
+            Assert.Equal(origDc.Value, rereadDc);
+        }
+        finally
+        {
+            service.SetSetting(
+                activeId.Value,
+                target.GroupId,
+                target.Id,
+                origAc.Value,
+                origDc.Value,
+                NullLogger.Instance
+            );
+        }
+    }
+
+    [Fact]
+    public void DeleteScheme_ActiveScheme_Refused()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+        var activeId = service.GetActiveSchemeId();
+        Assert.NotNull(activeId);
+        var result = service.DeleteScheme(activeId.Value, NullLogger.Instance);
+
+        Assert.False(result.Ok);
+    }
+
+    [Fact]
+    public void DuplicateAndDelete_Lifecycle_RoundTrips()
+    {
+        var service = new PowerPlanService(NullLogger<PowerPlanService>.Instance);
+        var activeId = service.GetActiveSchemeId();
+        Assert.NotNull(activeId);
+        var dup = service.DuplicateScheme(activeId.Value, NullLogger.Instance);
+        var dupResult = dup.Result;
+        var dupId = dup.SchemeId;
+        Assert.True(dupResult.Ok);
+        Assert.NotNull(dupId);
+        Assert.True(service.SchemeExists(dupId.Value));
+
+        try
+        {
+            var rename = service.SetSchemeName(dupId.Value, "optimizerDuck test plan");
+            Assert.True(rename.Ok);
+            var renamed = service.GetScheme(dupId.Value);
+            Assert.Equal("optimizerDuck test plan", renamed?.Name);
+
+            var describe = service.SetSchemeDescription(dupId.Value, "test description");
+            Assert.True(describe.Ok);
+        }
+        finally
+        {
+            var del = service.DeleteScheme(dupId.Value, NullLogger.Instance);
+            Assert.True(del.Ok);
+            Assert.False(service.SchemeExists(dupId.Value));
+        }
+    }
+}

@@ -1,0 +1,8 @@
+/* Компактная реклама сервиса: отдельная строка без перекрытия рабочих элементов. */
+.partner-strip{display:flex;align-items:center;gap:18px;padding:10px 24px;border-top:1px solid var(--g-line);background:var(--g-panel)}
+.partner-link{display:grid;grid-template-columns:205px minmax(180px,1fr) auto;align-items:center;gap:24px;flex:1;min-width:0;color:var(--g-text);text-decoration:none;border-radius:10px;padding:4px 6px}
+.partner-link:hover{background:var(--g-soft);color:var(--g-text)}.partner-link:focus-visible{outline:2px solid var(--g-accent);outline-offset:3px}
+.partner-logo{display:block;width:205px;height:auto;max-width:100%;border-radius:8px}.partner-copy{display:grid;gap:3px;min-width:0;font-size:12px;color:var(--g-sub)}.partner-copy strong{font-size:14px;font-weight:600;color:var(--g-text)}
+.partner-action{display:flex;align-items:center;gap:12px;white-space:nowrap;color:var(--g-accent);font-size:13px;font-weight:600}.partner-action span{font-size:18px}.partner-label{flex:none;color:var(--g-sub);font-size:10px;white-space:nowrap}
+@media(max-width:850px){.partner-strip{padding:10px 18px;gap:12px}.partner-link{grid-template-columns:185px minmax(0,1fr);gap:16px}.partner-logo{width:185px}.partner-copy{display:none}}
+@media(max-width:470px){.partner-strip{padding:10px 14px;position:relative}.partner-link{grid-template-columns:minmax(0,1fr) auto;gap:14px;padding:8px 0 17px}.partner-logo{width:175px}.partner-action{font-size:12px;gap:6px}.partner-label{position:absolute;right:16px;bottom:7px;font-size:9px}}

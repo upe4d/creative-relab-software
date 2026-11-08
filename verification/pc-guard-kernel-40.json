@@ -1,0 +1,200 @@
+{
+  "checks": 40,
+  "failures": 0,
+  "results": [
+    {
+      "name": "Массовая перезапись 64 документов разрешена до политики",
+      "passed": true
+    },
+    {
+      "name": "Устройство отвечает протоколом 4",
+      "passed": true
+    },
+    {
+      "name": "Запись стандартного пользователя доступна до политики",
+      "passed": true
+    },
+    {
+      "name": "Пишущее отображение доступно до политики",
+      "passed": true
+    },
+    {
+      "name": "Стандартный пользователь не получает устройство управления",
+      "passed": true
+    },
+    {
+      "name": "Старая жёсткая ссылка создана до защиты",
+      "passed": true
+    },
+    {
+      "name": "Тестовый запрещаемый EXE исправен и запускается до политики",
+      "passed": true
+    },
+    {
+      "name": "Точный тестовый SHA запрещён до выполнения первого потока",
+      "passed": true
+    },
+    {
+      "name": "Чистый EXE в той же папке запускается",
+      "passed": true
+    },
+    {
+      "name": "Неверный протокол не заменяет старую политику",
+      "passed": true
+    },
+    {
+      "name": "Подготовка видна отдельно от действующей политики",
+      "passed": true
+    },
+    {
+      "name": "Pending замораживает новые изменения",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Закрытие владельца отменяет pending и возвращает старую политику",
+      "passed": true
+    },
+    {
+      "name": "Старое writable-отображение создано без открытых файловых handles",
+      "passed": true
+    },
+    {
+      "name": "Клиентский каталог отвергает старое writable-отображение без замены политики",
+      "passed": true
+    },
+    {
+      "name": "Ядро отдельно отвергает небезопасный shared-write probe через реальный commit IOCTL",
+      "passed": true
+    },
+    {
+      "name": "Каталог File ID принят ядром",
+      "passed": true
+    },
+    {
+      "name": "Чтение защищённого файла доступно",
+      "passed": true
+    },
+    {
+      "name": "Неизвестный процесс: отказ write",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Неизвестный процесс: отказ append",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Неизвестный процесс: отказ delete",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Неизвестный процесс: отказ map",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Создание нового файла в защищённой папке запрещено",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Вынос защищённого файла запрещён",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Старая внешняя жёсткая ссылка не даёт перезаписать файл",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Новая внешняя жёсткая ссылка запрещена",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Байты документа сохранены после запрещённых операций",
+      "passed": true
+    },
+    {
+      "name": "Все 64 массовые перезаписи получили ACCESS_DENIED",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Содержимое всех 64 документов сохранено после массовой попытки",
+      "passed": true
+    },
+    {
+      "name": "Проверенный по SHA редактор получает обычную запись после нового запуска",
+      "passed": true
+    },
+    {
+      "name": "Чужой процесс не наследует право редактора",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Обычный процесс штатно запускает редактор без особых прав",
+      "passed": true
+    },
+    {
+      "name": "Редактор недоверенного создателя запущен, но не получает запись защищённых документов",
+      "passed": true,
+      "exitCode": 5,
+      "detail": "child-exit:5"
+    },
+    {
+      "name": "Доверенный редактор штатно запускает дочерний редактор с защищённой записью",
+      "passed": true
+    },
+    {
+      "name": "Редактор удерживает разрешённый пишущий handle",
+      "passed": true
+    },
+    {
+      "name": "Чужой процесс не может украсть handle редактора и изменить файл через mapping",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Большой тестовый PE исправен до выдачи разрешения",
+      "passed": true
+    },
+    {
+      "name": "Неподтверждённый SHA редактора не даёт запись даже вне EXE-корня",
+      "passed": true,
+      "exitCode": 5,
+      "expectedWin32Error": 5
+    },
+    {
+      "name": "Ошибка SHA большого PE действительно зафиксирована ядром",
+      "passed": true
+    },
+    {
+      "name": "Отключение политики возвращает обычную запись",
+      "passed": true
+    }
+  ],
+  "fatal": null,
+  "guestOnly": true,
+  "realMalwareExecuted": false,
+  "checkedAt": "2026-11-07T17:35:00.5815243+03:00",
+  "sourceDriverSHA256": "144F2450F7327975BB2D8A34D32F517776B0BC33547850FECCD0EC3E1D83B1A2",
+  "productionSigned": false
+}

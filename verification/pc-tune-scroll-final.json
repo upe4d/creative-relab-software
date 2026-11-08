@@ -1,0 +1,12 @@
+{
+  "rows": 1000,
+  "createdContainers": 4,
+  "layoutMs": 93.518,
+  "scrollMedianMs": 13.7881,
+  "scrollP95Ms": 26.2809,
+  "allocatedBytes": 23788656,
+  "canContentScroll": true,
+  "virtualizing": true,
+  "recycling": "Recycling",
+  "physicalMouseTest": false
+}

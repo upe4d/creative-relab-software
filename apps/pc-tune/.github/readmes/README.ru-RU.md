@@ -1,0 +1,370 @@
+﻿<div align="center">
+
+<a href="https://optimizerduck.vercel.app/"><img src="../assets/optimizerDuck.png" alt="optimizerDuck Banner" title="optimizerDuck"/></a>
+
+# [optimizerDuck](https://optimizerduck.vercel.app/)
+
+**optimizerDuck, это бесплатный инструмент с открытым исходным кодом для оптимизации Windows, созданный для производительности, конфиденциальности и простоты.**
+
+<a href="https://trendshift.io/repositories/36187" target="_blank"><img src="https://trendshift.io/api/badge/repositories/36187" alt="itsfatduck%2FoptimizerDuck | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<br>
+[![Release](https://shieldcn.dev/github/release/itsfatduck/optimizerDuck.svg?variant=secondary&logo=ri:FaTag&logoColor=ebc15e&size=xs&theme=stone)](https://github.com/itsfatduck/optimizerDuck/releases/latest)
+[![Downloads](https://shieldcn.dev/github/dt/itsfatduck/optimizerDuck.svg?variant=secondary&logo=ri:FaDownload&logoColor=ebc15e&size=xs&theme=stone)](https://github.com/itsfatduck/optimizerDuck/releases)
+[![Stars](https://shieldcn.dev/github/stars/itsfatduck/optimizerDuck.svg?variant=secondary&logo=ri:FaStar&logoColor=ebc15e&size=xs&theme=stone)](https://github.com/itsfatduck/optimizerDuck/stargazers)
+[![License](https://shieldcn.dev/badge/License-GPL_v3.svg?variant=secondary&logo=ri:FaBalanceScale&logoColor=ebc15e&size=xs&theme=stone)](../../LICENSE)
+[![Discord](https://shieldcn.dev/discord/1091675679994675240.svg?variant=secondary&logo=discord&logoColor=5865f2&size=xs&theme=stone)](https://discord.gg/tDUBDCYw9Q)
+<br>
+[![CI](https://shieldcn.dev/github/ci/itsfatduck/optimizerDuck.svg?workflow=ci.yml&variant=secondary&size=xs&theme=stone)](https://github.com/itsfatduck/optimizerDuck/actions/workflows/ci.yml)
+[![.NET 10.0](https://shieldcn.dev/badge/.NET-10.0.svg?variant=secondary&size=xs&theme=stone)](https://dotnet.microsoft.com/en-us/download)
+[![Supported OS](https://shieldcn.dev/badge/Windows-10%2B_%7C_x64_%7C_ARM64.svg?variant=secondary&logo=ri:FaWindows&logoColor=0078d4&size=xs&theme=stone)](https://www.microsoft.com/en-us/software-download/)
+<br>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/itsfatduck)
+
+**[Начало работы](https://optimizerduck.vercel.app/docs/guides/getting-started) | [Как это работает](https://optimizerduck.vercel.app/docs/guides/how-it-works) | [FAQ](https://optimizerduck.vercel.app/docs/faq/general)**
+
+[English](../../README.md) | [Tiếng Việt](README.vi.md) | [繁體中文](README.zh-TW.md) | [简体中文](README.zh-CN.md) | **Русский** | [Français](README.fr-FR.md) | [한국어](README.ko-KR.md) | [Español](README.es-ES.md) | [日本語](README.ja-JP.md) | [Português (BR)](README.pt-BR.md) | [Türkçe](README.tr-TR.md) | [العربية](README.ar-SA.md) | [Bahasa Indonesia](README.id-ID.md) | [Italiano](README.it-IT.md) | [فارسی](README.fa-IR.md)
+
+<details>
+<summary>⭐ История звёзд</summary>
+
+Если optimizerDuck помог улучшить ваш ПК, поставьте репозиторию ⭐ и поделитесь им с другими.
+Каждая звезда мотивирует на дальнейшие улучшения.
+
+<p align="center">
+ <a href="https://www.star-history.com/itsfatduck/optimizerduck">
+  <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=itsfatduck/optimizerDuck&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=itsfatduck/optimizerDuck" />
+   <img alt="Star History Rank" src="https://api.star-history.com/badge?repo=itsfatduck/optimizerDuck" />
+  </picture>
+ </a>
+</p>
+
+<a href="https://www.star-history.com/?repos=itsfatduck%2FoptimizerDuck&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=itsfatduck/optimizerDuck&type=date&theme=dark&legend=top-left&sealed_token=UNXQhgyDBTZTQe1TE_Amu7Y7vpRg39O9VlDWdODQoVZHQMYgQvez_20mmRYsz_G_4P0WqF9EcECI9q3FgCwrudjZ0tvJ6st0cC6W0H6RPKncHmlV1RtXn1ys51oMBWeTQ8nkSmR9huOtNdEp4jh_wiWqmmc7j6HgfHRK9WlbIoHnGgLyskwm6agLLmWR" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=itsfatduck/optimizerDuck&type=date&legend=top-left&sealed_token=UNXQhgyDBTZTQe1TE_Amu7Y7vpRg39O9VlDWdODQoVZHQMYgQvez_20mmRYsz_G_4P0WqF9EcECI9q3FgCwrudjZ0tvJ6st0cC6W0H6RPKncHmlV1RtXn1ys51oMBWeTQ8nkSmR9huOtNdEp4jh_wiWqmmc7j6HgfHRK9WlbIoHnGgLyskwm6agLLmWR" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=itsfatduck/optimizerDuck&type=date&legend=top-left&sealed_token=UNXQhgyDBTZTQe1TE_Amu7Y7vpRg39O9VlDWdODQoVZHQMYgQvez_20mmRYsz_G_4P0WqF9EcECI9q3FgCwrudjZ0tvJ6st0cC6W0H6RPKncHmlV1RtXn1ys51oMBWeTQ8nkSmR9huOtNdEp4jh_wiWqmmc7j6HgfHRK9WlbIoHnGgLyskwm6agLLmWR" />
+ </picture>
+</a>
+
+<a href="https://starmapper.bruniaux.com/itsfatduck/optimizerDuck">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://starmapper.bruniaux.com/api/map-image/itsfatduck/optimizerDuck?theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://starmapper.bruniaux.com/api/map-image/itsfatduck/optimizerDuck?theme=light" />
+    <img alt="StarMapper" src="https://starmapper.bruniaux.com/api/map-image/itsfatduck/optimizerDuck" />
+  </picture>
+</a>
+
+</details>
+
+<img src="../assets/app.png" alt="optimizerDuck Тёмная тема" title="optimizerDuck Тёмная тема" width="800"/>
+
+</div>
+
+---
+
+## Быстрый старт
+
+1. Скачайте из **[GitHub Releases](https://github.com/itsfatduck/optimizerDuck/releases/latest)**
+2. Запустите `.exe` напрямую, установка не требуется
+3. Выберите нужные оптимизации, примените их и перезагрузите ПК, когда будете готовы
+
+> [!TIP]
+> Всегда создавайте **точку восстановления системы** перед внесением изменений.
+
+> [!NOTE]
+> | | Язык | Название на языке | Переводчик |
+> |------|----------|-------------|------------|
+> | 🇺🇸 | Английский (США) | English | Основной и рекомендуемый |
+> | 🇻🇳 | Вьетнамский | Tiếng Việt | [itsfatduck](https://github.com/itsfatduck) |
+> | 🇹🇼 | Китайский (традиционный) | 正體中文 | [abc0922001](https://github.com/abc0922001) |
+> | 🇨🇳 | Китайский (упрощённый) | 简体中文 | [wcxu21](https://github.com/wcxu21) |
+> | 🇷🇺 | Русский | Русский | [Foodhead](https://github.com/Foodhead) |
+> | 🇫🇷 | Французский | Français | [Robocnop](https://github.com/Robocnop) |
+> | 🇩🇪 | Немецкий | Deutsch | [pixeldepartment](https://github.com/pixeldepartment) |
+> | 🇮🇱 | Иврит | עברית | [yosef-chai](https://github.com/yosef-chai) |
+> | 🇰🇷 | Корейский | 한국어 | [klfnn](https://github.com/klfnn) |
+> | 🇪🇸 | Испанский | Español | [thexxtt](https://github.com/thexxtt) |
+> | 🇯🇵 | Японский | 日本語 | [zerofrip](https://github.com/zerofrip) |
+> | 🇵🇱 | Польский | Polski | [dudus2000](https://github.com/dudus2000) |
+> | 🇧🇷 | Португальский (Бразилия) | Português (Brasil) | [mhanelia](https://github.com/mhanelia) |
+> | 🇹🇷 | Турецкий | Türkçe | [amhunter1](https://github.com/amhunter1) |
+> | 🇸🇦 | Арабский | العربية | [s5xx5s](https://github.com/s5xx5s) |
+> | 🇮🇩 | Индонезийский | Bahasa Indonesia | [nekowawolf](https://github.com/nekowawolf) |
+> | 🇮🇹 | Итальянский | Italiano | [bandrea83](https://github.com/bandrea83) |
+> | 🇮🇷 | Персидский | فارسی | [NimaHp](https://github.com/NimaHp) |
+> 
+> Хотите добавить свой язык? См. [CONTRIBUTING.md](../../CONTRIBUTING.md) ([японская версия](../contributing/CONTRIBUTING.ja-JP.md), [турецкая версия](../contributing/CONTRIBUTING.tr-TR.md)).
+
+---
+
+## Что делает optimizerDuck и почему это важно
+
+Windows отлично работает из коробки. Однако даже свежая установка включает фоновые службы, телеметрию, предустановленные приложения и запланированные задачи, которые продолжают работать, даже если вы ими никогда не пользуетесь. Они потребляют ресурсы системы: CPU, RAM, диск и сеть в фоне.
+
+В то же время многие настройки, способные повысить производительность, снизить задержки или обеспечить более плавную работу, не включены по умолчанию.
+
+optimizerDuck объединяет всё в одном месте. Он помогает оптимизировать Windows, удалять ненужные компоненты, настраивать параметры системы и управлять стандартными функциями Windows без копания в реестре, групповых политиках или PowerShell.
+
+Кроме того, в нём есть встроенные инструменты управления: вы видите, что запущено, можете удалить лишнее и восстановить изменения в любой момент.
+
+**[Зачем оптимизировать Windows?](#зачем-оптимизировать-windows-если-можно-просто-обновить-железо)**
+
+### Системные оптимизации
+
+42 настройки в 7 категориях, каждая с чётким описанием и уровнем риска, чтобы вы точно знали, что делает изменение до его применения.
+
+| Категория                 | Что включает                                                                                                                                                        |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Производительность**    | Настройка Service Host на основе вашей RAM, регулировка приоритетов процессов, снижение задержки клавиатуры, настройки Multimedia Scheduler для более плавной игры  |
+| **Конфиденциальность**    | Отключение телеметрии Windows, отчётов об ошибках, рекламного ID, отслеживания местоположения, Cortana, Copilot и предложений контента                              |
+| **GPU**                   | Специфические для производителя настройки реестра для GPU AMD, NVIDIA и Intel, включая состояния питания, clock gating и задержку отображения                       |
+| **Питание**               | Отключение гибернации и быстрого запуска, отключение USB selective suspend, установка кастомного высокопроизводительного плана питания, отключение power throttling |
+| **Bloatware и службы**    | Блокировка повторной установки OEM-приложений и тонкая настройка типов запуска для 200+ служб Windows                                                               |
+| **Пользовательский опыт** | Удаление задержек меню, отключение визуальных эффектов, таких как анимация панели задач и прозрачность, для более быстрого отклика                                  |
+| **ИИ**                    | Отключение снимков Windows Recall и ИИ-оверлея Click To Do (Windows 11)                                                                                             |
+
+> [!NOTE]
+> Оптимизации здесь основаны на известных инструментах с большой пользовательской базой: ничего не сгенерировано ИИ и не добавлено вслепую. Каждая настройка отобрана за реальный эффект.
+
+### Настройка
+
+Не нужно копаться в реестре: переключатели, списки и поля ввода чисел в одном месте. Четыре категории:
+
+- **Рабочий стол**: Показывать или скрывать значки (Этот компьютер, Корзина, Сеть, Файлы пользователя, Панель управления, все значки рабочего стола), удалять стрелки ярлыков
+- **Предпочтения**: Выравнивание панели задач, виджеты, кнопки Task View, End Task и последнее активное окно, отображение поля поиска, секунды на часах, тёмная тема, расширения файлов, скрытые файлы, история буфера обмена, компактный вид, snap assist, флажки элементов, классическое контекстное меню, поиск Bing, всплывающие уведомления и уведомления синхронизации, системные предложения, встряхивание окна и начальное расположение Проводника
+- **Игры**: Game Mode, Game Bar, фоновая запись, ускорение мыши, оптимизации полноэкранного режима, аппаратное ускорение GPU
+- **Система**: Включение Num Lock при загрузке, режим разработчика, доверенные приложения, поддержка длинных путей и процент заряда батареи
+
+### Встроенные инструменты
+
+| Инструмент            | Что делает                                                                                                                                       |
+| :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **System Dashboard**  | Просмотр информации о CPU, RAM, GPU, дисках и ОС в одной панели                                                                                  |
+| **Startup Manager**   | Просмотр всех приложений и задач, запускаемых при загрузке, их включение/отключение и открытие расположения файлов                               |
+| **Scheduled Tasks**   | Просмотр, запуск, остановка, включение, отключение или удаление запланированных задач Windows                                                    |
+| **Disk Cleanup**      | Сканирование и очистка временных файлов, системного кэша, остатков Windows Update, prefetch, эскизов, корзины, дампов и старых установок Windows |
+| **Bloatware Remover** | Список всех удаляемых пакетов AppX с метками риска (Безопасно, Осторожно, Неизвестно), чтобы вы выбрали, что удалять                             |
+
+### Зачем оптимизировать Windows, если можно просто обновить железо?
+
+Самый быстрый способ повысить производительность — это всегда апгрейд. Лучший CPU, GPU, больше RAM или более быстрый SSD обычно дают гораздо больший прирост, чем одни только программные настройки.
+
+Но это лишь часть картины.
+
+Windows разработана для сотен миллионов ПК с разным железом, разными задачами и разными пользователями. Поэтому Microsoft поставляет Windows с настройками, которые ставят во главу угла совместимость, стабильность, время работы от батареи и удобство использования, а не максимальную производительность.
+
+В результате в стандартной установке Windows оказывается множество фоновых служб, запланированных задач, телеметрии, энергосберегающих функций и предустановленных приложений, которые многим пользователям могут никогда не понадобиться.
+
+Особенно это заметно после переустановки Windows. Даже после установки всех драйверов и обновлений многие полезные настройки производительности остаются нетронутыми, а ненужные фоновые компоненты продолжают работать.
+
+Оптимизация Windows — это просто уменьшение лишней нагрузки, чтобы ваш ПК тратил больше ресурсов на то, что действительно важно: игры, программирование, создание контента или повседневную работу.
+
+Она не удвоит ваш FPS чудесным образом, но может снизить фоновую активность, уменьшить системные задержки, повысить отзывчивость и помочь вашему железу работать стабильнее.
+
+Это одна из причин, по которой многие рекомендуют Linux ради лучшей производительности и меньшей нагрузки на систему. Если вы предпочитаете оставаться на Windows ради совместимости с программами и привычного интерфейса, optimizerDuck поможет вам получить максимально возможный опыт без смены операционной системы.
+
+### Когда стоит оптимизировать Windows?
+
+Лучшее время — **после чистой установки Windows**.
+
+Рекомендуем такой порядок:
+
+1. Установите Windows.
+2. Установите все драйверы оборудования (чипсет, GPU, сеть, аудио и т.д.).
+3. Запустите **Windows Update**, пока не останется доступных обновлений.
+4. Установите все **дополнительные обновления**.
+5. Откройте **Microsoft Store** и обновите все встроенные приложения.
+6. Установите нужные вам программы и игры.
+7. Примените выбранные оптимизации optimizerDuck.
+8. Используйте встроенные инструменты optimizerDuck для удаления ненужных приложений, очистки Windows и управления автозагрузкой.
+
+Такой порядок помогает избежать перезаписи ваших настроек последующими обновлениями Windows или драйверов.
+
+> [!TIP]
+> Многие продвинутые пользователи временно отключают автоматические обновления Windows после завершения настройки. Крупные обновления Windows могут сбросить настройки по умолчанию, переустановить некоторые компоненты или отменить часть оптимизаций. Если вы решите так сделать, не забывайте периодически включать Windows Update для установки важных обновлений безопасности, а затем снова отключать.
+
+> [!NOTE]
+> Все оптимизации, которые предлагает optimizerDuck, можно выполнить вручную. Цель optimizerDuck — просто сделать оптимизацию Windows проще, безопаснее и удобнее.
+
+---
+
+## Безопасность
+
+Мы знаем, что изменение системных настроек сопряжено с риском, поэтому инструмент построен на принципах отката и контроля пользователя.
+
+См. [Политику конфиденциальности](../../PRIVACY.md) для получения подробной информации о нашей работе с данными.
+
+- **Автоматическое резервирование**: Каждое изменение записывает файл отката в локальную папку. Вы можете восстановить отдельные настройки или откатить всё
+- **Откат в один клик**: Отмените любую применённую оптимизацию из интерфейса одним нажатием
+- **Уровни риска**: Каждая настройка помечена как Безопасная, Умеренная или Рискованная в зависимости от потенциального воздействия
+- **Нет автоматического применения**: Ничего не запускается, пока вы не выберете. Инструмент ничего не включает сам
+- **Предложение точки восстановления**: Перед первой оптимизацией приложение предлагает создать точку восстановления Windows
+
+---
+
+## Часто задаваемые вопросы
+
+> [!TIP]
+> Посетите [FAQ на сайте](https://optimizerduck.vercel.app/docs/faq/general) для получения дополнительных вопросов и ответов.
+
+### optimizerDuck безопасен?
+
+Да. optimizerDuck, полностью **открытый исходный код** (GPL v3), так что любой может глянуть код, проверить или сам собрать программу. Каждый релиз собирается **GitHub Actions** из публичного исходника: никаких скрытых правок, никаких левых DLL после сборки. Если сомневаетесь, клонируйте репозиторий и соберите `.exe` одной командой `dotnet build`.
+
+Приложение **вообще не собирает** телеметрию, данные об использовании или личную информацию. Подробнее в [Политике конфиденциальности](../../PRIVACY.md).
+
+### optimizerDuck правда ускоряет систему, снижает лаги или разгоняет сеть?
+
+Может помочь. Каждая оптимизация в optimizerDuck **взята из известных утилит, гайдов сообщества и рекомендаций производителей**: ничего не сгенерировано ИИ, не добавлено наобум и не выдумано. Каждая настройка меняет реальный параметр, который Windows по умолчанию ставит слишком консервативно (например, группировку служб, питание GPU, ограничение сети, планировку процессов).
+
+Никаких фейковых хаков в реестре, каждая правка имеет смысл и подтверждена тестами сообщества и документацией вендоров.
+
+### Почему Windows SmartScreen / Defender ругается при скачивании?
+
+Потому что у optimizerDuck нет цифровой подписи: сертификаты подписи кода стоят бешеных денег для open-source проектов. Когда Windows видит неподписанный exe, скачанный из интернета, SmartScreen по умолчанию паникует. Это нормально, и это **не** значит, что файл опасен.
+
+Чтобы запустить, нажмите **"Подробнее" > "Выполнить в любом случае"**. Если всё ещё сомневаетесь:
+
+- Соберите `.exe` сами из [исходников](https://github.com/itsfatduck/optimizerDuck)
+- Закиньте файл в ANY.RUN или другой online-песочник для проверки
+
+### Можно ли откатить изменения, если что-то пошло не так?
+
+Да. Каждая оптимизация перед применением создаёт файл отката. Можно отменить отдельные настройки или сбросить всё одной кнопкой в интерфейсе. Ещё программа предложит создать точку восстановления Windows перед первой оптимизацией.
+
+### Работает на Windows 10 и Windows 11?
+
+Да. optimizerDuck поддерживает **Windows 10/11 (x64 и ARM64)**.
+
+### Нужны права админа?
+
+Да. Программа лезет в системные настройки и реестр Windows, так что без администраторских прав никак.
+
+### optimizerDuck собирает мои данные?
+
+Нет. В приложении нет ни телеметрии, ни аналитики, ни «звонков домой». Оно работает полностью офлайн и никуда ничего не шлёт.
+
+### Почему Диспетчер задач показывает 100% ЦП после применения схемы питания? ([#29](https://github.com/itsfatduck/optimizerDuck/issues/29))
+
+Известная ошибка отображения Диспетчера задач при нестандартных схемах питания, неверно показывает 100% ЦП на некоторых системах при нормальной реальной нагрузке. Только визуально, **не** влияет на производительность и не вызывает перегрев. Если не нужно, просто отключите эту оптимизацию.
+
+---
+
+## Устранение неполадок
+
+> [!TIP]
+> Посетите [страницу устранения неполадок](https://optimizerduck.vercel.app/docs/faq/troubleshooting) для получения более подробных инструкций и решений известных проблем.
+
+### Приложение не запускается или вылетает при запуске
+
+Убедитесь, что вы запускаете от имени **Администратора**. optimizerDuck требует повышенных привилегий. Если оно всё равно вылетает, скачайте последнюю версию из [Releases](https://github.com/itsfatduck/optimizerDuck/releases/latest); старая сборка может быть несовместима с вашей версией Windows.
+
+### Изменения не вступают в силу после применения
+
+Некоторые оптимизации требуют **перезагрузки системы** для полного применения. Если после перезагрузки настройка не сработала, попробуйте применить её снова или проверьте раздел отката, чтобы убедиться, что изменение сохранено.
+
+### Файл отката отсутствует или повреждён
+
+Файлы отката хранятся в `%LocalAppData%\optimizerDuck\Revert\`. Если файл случайно удалён или повреждён, вы можете восстановить его из резервной копии или заранее создать **Точку восстановления системы** для подстраховки.
+
+### Windows Update сбрасывает мои настройки
+
+Функциональные обновления Windows иногда сбрасывают некоторые значения реестра и конфигурации служб на стандартные. Просто повторно примените предыдущие оптимизации из приложения после крупного обновления.
+
+### Я нашёл ошибку / хочу предложить функцию
+
+Откройте [issue](https://github.com/itsfatduck/optimizerDuck/issues) на GitHub с как можно более подробным описанием: ваша версия Windows, какие оптимизации вы применяли и что пошло не так. Запросы функций также приветствуются.
+
+---
+
+## Технические детали
+
+- **Фреймворк**: WPF на .NET 10, с использованием библиотеки WPF UI для дизайна Fluent
+- **Система отката**: Четыре типа шагов отката (Registry, Service, Scheduled Task, Shell) с JSON-состоянием и потокобезопасным файловым вводом-выводом
+- **Темы оформления**: Тёмная (по умолчанию), Светлая и Высокая контрастность с поддержкой Mica
+- **Без установки**: Запускается как один .exe, установка не требуется
+- **Система резервирования**: Локальная папка для резервных копий каждого изменения с восстановлением в один клик
+- **Автообнаружение**: Категории оптимизаций и функций обнаруживаются автоматически через reflection + кастомные атрибуты, ручная регистрация не требуется
+- **Нет телеметрии**: Приложение не собирает никаких данных пользователя
+
+---
+
+## Документация
+
+### [Официальная документация](https://optimizerduck.vercel.app/docs/guides/getting-started)
+
+Пошаговые руководства, подробное описание каждой оптимизации и лучшие практики использования optimizerDuck.
+
+---
+
+## Вклад в проект
+
+Мы приветствуем вклад сообщества! Будь то исправление ошибок, добавление новых оптимизаций или функций, улучшение документации или помощь в переводе приложения на другие языки, ваша поддержка очень ценится.
+
+Для получения дополнительной информации см. [CONTRIBUTING.md](../../CONTRIBUTING.md) ([японская версия](../contributing/CONTRIBUTING.ja-JP.md), [турецкая версия](../contributing/CONTRIBUTING.tr-TR.md)).
+
+---
+
+## Сообщество
+
+> [!TIP]
+> Присоединяйтесь к нашему серверу Discord для получения поддержки, советов и обсуждений с другими пользователями и контрибьюторами.
+>
+> <a href="https://discord.gg/tDUBDCYw9Q"><img src="https://discord.com/api/guilds/1091675679994675240/widget.png?style=banner2" alt="Discord Banner 2"/></a>
+
+Если optimizerDuck помог вашему ПК:
+
+- ⭐ Поставьте звезду репозиторию
+- 💬 Присоединяйтесь к Discord для общения
+- 🐞 Сообщайте об ошибках на GitHub
+- 🎁 Поддержите проект [здесь](https://optimizerduck.vercel.app/docs/contribute/support-me)
+
+### Ссылки
+
+- 🌐 [Веб-сайт](https://optimizerduck.vercel.app/)
+- 📖 [Документация](https://optimizerduck.vercel.app/docs/guides/getting-started)
+- 💬 [Discord](https://discord.gg/tDUBDCYw9Q)
+- 🐞 [Issues](https://github.com/itsfatduck/optimizerDuck/issues)
+
+Важен любой вклад. Отчёты об ошибках, предложения функций, переводы и просто ваш опыт, всё имеет значение.
+
+---
+
+## Отказ от ответственности
+
+optimizerDuck предоставляется **«как есть»**, без каких-либо гарантий.
+
+Используя этот инструмент, вы соглашаетесь, что авторы не несут ответственности за нестабильность системы, потерю данных или проблемы, вызванные сторонним ПО или изменениями пользователя.
+
+Всегда создавайте **точку восстановления** перед применением изменений.
+
+> [!NOTE]
+> optimizerDuck изменяет системные настройки и реестр Windows. Используйте на свой страх и риск. Мы рекомендуем создавать резервную копию важных данных и точку восстановления перед внесением изменений.
+>
+> См. [Условия использования](../../TERMS.md), [Политику конфиденциальности](../../PRIVACY.md) и [Отказ от ответственности](../../DISCLAIMER.md) для получения дополнительной информации.
+
+---
+
+## Лицензия
+
+<div align="center">
+
+<a href="../../LICENSE">
+<img src=".github/assets/gplv3.png" alt="GPL v3 License" title="GPL v3 License"/>
+</a>
+
+**[Лицензия GPL v3](https://www.gnu.org/licenses/gpl-3.0.en.html)**<br>См. [LICENSE](../../LICENSE).
+
+</div>
+
+<div align="center">
+
+## Спасибо всем контрибьюторам
+
+[![Contributors](https://shieldcn.dev/contributors/itsfatduck/optimizerDuck.svg?title=false&preset=transparent&names=true&border=false)](https://github.com/itsfatduck/optimizerDuck/graphs/contributors)
+<br>
+[Вернуться наверх](#optimizerduck)
+
+</div>

@@ -1,0 +1,496 @@
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Threading;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Logging;
+using optimizerDuck.Common.Helpers;
+using optimizerDuck.Domain.Execution;
+using optimizerDuck.Domain.Optimizations.Models;
+using optimizerDuck.Resources.Languages;
+using optimizerDuck.Services.Configuration;
+using optimizerDuck.Services.System;
+using optimizerDuck.Services.UI;
+using optimizerDuck.UI.Dialogs;
+using optimizerDuck.UI.ViewModels;
+using Wpf.Ui;
+using Wpf.Ui.Controls;
+using StartupApp = optimizerDuck.Domain.Optimizations.Models.StartupManager.StartupApp;
+using StartupTask = optimizerDuck.Domain.Optimizations.Models.StartupManager.StartupTask;
+
+namespace optimizerDuck.UI.ViewModels.Pages;
+
+public partial class StartupManagerViewModel : ViewModel
+{
+    private readonly List<StartupApp> _allApps = [];
+    private readonly List<StartupTask> _allTasks = [];
+    private readonly IContentDialogService _contentDialogService;
+    private readonly ILogger<StartupManagerViewModel> _logger;
+    private readonly ToolRunPresenter _presenter;
+    private readonly StartupManagerService _startupManagerService;
+
+    // Per-section: Apps
+    [ObservableProperty]
+    private string _appSearchText = string.Empty;
+
+    [ObservableProperty]
+    private int _appSortByIndex;
+
+    [ObservableProperty]
+    private bool _hideMicrosoftTasks = true;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsNotLoading))]
+    [NotifyPropertyChangedFor(nameof(ShowRefreshButton))]
+    private bool _isLoading;
+
+    // Per-section: Tasks
+    [ObservableProperty]
+    private string _taskSearchText = string.Empty;
+
+    [ObservableProperty]
+    private int _taskSortByIndex;
+
+    public StartupManagerViewModel(
+        StartupManagerService startupManagerService,
+        ToolRunPresenter presenter,
+        IContentDialogService contentDialogService,
+        ILogger<StartupManagerViewModel> logger
+    )
+    {
+        _startupManagerService = startupManagerService;
+        _presenter = presenter;
+        _contentDialogService = contentDialogService;
+        _logger = logger;
+    }
+
+    public ObservableCollection<StartupApp> Apps { get; } = [];
+    public ObservableCollection<StartupTask> Tasks { get; } = [];
+
+    public bool IsNotLoading => !IsLoading;
+
+    public bool HasApps => _allApps.Count > 0;
+    public bool HasTasks => _allTasks.Count > 0;
+    public bool HasData => HasApps || HasTasks;
+
+    public bool HasResults => Apps.Count > 0 || Tasks.Count > 0;
+    public bool ShowRefreshButton => IsNotLoading && HasResults;
+
+    /// <inheritdoc />
+    public override async Task OnNavigatedToAsync()
+    {
+        await base.OnNavigatedToAsync();
+
+        if (
+            CrossPageEventBus.HasPendingRefresh<ScheduledTasksChanged>()
+            || CrossPageEventBus.HasPendingRefresh<BloatwareChanged>()
+        )
+        {
+            await ReloadTasksAsync();
+        }
+    }
+
+    protected override async Task InitializeOnceAsync()
+    {
+        await LoadDataAsync();
+    }
+
+    [RelayCommand]
+    private async Task Refresh()
+    {
+        await LoadDataAsync();
+    }
+
+    [RelayCommand]
+    private void OpenStartupSettings()
+    {
+        try
+        {
+            Process.Start(
+                new ProcessStartInfo("ms-settings:startupapps") { UseShellExecute = true }
+            );
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to open Startup Settings");
+        }
+    }
+
+    [RelayCommand]
+    private void OpenTaskScheduler()
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo("taskschd.msc") { UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to open Task Scheduler");
+        }
+    }
+
+    [RelayCommand]
+    private void OpenLocation(StartupApp? app)
+    {
+        if (app?.CanOpenLocation != true || string.IsNullOrWhiteSpace(app.FilePath))
+            return;
+
+        try
+        {
+            var rawPath = app.FilePath.Trim().Trim('"');
+            if (!File.Exists(rawPath) && !Directory.Exists(rawPath))
+            {
+                var match = System.Text.RegularExpressions.Regex.Match(
+                    app.FilePath,
+                    @"^(?:""([^""]+)""|([^\s]+))"
+                );
+                if (match.Success)
+                {
+                    var extracted = match.Groups[1].Success
+                        ? match.Groups[1].Value
+                        : match.Groups[2].Value;
+                    if (File.Exists(extracted) || Directory.Exists(extracted))
+                        rawPath = extracted;
+                }
+            }
+
+            var safePath = Path.GetFullPath(rawPath);
+            if (!File.Exists(safePath) && !Directory.Exists(safePath))
+                return;
+
+            Process.Start(
+                new ProcessStartInfo
+                {
+                    FileName = "explorer.exe",
+                    Arguments = $"/select,\"{safePath}\"",
+                    UseShellExecute = false,
+                }
+            );
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to open location for {Name}", app.Name);
+        }
+    }
+
+    [RelayCommand]
+    private async Task ViewTaskDetails(StartupTask? task)
+    {
+        if (task == null)
+            return;
+
+        var dialog = new ContentDialog
+        {
+            Title = task.TaskName,
+            Content = new StartupTaskDetailsPanel(task),
+            CloseButtonText = Loc.Instance["Button.Ok"],
+        };
+
+        await _contentDialogService.ShowAsync(dialog, CancellationToken.None);
+    }
+
+    private CancellationTokenSource? _appSearchCts;
+    private CancellationTokenSource? _taskSearchCts;
+
+    partial void OnAppSearchTextChanged(string value) => ScheduleApplyAppFilter();
+
+    private void ScheduleApplyAppFilter()
+    {
+        _appSearchCts?.Cancel();
+        _appSearchCts?.Dispose();
+        _appSearchCts = new CancellationTokenSource();
+        var token = _appSearchCts.Token;
+
+        _ = Task.Run(
+            async () =>
+            {
+                try
+                {
+                    await Task.Delay(250, token).ConfigureAwait(false);
+                    if (!token.IsCancellationRequested)
+                        await UiThread.InvokeAsync(ApplyAppFilter, DispatcherPriority.Background);
+                }
+                catch (OperationCanceledException) { }
+            },
+            token
+        );
+    }
+
+    partial void OnAppSortByIndexChanged(int value)
+    {
+        ApplyAppFilter();
+    }
+
+    partial void OnTaskSearchTextChanged(string value) => ScheduleApplyTaskFilter();
+
+    private void ScheduleApplyTaskFilter()
+    {
+        _taskSearchCts?.Cancel();
+        _taskSearchCts?.Dispose();
+        _taskSearchCts = new CancellationTokenSource();
+        var token = _taskSearchCts.Token;
+
+        _ = Task.Run(
+            async () =>
+            {
+                try
+                {
+                    await Task.Delay(250, token).ConfigureAwait(false);
+                    if (!token.IsCancellationRequested)
+                        await UiThread.InvokeAsync(ApplyTaskFilter, DispatcherPriority.Background);
+                }
+                catch (OperationCanceledException) { }
+            },
+            token
+        );
+    }
+
+    partial void OnTaskSortByIndexChanged(int value)
+    {
+        ApplyTaskFilter();
+    }
+
+    partial void OnHideMicrosoftTasksChanged(bool value)
+    {
+        ApplyTaskFilter();
+    }
+
+    private async Task LoadDataAsync()
+    {
+        IsLoading = true;
+        _allApps.Clear();
+        _allTasks.Clear();
+        Apps.Clear();
+        Tasks.Clear();
+
+        OnPropertyChanged(nameof(HasApps));
+        OnPropertyChanged(nameof(HasTasks));
+        OnPropertyChanged(nameof(HasData));
+        OnPropertyChanged(nameof(HasResults));
+        OnPropertyChanged(nameof(ShowRefreshButton));
+
+        try
+        {
+            var appsTask = _startupManagerService.GetStartupAppsAsync();
+            var tasksTask = _startupManagerService.GetStartupTasksAsync();
+
+            await Task.WhenAll(appsTask, tasksTask);
+
+            _allApps.AddRange(await appsTask);
+            _allTasks.AddRange(await tasksTask);
+
+            ApplyAppFilter();
+            ApplyTaskFilter();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to load startup manager data");
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
+
+    private void ApplyAppFilter()
+    {
+        foreach (var app in Apps)
+            app.PropertyChanged -= App_PropertyChanged;
+        Apps.Clear();
+
+        var search = AppSearchText.Trim();
+        var hasSearch = !string.IsNullOrWhiteSpace(search);
+
+        var sortedApps = AppSortByIndex switch
+        {
+            0 => _allApps.OrderBy(a => a.Name),
+            1 => _allApps.OrderBy(a => !a.IsEnabled).ThenBy(a => a.Name),
+            2 => _allApps.OrderBy(a => a.LocationDisplay).ThenBy(a => a.Name),
+            _ => _allApps.OrderBy(a => a.Name),
+        };
+
+        foreach (var app in sortedApps)
+        {
+            if (
+                hasSearch
+                && !app.Name.Contains(search, StringComparison.OrdinalIgnoreCase)
+                && !app.Command.Contains(search, StringComparison.OrdinalIgnoreCase)
+                && !app.Publisher.Contains(search, StringComparison.OrdinalIgnoreCase)
+            )
+                continue;
+
+            app.PropertyChanged -= App_PropertyChanged;
+            app.PropertyChanged += App_PropertyChanged;
+            Apps.Add(app);
+        }
+
+        OnPropertyChanged(nameof(HasApps));
+        OnPropertyChanged(nameof(HasData));
+        OnPropertyChanged(nameof(HasResults));
+        OnPropertyChanged(nameof(ShowRefreshButton));
+    }
+
+    private void ApplyTaskFilter()
+    {
+        foreach (var task in Tasks)
+            task.PropertyChanged -= Task_PropertyChanged;
+        Tasks.Clear();
+
+        var search = TaskSearchText.Trim();
+        var hasSearch = !string.IsNullOrWhiteSpace(search);
+
+        var sortedTasks = TaskSortByIndex switch
+        {
+            0 => _allTasks.OrderBy(t => t.TaskName),
+            1 => _allTasks.OrderBy(t => !t.IsEnabled).ThenBy(t => t.TaskName),
+            2 => _allTasks.OrderBy(t => t.TaskPath).ThenBy(t => t.TaskName),
+            _ => _allTasks.OrderBy(t => t.TaskName),
+        };
+
+        foreach (var task in sortedTasks)
+        {
+            if (HideMicrosoftTasks && task.IsMicrosoftTask)
+                continue;
+
+            if (
+                hasSearch
+                && !task.TaskName.Contains(search, StringComparison.OrdinalIgnoreCase)
+                && !(
+                    task.Description?.Contains(search, StringComparison.OrdinalIgnoreCase) ?? false
+                )
+                && !task.TaskPath.Contains(search, StringComparison.OrdinalIgnoreCase)
+            )
+                continue;
+
+            task.PropertyChanged -= Task_PropertyChanged;
+            task.PropertyChanged += Task_PropertyChanged;
+            Tasks.Add(task);
+        }
+
+        OnPropertyChanged(nameof(HasTasks));
+        OnPropertyChanged(nameof(HasData));
+        OnPropertyChanged(nameof(HasResults));
+        OnPropertyChanged(nameof(ShowRefreshButton));
+    }
+
+    private readonly HashSet<object> _suppressToggle = [];
+
+    private async void App_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(StartupApp.IsEnabled) || sender is not StartupApp app)
+            return;
+
+        // The rollback re-assigns IsEnabled, so guard against re-entrancy.
+        if (!_suppressToggle.Add(app))
+            return;
+
+        try
+        {
+            var result = await _startupManagerService.ToggleStartupApp(app, app.IsEnabled);
+            if (!result.Ok)
+            {
+                // The write failed, so the real Windows state is unchanged: restore the
+                // toggle to it instead of leaving the UI claiming a state that is not applied.
+                _logger.LogWarning(
+                    "Startup app toggle failed for {Name}: {Error}",
+                    app.Name,
+                    result.Error
+                );
+                app.IsEnabled = !app.IsEnabled;
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to toggle startup app {Name}", app.Name);
+            app.IsEnabled = !app.IsEnabled;
+        }
+        finally
+        {
+            _suppressToggle.Remove(app);
+        }
+    }
+
+    private async void Task_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName != nameof(StartupTask.IsEnabled) || sender is not StartupTask task)
+            return;
+
+        if (!_suppressToggle.Add(task))
+            return;
+
+        try
+        {
+            var enable = task.IsEnabled;
+            var request = NewTaskRequest(task, enable);
+            var result = await _presenter.RunAsync(request);
+
+            if (!await _presenter.ReportAsync(request, result, FailureTitle))
+            {
+                _logger.LogWarning(
+                    "Startup task toggle did not end as asked for {Name}: {Message}",
+                    task.TaskName,
+                    result.Message
+                );
+                task.IsEnabled = !task.IsEnabled;
+                return;
+            }
+
+            CrossPageEventBus.NotifyDataChanged<StartupAppsChanged>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to toggle startup task {Name}", task.TaskName);
+            task.IsEnabled = !task.IsEnabled;
+        }
+        finally
+        {
+            _suppressToggle.Remove(task);
+        }
+    }
+
+    /// <summary>Builds the run for one startup task toggle.</summary>
+    /// <param name="task">The startup task the user flipped.</param>
+    /// <param name="enable">
+    ///     <see langword="true" /> to enable the task; otherwise, <see langword="false" />.
+    /// </param>
+    private OperationRequest NewTaskRequest(StartupTask task, bool enable) =>
+        new(
+            ToolSubjects.StartupManagerTasks,
+            Loc.Instance["StartupManager.Header.Title"],
+            _logger,
+            RevertPersistence.Disabled,
+            async (_, context) =>
+            {
+                var result = await _startupManagerService.ToggleStartupTask(context, task, enable);
+
+                return result.Ok
+                    ? context.Changes.ToApplyResult()
+                    : ApplyResult.False(
+                        result.Error ?? Loc.Instance["Optimization.Apply.Error.AllStepsFailed"]
+                    );
+            }
+        );
+
+    /// <summary>Gets the heading a failed action is reported under.</summary>
+    private static string FailureTitle => Loc.Instance["StartupManager.Header.Title"];
+
+    private async Task ReloadTasksAsync()
+    {
+        try
+        {
+            foreach (var task in Tasks)
+                task.PropertyChanged -= Task_PropertyChanged;
+
+            var tasks = await _startupManagerService.GetStartupTasksAsync();
+            _allTasks.Clear();
+            _allTasks.AddRange(tasks);
+            ApplyTaskFilter();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to reload startup tasks");
+        }
+    }
+}

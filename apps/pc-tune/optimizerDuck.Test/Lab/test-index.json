@@ -1,0 +1,625 @@
+{
+  "DisableRecall": {
+    "category": "AI",
+    "registry": [
+      "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsAI",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableClickToDo": {
+    "category": "AI",
+    "registry": [
+      "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsAI",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsAI"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisablePreinstalledApps": {
+    "category": "BloatwareAndServices",
+    "registry": [
+      "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "ConfigureServices": {
+    "category": "BloatwareAndServices",
+    "registry": [],
+    "tasks": [],
+    "services": [
+      "AJRouter",
+      "ALG",
+      "AppIDSvc",
+      "AppMgmt",
+      "AppReadiness",
+      "AppVClient",
+      "AppXSvc",
+      "Appinfo",
+      "AssignedAccessManagerSvc",
+      "AudioEndpointBuilder",
+      "Audiosrv",
+      "AxInstSV",
+      "BDESVC",
+      "BFE",
+      "BITS",
+      "BTAGService",
+      "BrokerInfrastructure",
+      "Browser",
+      "BthAvctpSvc",
+      "BthHFSrv",
+      "CDPSvc",
+      "COMSysApp",
+      "CertPropSvc",
+      "ClipSVC",
+      "CoreMessagingRegistrar",
+      "CryptSvc",
+      "CscService",
+      "DPS",
+      "DcomLaunch",
+      "DcpSvc",
+      "DevQueryBroker",
+      "DeviceAssociationService",
+      "DeviceInstall",
+      "Dhcp",
+      "DiagTrack",
+      "DialogBlockingService",
+      "DispBrokerDesktopSvc",
+      "DisplayEnhancementService",
+      "DmEnrollmentSvc",
+      "Dnscache",
+      "EFS",
+      "EapHost",
+      "EntAppSvc",
+      "EventLog",
+      "EventSystem",
+      "FDResPub",
+      "Fax",
+      "FontCache",
+      "FrameServer",
+      "FrameServerMonitor",
+      "GraphicsPerfSvc",
+      "HomeGroupListener",
+      "HomeGroupProvider",
+      "HvHost",
+      "IEEtwCollectorService",
+      "IKEEXT",
+      "InstallService",
+      "InventorySvc",
+      "IpxlatCfgSvc",
+      "KeyIso",
+      "KtmRm",
+      "LSM",
+      "LanmanServer",
+      "LanmanWorkstation",
+      "LicenseManager",
+      "LxpSvc",
+      "MSDTC",
+      "MSiSCSI",
+      "MapsBroker",
+      "McpManagementService",
+      "MicrosoftEdgeElevationService",
+      "MixedRealityOpenXRSvc",
+      "MpsSvc",
+      "MsKeyboardFilter",
+      "NaturalAuthentication",
+      "NcaSvc",
+      "NcbService",
+      "NcdAutoSetup",
+      "NetSetupSvc",
+      "NetTcpPortSharing",
+      "Netman",
+      "NgcCtnrSvc",
+      "NgcSvc",
+      "NlaSvc",
+      "PNRPAutoReg",
+      "PNRPsvc",
+      "PcaSvc",
+      "PeerDistSvc",
+      "PerfHost",
+      "PhoneSvc",
+      "PlugPlay",
+      "PolicyAgent",
+      "Power",
+      "PrintNotify",
+      "ProfSvc",
+      "PushToInstall",
+      "QWAVE",
+      "RasAuto",
+      "RasMan",
+      "RemoteAccess",
+      "RemoteRegistry",
+      "RetailDemo",
+      "RmSvc",
+      "RpcEptMapper",
+      "RpcLocator",
+      "RpcSs",
+      "SCPolicySvc",
+      "SCardSvr",
+      "SDRSVC",
+      "SEMgrSvc",
+      "SENS",
+      "SNMPTRAP",
+      "SSDPSRV",
+      "SamSs",
+      "ScDeviceEnum",
+      "Schedule",
+      "SensorDataService",
+      "SensorService",
+      "SensrSvc",
+      "SessionEnv",
+      "SharedAccess",
+      "SharedRealitySvc",
+      "ShellHWDetection",
+      "SmsRouter",
+      "Spooler",
+      "SstpSvc",
+      "StiSvc",
+      "StorSvc",
+      "SystemEventsBroker",
+      "TabletInputService",
+      "TapiSrv",
+      "TermService",
+      "Themes",
+      "TieringEngineService",
+      "TimeBroker",
+      "TimeBrokerSvc",
+      "TokenBroker",
+      "TrkWks",
+      "TroubleshootingSvc",
+      "UI0Detect",
+      "UevAgentService",
+      "UmRdpService",
+      "UserManager",
+      "UsoSvc",
+      "VGAuthService",
+      "VMTools",
+      "VSS",
+      "VacSvc",
+      "VaultSvc",
+      "W32Time",
+      "WEPHOSTSVC",
+      "WFDSConMgrSvc",
+      "WMPNetworkSvc",
+      "WManSvc",
+      "WPDBusEnum",
+      "WSearch",
+      "WaaSMedicSvc",
+      "WalletService",
+      "WarpJITSvc",
+      "WbioSrvc",
+      "Wcmsvc",
+      "WcsPlugInService",
+      "WdiServiceHost",
+      "WdiSystemHost",
+      "WebClient",
+      "Wecsvc",
+      "WerSvc",
+      "WiaRpc",
+      "WinHttpAutoProxySvc",
+      "WinRM",
+      "Winmgmt",
+      "WlanSvc",
+      "WpcMonSvc",
+      "WpnService",
+      "XblAuthManager",
+      "XblGameSave",
+      "XboxGipSvc",
+      "XboxNetApiSvc",
+      "autotimesvc",
+      "bthserv",
+      "camsvc",
+      "cloudidsvc",
+      "dcsvc",
+      "defragsvc",
+      "diagnosticshub.standardcollector.service",
+      "diagsvc",
+      "dmwappushservice",
+      "dot3svc",
+      "edgeupdate",
+      "edgeupdatem",
+      "embeddedmode",
+      "fdPHost",
+      "fhsvc",
+      "hidserv",
+      "icssvc",
+      "iphlpsvc",
+      "lfsvc",
+      "lltdsvc",
+      "lmhosts",
+      "msiserver",
+      "netprofm",
+      "nsi",
+      "p2pimsvc",
+      "p2psvc",
+      "perceptionsimulation",
+      "pla",
+      "seclogon",
+      "shpamsvc",
+      "smphost",
+      "spectrum",
+      "sppsvc",
+      "svsvc",
+      "swprv",
+      "tiledatamodelsvc",
+      "tzautoupdate",
+      "upnphost",
+      "vds",
+      "vm3dservice",
+      "vmicguestinterface",
+      "vmicheartbeat",
+      "vmickvpexchange",
+      "vmicrdv",
+      "vmicshutdown",
+      "vmictimesync",
+      "vmicvmsession",
+      "vmicvss",
+      "vmvss",
+      "wbengine",
+      "wcncsvc",
+      "webthreatdefsvc",
+      "wercplsupport",
+      "wisvc",
+      "wlidsvc",
+      "wlpasvc",
+      "wmiApSrv",
+      "workfolderssvc",
+      "wuauserv"
+    ]
+  },
+  "AmdDisableUlps": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "AmdDisablePowerGating": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "AmdDisableVideoClockGating": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "AmdDisableAspm": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "NvidiaDisableDynamicPstate": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "NvidiaDisableAsyncPstates": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "IntelDisableAsyncFlips": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "IntelDisableAdaptiveVsync": {
+    "category": "Gpu",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "DisableBackgroundApps": {
+    "category": "Performance",
+    "registry": [
+      "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "ConsolidateServiceHosts": {
+    "category": "Performance",
+    "registry": [
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "ProcessPriority": {
+    "category": "Performance",
+    "registry": [
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "OptimizeMultimediaScheduler": {
+    "category": "Performance",
+    "registry": [
+      "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "KeyboardLatencyOptimization": {
+    "category": "Performance",
+    "registry": [
+      "HKCU\\Control Panel\\Keyboard"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableAccessibilityKeyboardHotkeys": {
+    "category": "Performance",
+    "registry": [
+      "HKCU\\Control Panel\\Accessibility\\Keyboard Response",
+      "HKCU\\Control Panel\\Accessibility\\StickyKeys",
+      "HKCU\\Control Panel\\Accessibility\\ToggleKeys"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "LiftWebDavFileSizeLimit": {
+    "category": "Performance",
+    "registry": [
+      "HKLM\\SYSTEM\\CurrentControlSet\\Services\\WebClient\\Parameters"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableHibernateAndFastStartup": {
+    "category": "PowerManagement",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "DisableUSBPowerSaving": {
+    "category": "PowerManagement",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "InstallOptimizerDuckPowerPlan": {
+    "category": "PowerManagement",
+    "registry": [],
+    "tasks": [],
+    "services": []
+  },
+  "DisablePowerSaving": {
+    "category": "PowerManagement",
+    "registry": [
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power\\PowerThrottling",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\USB\\AutomaticSurpriseRemoval"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableTelemetry": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\SOFTWARE\\Microsoft\\Siuf\\Rules",
+      "HKCU\\SOFTWARE\\Microsoft\\Speech_OneCore\\Settings\\OnlineSpeechPrivacy",
+      "HKCU\\SOFTWARE\\Policies\\Microsoft\\Assistance\\Client\\1.0",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "HKCU\\Software\\Policies\\Microsoft\\Windows\\EdgeUI",
+      "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\DataCollection",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Assistance\\Client\\1.0",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection"
+    ],
+    "tasks": [
+      "\\Microsoft\\Windows\\Application Experience\\MareBackup",
+      "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser",
+      "\\Microsoft\\Windows\\Application Experience\\PcaPatchDbTask",
+      "\\Microsoft\\Windows\\Application Experience\\ProgramDataUpdater",
+      "\\Microsoft\\Windows\\Application Experience\\StartupAppTask",
+      "\\Microsoft\\Windows\\Autochk\\Proxy",
+      "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator",
+      "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip",
+      "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClient",
+      "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload"
+    ],
+    "services": [
+      "DcpSvc",
+      "DiagTrack",
+      "diagnosticshub.standardcollector.service",
+      "dmwappushservice"
+    ]
+  },
+  "DisableErrorReporting": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKLM\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\HandwritingErrorReports"
+    ],
+    "tasks": [
+      "\\Microsoft\\Windows\\Diagnosis\\Scheduled",
+      "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector",
+      "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticResolver",
+      "\\Microsoft\\Windows\\Windows Error Reporting\\QueueReporting"
+    ],
+    "services": [
+      "PcaSvc",
+      "WerSvc"
+    ]
+  },
+  "DisableAdvertisingAndSuggestions": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\Control Panel\\International\\User Profile",
+      "HKCU\\SOFTWARE\\Microsoft\\InputPersonalization",
+      "HKCU\\SOFTWARE\\Microsoft\\InputPersonalization\\TrainedDataStore",
+      "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\UserProfileEngagement",
+      "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AdvertisingInfo",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableNewsAndInterests": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Feeds",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "HideMeetNowButton": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableActivityHistory": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableLocationAndSensors": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Sensor\\Permissions\\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Geolocation",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\LocationAndSensors",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Services\\lfsvc\\Service\\Configuration",
+      "HKLM\\SYSTEM\\Maps",
+      "HKLM\\Software\\Microsoft\\PolicyManager\\default\\WiFi\\AllowAutoConnectToWiFiSenseHotspots",
+      "HKLM\\Software\\Microsoft\\PolicyManager\\default\\WiFi\\AllowWiFiHotSpotReporting",
+      "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location"
+    ],
+    "tasks": [
+      "\\Microsoft\\Windows\\Maps\\MapsUpdateTask"
+    ],
+    "services": []
+  },
+  "DisableAutoLogger": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\AppModel",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\Cellcore",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\CloudExperienceHostOobe",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\DataMarket",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\DiagLog",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\Diagtrack-Listener",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\LwtNetLog",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\SQMLogger",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\WdiContextLog",
+      "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\Autologger\\WiFiSession"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableCortana": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableCopilot": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsCopilot",
+      "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Blocked",
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsCopilot"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableContentDeliveryManager": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableFindMyDevice": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\FindMyDevice"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableDeliveryOptimization": {
+    "category": "SecurityAndPrivacy",
+    "registry": [
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "SpeedUpExplorerAndMenus": {
+    "category": "UserExperience",
+    "registry": [
+      "HKCU\\Control Panel\\Desktop",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Serialize"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableVisualEffects": {
+    "category": "UserExperience",
+    "registry": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "HKCU\\Software\\Microsoft\\Windows\\DWM"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableStartMenuWebSearch": {
+    "category": "UserExperience",
+    "registry": [
+      "HKCU\\Software\\Policies\\Microsoft\\Windows\\Explorer"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableStartRecommended": {
+    "category": "UserExperience",
+    "registry": [
+      "HKCU\\SOFTWARE\\Policies\\Microsoft\\Windows\\Explorer"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "DisableSettings365Ads": {
+    "category": "UserExperience",
+    "registry": [
+      "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent"
+    ],
+    "tasks": [],
+    "services": []
+  },
+  "MaximizeUpdatePauseLimit": {
+    "category": "UserExperience",
+    "registry": [
+      "HKLM\\SOFTWARE\\Microsoft\\WindowsUpdate\\UX\\Settings"
+    ],
+    "tasks": [],
+    "services": []
+  }
+}

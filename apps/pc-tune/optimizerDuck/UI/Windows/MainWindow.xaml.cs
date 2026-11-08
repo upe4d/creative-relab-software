@@ -1,0 +1,135 @@
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using optimizerDuck.Common.Helpers;
+using optimizerDuck.Domain.Abstractions;
+using optimizerDuck.Domain.Configuration;
+using optimizerDuck.Resources.Languages;
+using optimizerDuck.Services.Configuration;
+using optimizerDuck.Services.Customize;
+using optimizerDuck.UI.Controls;
+using optimizerDuck.UI.Dialogs;
+using optimizerDuck.UI.Pages;
+using optimizerDuck.UI.ViewModels.Windows;
+using Wpf.Ui;
+using Wpf.Ui.Abstractions;
+using Wpf.Ui.Controls;
+
+namespace optimizerDuck.UI.Windows;
+
+public partial class MainWindow : IWindow
+{
+    private readonly ILogger<MainWindow> _logger;
+    private readonly IContentDialogService _contentDialogService;
+    private readonly IOptionsMonitor<AppSettings> _appOptionsMonitor;
+    private readonly ConfigManager _configManager;
+
+    public MainWindow(
+        MainWindowViewModel viewModel,
+        ConfigManager configManager,
+        INavigationService navigationService,
+        IContentDialogService contentDialogService,
+        INavigationViewPageProvider pageProvider,
+        IOptionsMonitor<AppSettings> appOptionsMonitor,
+        ISnackbarService snackbarService,
+        CustomizeRegistry customizeRegistry,
+        ILogger<MainWindow> logger
+    )
+    {
+        _logger = logger;
+        _contentDialogService = contentDialogService;
+        _appOptionsMonitor = appOptionsMonitor;
+        _configManager = configManager;
+        InitializeComponent();
+
+        // Mica needs Windows 11; on older systems WPF-UI leaves a full-window
+        // glass frame that renders white on virtualized display stacks (#71).
+        if (Shared.IsWindows11OrGreater)
+        {
+            WindowBackdropType = WindowBackdropType.None; // Сплошной фон одинаково читается в обеих темах.
+        }
+
+        DataContext = viewModel;
+
+        snackbarService.SetSnackbarPresenter(SnackbarPresenter);
+        contentDialogService.SetDialogHost(RootContentDialogPresenter);
+        navigationService.SetNavigationControl(RootNavigation);
+
+        RootNavigation.SetPageProviderService(pageProvider);
+
+        RootNavigation.Loaded += OnRootNavigationLoaded;
+    }
+
+    internal void UpdatePendingIndicator(bool hasPending)
+    {
+        AppTitleText.Text = hasPending ? "PC Tune*" : "PC Tune";
+        Title = hasPending ? "PC Tune*" : "PC Tune";
+    }
+
+    private async void OnRootNavigationLoaded(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            RootNavigation.Loaded -= OnRootNavigationLoaded;
+
+            if (!Shared.VerificationMode && !_appOptionsMonitor.CurrentValue.App.LegalAccepted)
+            {
+                var legalDialog =
+                    (Application.Current as App)?.AppHost?.Services.GetService<LegalDialog>()
+                    ?? new LegalDialog();
+
+                var dialog = new ContentDialog
+                {
+                    Content = legalDialog,
+                    DefaultButton = ContentDialogButton.Primary,
+                };
+
+                // Bind to Loc so title/buttons update when language changes inside the dialog
+                dialog.SetBinding(
+                    ContentDialog.TitleProperty,
+                    new Binding("[LegalDialog.Title]")
+                    {
+                        Source = Loc.Instance,
+                        Mode = BindingMode.OneWay,
+                    }
+                );
+                dialog.SetBinding(
+                    ContentDialog.PrimaryButtonTextProperty,
+                    new Binding("[Button.Accept]")
+                    {
+                        Source = Loc.Instance,
+                        Mode = BindingMode.OneWay,
+                    }
+                );
+                dialog.SetBinding(
+                    ContentDialog.CloseButtonTextProperty,
+                    new Binding("[Button.Close]")
+                    {
+                        Source = Loc.Instance,
+                        Mode = BindingMode.OneWay,
+                    }
+                );
+
+                var result = await _contentDialogService.ShowAsync(dialog, CancellationToken.None);
+                if (result == ContentDialogResult.Primary)
+                {
+                    await _configManager.SetAsync(x => x.App.LegalAccepted, true);
+                }
+                else
+                {
+                    Close();
+                    return;
+                }
+            }
+
+            RootNavigation.Navigate(typeof(DashboardPage));
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error during navigation initialization");
+        }
+    }
+}

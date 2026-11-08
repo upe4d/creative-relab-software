@@ -1,0 +1,166 @@
+{
+  "sha256": "d5e54e3a29d7e54008209cf14679ab6f559f23195b9c404304fd3bf927284584",
+  "bytes": 5775977,
+  "rules": 19788,
+  "blockRules": 19216,
+  "alertRules": 572,
+  "sources": [
+    {
+      "path": "DearCry/DearCry.txt",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "668d4ff0be7b45a9415a4a7c6a033d03b5e1c8337fa85f9b6563604de16b5f77",
+      "rows": 3,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "Trickbot/trickbot_cashcore_hashes.txt",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "78aa09acaa73f1ba77d51f672269575a9941189bd6f23051c00ef981cf6585bf",
+      "rows": 864,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-apr-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "9cc6ba1f6ed37c85ba55d573be7ec6ef99fa9b24ad4dfb5b24269c19a25dd6bf",
+      "rows": 3216,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-feb-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "e4a003f449e2abd83a902b49c0df061eeb4424d4ec5ab9fe557a947dcf5fe1d8",
+      "rows": 3518,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-jan-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "55015722c4fb84acd8421f105c12bc33fb1d9e15ce131f0b56f0afe571363eac",
+      "rows": 2594,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-mar-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "4119c8846ba549ec8cec76c28736f4defbcf852f0df884f4c289c1273404993d",
+      "rows": 3391,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-may-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "e8be9a3605e9e4987d980b1905fb128a781dc6749f614bc50af9ae0666203d04",
+      "rows": 3189,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-oct-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "2eacd3dcfa35833e322e6bac7442e17559ae5f3775a6a61f8b9e0415fc85d6c8",
+      "rows": 1565,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "emotet/sha256-hashes/emotet-sept-2019",
+      "commit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+      "sha256": "fedb64b74253d9c87eed2531ed3ef153e3e580ebe30ee657d5aaea36ce749580",
+      "rows": 874,
+      "policy": "exact-malware-hash",
+      "historical": true
+    },
+    {
+      "path": "2022-04-12-IOCs-for-SpringShell-exploitation-by-Enemybot.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "89081b2479b36a6f0c8de5ec27a650600af1b6992569b7f60cd53affdeb2f4d6",
+      "rows": 62,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2024-11-14-IOCs-for-Raspberry-Robin-activity.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "74bb95154f05dbd58d2752104f1b65f686b5f757358ae303a4c1a1bfdf89c104",
+      "rows": 77,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2025-10-30-IOCs-for-cryptocurrency-scams-using-fake-chatbots.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "10d7956f4ecfbdb4a04487a5090adf36ccb98697d4b0f58e75df0c22b2061264",
+      "rows": 4,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2025-11-21-IOCs-for-ShinySp1d3r-ransomware.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "7af7eae7e7a5c0f705a1dbc2cb795333a2a1bd3272ac86f275589cc59d597a9f",
+      "rows": 9,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2025-11-24-ongoing-testing-of-malicious-Chrome-extension-samples.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "cafe4a7f30986db3bbd4d614b1e353fd3732ba566e38a245a3a49e92999c5287",
+      "rows": 395,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2026-06-05- Evasive-ClickFix-Injection-Delivers-RAT.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "5b3681d2260002e1cf20bff847778f73f05b99172eb6c6dbf6085f4f23582c28",
+      "rows": 4,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2026-07-08-The-Gentlemen-C-Based-Ransomware-samples.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "05fdde4707ae2086803091ea2a2ca16b9308ab0878ea794a51ced1470a953b8e",
+      "rows": 3,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2026-08-06-Hazy-Scorpius-Exploitation-of-CVE-2026-12569.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "ec07d0e5a20a93742e0568e7ef85f14b71cface4cd7b12e49c6d1eac68045e15",
+      "rows": 2,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2026-08-14-ENIBot-HuntBot-Campaign.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "861c36355ab0cf350c187fae3f6878782f3b67d72233eb63c3eff654ff01a7be",
+      "rows": 10,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    },
+    {
+      "path": "2026-09-18-Redis-Instances-Abuse.txt",
+      "commit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+      "sha256": "674aeddc5c24d601b0f1c505229c42167e8eed657567c80ed9954d9df3373bc3",
+      "rows": 6,
+      "policy": "report-only-campaign-ioc",
+      "historical": false
+    }
+  ],
+  "historicalRepository": "pan-unit42/iocs",
+  "historicalCommit": "315464dd880ae0859fa54eed8cb20337ce67350d",
+  "currentRepository": "PaloAltoNetworks/Unit42-timely-threat-intel",
+  "currentCommit": "32b6d1cdb97c052f2b7e45ca9134dc67edef7ada",
+  "realMalwareDownloaded": false
+}

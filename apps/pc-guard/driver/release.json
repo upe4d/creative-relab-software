@@ -1,0 +1,15 @@
+{
+  "protocolVersion": 4,
+  "assignedAltitude": "",
+  "kernelRuntimeTested": true,
+  "cameraClassicProcessInterception": false,
+  "note": "LTSC 26100: обычный прогон 40/40 и прогон под oneboot Driver Verifier 42/42; загрузка и выгрузка успешны. 99/99 выделений памяти проверены Special Pool. Это не Microsoft-подпись; altitude и INF ещё не подтверждены.",
+  "infPackageValidated": false,
+  "kernelTestSha256": "144F2450F7327975BB2D8A34D32F517776B0BC33547850FECCD0EC3E1D83B1A2",
+  "kernelChecks": 42,
+  "kernelFailures": 0,
+  "verifierRuntimeTested": true,
+  "verifierChecks": 42,
+  "verifierFailures": 0,
+  "verifierPoolAllocations": 99
+}

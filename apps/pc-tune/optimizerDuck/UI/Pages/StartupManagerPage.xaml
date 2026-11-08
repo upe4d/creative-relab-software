@@ -1,0 +1,385 @@
+<Page
+    x:Class="optimizerDuck.UI.Pages.StartupManagerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:optimizerDuck.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:optimizerDuck.Common.Extensions"
+    xmlns:local="clr-namespace:optimizerDuck.UI.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:startupManager="clr-namespace:optimizerDuck.Domain.Optimizations.Models.StartupManager"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="StartupManagerPage"
+    d:DataContext="{d:DesignInstance local:StartupManagerPage}"
+    d:DesignHeight="1200"
+    d:DesignWidth="800"
+    ui:Design.Background="{DynamicResource PCTuneWindowBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Style="{StaticResource PageRootStyle}"
+    mc:Ignorable="d">
+
+    <Grid RowDefinitions="Auto, *">
+        <!--  Header  -->
+        <StackPanel Style="{StaticResource PageHeaderStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <ui:TextBlock Style="{StaticResource PageTitleStyle}" Text="{ext:Loc StartupManager.Header.Title}" />
+                    <ui:TextBlock Style="{StaticResource PageDescriptionStyle}" Text="{ext:Loc StartupManager.Header.Description}" />
+                </StackPanel>
+                <WrapPanel
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <ui:Button
+                        Appearance="Primary"
+                        Command="{Binding ViewModel.RefreshCommand}"
+                        Content="{ext:Loc StartupManager.Menu.Refresh}"
+                        Cursor="Hand"
+                        Icon="{ui:SymbolIcon ArrowClockwise24,
+                                             FontSize=18}"
+                        Visibility="{Binding ViewModel.ShowRefreshButton, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                </WrapPanel>
+            </Grid>
+        </StackPanel>
+
+        <!--  Loading Indicator  -->
+        <controls:LoadingStateOverlay
+            Grid.Row="1"
+            IsLoading="{Binding ViewModel.IsLoading}"
+            Subtitle="{ext:Loc StartupManager.Loading.Hint}"
+            Title="{ext:Loc StartupManager.Loading}" />
+
+        <!--  Empty State (no data at all)  -->
+        <controls:EmptyStateView
+            Grid.Row="1"
+            ActionButtonText="{ext:Loc StartupManager.Menu.Refresh}"
+            ActionCommand="{Binding ViewModel.RefreshCommand}"
+            Description="{ext:Loc StartupManager.Empty.Description}"
+            Symbol="AppGeneric24"
+            Title="{ext:Loc StartupManager.Empty.Title}">
+            <controls:EmptyStateView.Style>
+                <Style TargetType="controls:EmptyStateView">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding ViewModel.HasData}" Value="False" />
+                                <Condition Binding="{Binding ViewModel.IsLoading}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </controls:EmptyStateView.Style>
+        </controls:EmptyStateView>
+
+        <!--  Main Content  -->
+        <Border Grid.Row="1" Visibility="{Binding ViewModel.HasData, Converter={StaticResource BooleanToVisibilityConverter}}">
+<TabControl>
+<TabItem Header="{ext:Loc StartupManager.Apps.Title}"><Grid Margin="0,12,0,0"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                            <!--  Apps Toolbar  -->
+                            <Border Style="{StaticResource ToolbarSurfaceStyle}">
+                                <WrapPanel Orientation="Horizontal">
+                                    <ui:TextBox
+                                        Icon="{ui:SymbolIcon Search24}"
+                                        PlaceholderText="{ext:Loc Common.Search.Placeholder}"
+                                        Style="{StaticResource SearchBoxStyle}"
+                                        Text="{Binding ViewModel.AppSearchText, UpdateSourceTrigger=PropertyChanged}" />
+                                    <ComboBox SelectedIndex="{Binding ViewModel.AppSortByIndex}" ToolTip="{ext:Loc Common.SortBy}">
+                                        <ComboBoxItem HorizontalContentAlignment="Left">
+                                            <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                                <ui:SymbolIcon
+                                                    Margin="0,0,6,0"
+                                                    HorizontalAlignment="Left"
+                                                    Symbol="TextSortAscending24" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Text="{ext:Loc Common.SortBy.Name}" />
+                                            </Grid>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem HorizontalContentAlignment="Left">
+                                            <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                                <ui:SymbolIcon
+                                                    Margin="0,0,6,0"
+                                                    HorizontalAlignment="Left"
+                                                    Symbol="ToggleRight24" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Text="{ext:Loc Common.SortBy.Status}" />
+                                            </Grid>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem HorizontalContentAlignment="Left">
+                                            <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                                <ui:SymbolIcon
+                                                    Margin="0,0,6,0"
+                                                    HorizontalAlignment="Left"
+                                                    Symbol="Folder24" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Text="{ext:Loc Common.SortBy.Path}" />
+                                            </Grid>
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                    <ui:Button
+                                        Padding="8"
+                                        VerticalAlignment="Center"
+                                        Appearance="Secondary"
+                                        Command="{Binding ViewModel.OpenStartupSettingsCommand}"
+                                        Cursor="Hand"
+                                        Icon="{ui:SymbolIcon Settings24,
+                                                             FontSize=16}"
+                                        ToolTip="{ext:Loc StartupManager.Menu.OpenSettings}" />
+                                </WrapPanel>
+                            </Border>
+
+                            <!--  No search results (Apps)  -->
+                            <controls:EmptyStateView Grid.Row="1" Description="{ext:Loc Bloatware.Search.NoResults}" Symbol="SearchInfo24">
+                                <controls:EmptyStateView.Visibility>
+                                    <MultiBinding Converter="{StaticResource EmptyWhileNotLoadingConverter}">
+                                        <Binding Path="ViewModel.Apps.Count" />
+                                        <Binding Path="ViewModel.IsLoading" />
+                                    </MultiBinding>
+                                </controls:EmptyStateView.Visibility>
+                            </controls:EmptyStateView>
+
+                            <!--  Apps List  -->
+                            <ui:VirtualizingItemsControl Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding ViewModel.Apps}" Visibility="{Binding ViewModel.Apps.Count, Converter={StaticResource GreaterThanZeroToVisibilityConverter}}">
+                                <ui:VirtualizingItemsControl.Template><ControlTemplate TargetType="ItemsControl"><ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"><ItemsPresenter /></ScrollViewer></ControlTemplate></ui:VirtualizingItemsControl.Template><ui:VirtualizingItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling" />
+                                    </ItemsPanelTemplate>
+                                </ui:VirtualizingItemsControl.ItemsPanel>
+                                <ui:VirtualizingItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type startupManager:StartupApp}">
+                                        <Grid>
+                                            <ui:CardAction
+                                                x:Name="ActionCard"
+                                                Margin="0,0,0,8"
+                                                Padding="16,12"
+                                                Command="{Binding DataContext.ViewModel.OpenLocationCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                CommandParameter="{Binding}"
+                                                IsChevronVisible="False">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image
+                                                        Grid.Column="0"
+                                                        Width="36"
+                                                        Height="36"
+                                                        Margin="0,0,12,0"
+                                                        VerticalAlignment="Center"
+                                                        Source="{Binding LogoImage}"
+                                                        Stretch="UniformToFill" />
+                                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                        <DockPanel LastChildFill="False">
+                                                            <ui:TextBlock FontTypography="BodyStrong" Text="{Binding Name}" />
+                                                            <Border
+                                                                Margin="8,0,0,0"
+                                                                Padding="6,1"
+                                                                VerticalAlignment="Center"
+                                                                Style="{StaticResource SubtlePillStyle}">
+                                                                <ui:TextBlock
+                                                                    VerticalAlignment="Center"
+                                                                    Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                                                                    FontTypography="Caption"
+                                                                    Text="{Binding LocationDisplay}" />
+                                                            </Border>
+                                                        </DockPanel>
+                                                        <ui:TextBlock
+                                                            Margin="0,2,0,0"
+                                                            FontTypography="Caption"
+                                                            Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                                            Text="{Binding Publisher}"
+                                                            Visibility="{Binding Publisher, Converter={StaticResource NotEmptyToVisibilityConverter}}" />
+                                                        <ui:TextBlock
+                                                            Margin="0,2,0,0"
+                                                            FontTypography="Caption"
+                                                            Foreground="{DynamicResource TextFillColorDisabledBrush}"
+                                                            Text="{Binding Command}"
+                                                            TextTrimming="CharacterEllipsis"
+                                                            Visibility="{Binding Command, Converter={StaticResource NotEmptyToVisibilityConverter}}" />
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                                        <ui:ToggleSwitch
+                                                            IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+                                                            OffContent="{ext:Loc Common.Toggle.Off}"
+                                                            OnContent="{ext:Loc Common.Toggle.On}" />
+                                                        <ui:SymbolIcon FontSize="16" Symbol="Open24" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </ui:CardAction>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ui:VirtualizingItemsControl.ItemTemplate>
+                            </ui:VirtualizingItemsControl>
+                        </Grid></TabItem>
+<TabItem Header="{ext:Loc StartupManager.Tasks.Title}"><Grid Margin="0,12,0,0"><Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                            <!--  Tasks Toolbar  -->
+                            <Border Style="{StaticResource ToolbarSurfaceStyle}">
+                                <WrapPanel Orientation="Horizontal">
+                                    <ui:TextBox
+                                        Icon="{ui:SymbolIcon Search24}"
+                                        PlaceholderText="{ext:Loc Common.Search.Placeholder}"
+                                        Style="{StaticResource SearchBoxStyle}"
+                                        Text="{Binding ViewModel.TaskSearchText, UpdateSourceTrigger=PropertyChanged}" />
+                                    <ComboBox SelectedIndex="{Binding ViewModel.TaskSortByIndex}" ToolTip="{ext:Loc Common.SortBy}">
+                                        <ComboBoxItem HorizontalContentAlignment="Left">
+                                            <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                                <ui:SymbolIcon
+                                                    Margin="0,0,6,0"
+                                                    HorizontalAlignment="Left"
+                                                    Symbol="TextSortAscending24" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Text="{ext:Loc Common.SortBy.Name}" />
+                                            </Grid>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem HorizontalContentAlignment="Left">
+                                            <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                                <ui:SymbolIcon
+                                                    Margin="0,0,6,0"
+                                                    HorizontalAlignment="Left"
+                                                    Symbol="ToggleRight24" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Text="{ext:Loc Common.SortBy.Status}" />
+                                            </Grid>
+                                        </ComboBoxItem>
+                                        <ComboBoxItem HorizontalContentAlignment="Left">
+                                            <Grid HorizontalAlignment="Left" ColumnDefinitions="Auto Auto">
+                                                <ui:SymbolIcon
+                                                    Margin="0,0,6,0"
+                                                    HorizontalAlignment="Left"
+                                                    Symbol="Folder24" />
+                                                <TextBlock
+                                                    Grid.Column="1"
+                                                    HorizontalAlignment="Left"
+                                                    Text="{ext:Loc Common.SortBy.Path}" />
+                                            </Grid>
+                                        </ComboBoxItem>
+                                    </ComboBox>
+                                    <ui:ToggleSwitch
+                                        IsChecked="{Binding ViewModel.HideMicrosoftTasks, Mode=TwoWay}"
+                                        OffContent="{ext:Loc StartupManager.Tasks.HideMicrosoft}"
+                                        OnContent="{ext:Loc StartupManager.Tasks.HideMicrosoft}" />
+                                    <ui:Button
+                                        Padding="8"
+                                        VerticalAlignment="Center"
+                                        Appearance="Secondary"
+                                        Command="{Binding ViewModel.OpenTaskSchedulerCommand}"
+                                        Cursor="Hand"
+                                        Icon="{ui:SymbolIcon Settings24,
+                                                             FontSize=16}"
+                                        ToolTip="{ext:Loc ScheduledTasks.Menu.OpenSettings}" />
+                                </WrapPanel>
+                            </Border>
+
+                            <!--  No search results (Tasks)  -->
+                            <controls:EmptyStateView Grid.Row="1" Description="{ext:Loc Bloatware.Search.NoResults}" Symbol="SearchInfo24">
+                                <controls:EmptyStateView.Visibility>
+                                    <MultiBinding Converter="{StaticResource EmptyWhileNotLoadingConverter}">
+                                        <Binding Path="ViewModel.Tasks.Count" />
+                                        <Binding Path="ViewModel.IsLoading" />
+                                    </MultiBinding>
+                                </controls:EmptyStateView.Visibility>
+                            </controls:EmptyStateView>
+
+                            <!--  Tasks List  -->
+                            <ui:VirtualizingItemsControl Grid.Row="1" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.ScrollUnit="Pixel" ItemsSource="{Binding ViewModel.Tasks}" Visibility="{Binding ViewModel.Tasks.Count, Converter={StaticResource GreaterThanZeroToVisibilityConverter}}">
+                                <ui:VirtualizingItemsControl.Template><ControlTemplate TargetType="ItemsControl"><ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"><ItemsPresenter /></ScrollViewer></ControlTemplate></ui:VirtualizingItemsControl.Template><ui:VirtualizingItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel IsVirtualizing="True" VirtualizationMode="Recycling" />
+                                    </ItemsPanelTemplate>
+                                </ui:VirtualizingItemsControl.ItemsPanel>
+                                <ui:VirtualizingItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type startupManager:StartupTask}">
+                                        <Border Style="{StaticResource ListRowStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image
+                                                    Grid.Column="0"
+                                                    Width="36"
+                                                    Height="36"
+                                                    Margin="0,0,12,0"
+                                                    VerticalAlignment="Center"
+                                                    Source="{Binding LogoImage}"
+                                                    Stretch="UniformToFill" />
+
+                                                <StackPanel
+                                                    Grid.Column="1"
+                                                    Margin="0,0,12,0"
+                                                    VerticalAlignment="Center">
+                                                    <ui:TextBlock FontTypography="BodyStrong" Text="{Binding TaskName}" />
+                                                    <ui:TextBlock
+                                                        Margin="0,4,0,0"
+                                                        FontTypography="Caption"
+                                                        Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                                        Text="{Binding Description}"
+                                                        TextWrapping="Wrap"
+                                                        Visibility="{Binding Description, Converter={StaticResource NotEmptyToVisibilityConverter}}" />
+                                                    <ui:TextBlock
+                                                        Margin="0,2,0,0"
+                                                        FontTypography="Caption"
+                                                        Foreground="{DynamicResource TextFillColorDisabledBrush}"
+                                                        Text="{Binding TaskPath}"
+                                                        Visibility="{Binding TaskPath, Converter={StaticResource NotEmptyToVisibilityConverter}}" />
+                                                    <controls:TriggerBadgeList
+                                                        Margin="0,4,0,0"
+                                                        ItemsSource="{Binding TriggerBadges}"
+                                                        Visibility="{Binding TriggerBadges.Count, Converter={StaticResource GreaterThanZeroToVisibilityConverter}}" />
+                                                    <ui:TextBlock
+                                                        Margin="0,2,0,0"
+                                                        FontTypography="Caption"
+                                                        Foreground="{DynamicResource TextFillColorDisabledBrush}"
+                                                        Text="{Binding ActionSummary}"
+                                                        TextTrimming="CharacterEllipsis"
+                                                        Visibility="{Binding ActionSummary, Converter={StaticResource NotEmptyToVisibilityConverter}}" />
+                                                </StackPanel>
+
+                                                <StackPanel
+                                                    Grid.Column="2"
+                                                    VerticalAlignment="Center"
+                                                    Orientation="Horizontal">
+                                                    <ui:ToggleSwitch
+                                                        IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+                                                        OffContent="{ext:Loc Common.Toggle.Off}"
+                                                        OnContent="{ext:Loc Common.Toggle.On}" />
+                                                    <ui:Button
+                                                        Margin="0,0,4,0"
+                                                        Padding="8"
+                                                        Appearance="Transparent"
+                                                        Command="{Binding DataContext.ViewModel.ViewTaskDetailsCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                                        CommandParameter="{Binding}"
+                                                        Cursor="Hand"
+                                                        Icon="{ui:SymbolIcon Info24,
+                                                                             FontSize=16}"
+                                                        ToolTip="{ext:Loc ScheduledTasks.Action.Details}" />
+
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ui:VirtualizingItemsControl.ItemTemplate>
+                            </ui:VirtualizingItemsControl>
+                        </Grid></TabItem>
+</TabControl>
+        </Border>
+    </Grid>
+</Page>

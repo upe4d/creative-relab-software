@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru" data-bs-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PC Guard</title><link rel="icon" href="/assets/logo.svg" type="image/svg+xml"><link rel="stylesheet" href="/vendor/bootstrap.min.css"><link rel="stylesheet" href="/vendor/dataTables.dataTables.min.css"><link rel="stylesheet" href="/assets/app.css"><link rel="stylesheet" href="/assets/partner.css"><script src="/vendor/jquery.min.js" defer></script><script src="/vendor/dataTables.min.js" defer></script><link rel="stylesheet" href="/assets/family.css"><script src="/assets/family.js" defer></script><script src="/assets/app.js" defer></script><script src="/assets/suite.js" defer></script><script src="/assets/driver-ui.js" defer></script><script src="/assets/camera-policy-ui.js" defer></script><link rel="stylesheet" href="/assets/driver-launch.css">
+</head>
+<body>
+<!-- Оболочка остаётся постоянной; страницы, таблицы и системные операции разделены. -->
+<div class="guard-shell">
+  <header class="guard-header"><div class="brand"><img src="/assets/logo.svg" alt="" width="34" height="34"><strong>PC Guard</strong><span class="version">3.3 · Бесплатно</span></div><div class="actions"><button class="btn btn-outline-secondary" id="theme-button">Светлая тема</button><button class="btn btn-outline-secondary" data-open="data">Папка данных</button><button class="btn btn-outline-secondary" id="stop-button">Закрыть</button></div></header>
+  <div class="guard-layout"><nav class="guard-nav" aria-label="Разделы приложения"><button data-page="overview" aria-current="page">Обзор</button><button data-suite-page="engine">Движок и фон</button><button data-page="scan">Проверка Defender</button><button data-page="threats">Находки</button><button data-page="startup">Автозапуск</button><button data-page="network">Сеть и браузер</button><button data-page="file">Анализ файла</button><button data-suite-page="vault">Сейф</button><button data-suite-page="camera">Камера</button><button data-suite-page="folders">Защита папки</button><button data-page="history">Журнал</button><button data-page="about">О программе</button><div class="nav-foot">Windows 10 / 11<br>Локальная программа<br><span id="installed-path">Загрузка…</span></div></nav>
+  <main id="main" aria-busy="false"><div class="empty-state">Подключение к PC Guard…</div></main></div>
+  <!-- Рекламный блок хранится локально; переход на сайт выполняется только по нажатию. -->
+  <aside class="partner-strip" aria-label="Реклама Забивки">
+    <a class="partner-link" href="https://zabivki.ru/" target="_blank" rel="noopener noreferrer sponsored" referrerpolicy="no-referrer" aria-label="Забивки: конструктор кальянных миксов. Открыть zabivki.ru в новой вкладке">
+      <img class="partner-logo" src="/assets/zabivki-logo.png" alt="Забивки — собирай идеальные миксы" width="469" height="124">
+      <span class="partner-copy"><strong>Конструктор кальянных миксов</strong><span>Сочетания и пропорции, каталог вкусов и личная полка.</span></span>
+      <span class="partner-action">zabivki.ru <span aria-hidden="true">↗</span></span>
+    </a>
+    <span class="partner-label">Реклама · 18+</span>
+  </aside>
+  <footer class="guard-footer"><span>PC Guard: фоновое наблюдение не равно перехвату до запуска</span><span id="app-status" role="status" aria-live="polite">Загрузка</span></footer>
+</div>
+<div class="notice-container" id="notifications" role="status" aria-live="polite"></div>
+<dialog id="confirm-dialog"><form method="dialog"><h2 id="confirm-title">Подтверждение</h2><p id="confirm-text"></p><div class="actions mt-3"><button class="btn btn-primary" value="yes">Подтвердить</button><button class="btn btn-outline-secondary" value="no">Отмена</button></div></form></dialog>
+</body></html>

@@ -1,0 +1,21 @@
+Локальные библиотеки интерфейса
+
+Bootstrap 5.3.8 — MIT License, Copyright The Bootstrap Authors.
+https://github.com/twbs/bootstrap/blob/v5.3.8/LICENSE
+Источник: https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css
+
+jQuery 3.7.1 — MIT License, Copyright OpenJS Foundation and other contributors.
+https://github.com/jquery/jquery/blob/3.7.1/LICENSE.txt
+Источник: https://code.jquery.com/jquery-3.7.1.min.js
+
+DataTables 2.3.5 — MIT License, Copyright SpryMedia Ltd.
+https://datatables.net/license/mit
+Источники: https://cdn.datatables.net/2.3.5/js/dataTables.min.js
+https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.min.css
+
+Оригинальные лицензионные заголовки библиотек сохранены в public/vendor.
+Собственные модули PC Guard не включают компоненты IObit и Bitdefender.
+
+Unit 42 historical IOC: pan-unit42/iocs, MIT, rules/LICENSE-Unit42-historical.txt.
+Unit 42 current campaign IOC: PaloAltoNetworks/Unit42-timely-threat-intel, GPL-3.0, rules/LICENSE-Unit42-timely.txt.
+Data provenance and pinned commits: rules/manifest.json. SHA-256 lists are consumed separately by the original PC Guard engine.

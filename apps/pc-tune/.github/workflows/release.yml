@@ -1,0 +1,156 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to attach the asset to. Empty = latest release.
+        required: false
+        type: string
+      skip_notify:
+        description: Skip the Discord webhook notification (use for rebuilds).
+        required: false
+        default: false
+        type: boolean
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore
+        run: dotnet restore optimizerDuck.slnx
+
+      - name: Build
+        run: dotnet build optimizerDuck.slnx --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet run --project optimizerDuck.Test/optimizerDuck.Test.csproj --configuration Release --no-build -- -longRunning 30
+
+      - name: Publish Single
+        run: |
+          dotnet publish optimizerDuck/optimizerDuck.csproj -c Release -r win-x64 --nologo /p:PublishProfile=Single
+          dotnet publish optimizerDuck/optimizerDuck.csproj -c Release -r win-arm64 --nologo /p:PublishProfile=Single
+        shell: pwsh
+
+      - name: Resolve release tag
+        id: get_version
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $tag = "${{ inputs.tag }}"
+          if (-not $tag) { $tag = "${{ github.event.release.tag_name }}" }
+          if (-not $tag) {
+            $tag = gh release view --repo $env:GITHUB_REPOSITORY --json tagName --jq .tagName
+          }
+          if (-not $tag) {
+            Write-Host "::error::No release tag resolved"
+            exit 1
+          }
+          $version = $tag -replace '^v', ''
+          echo "tag=$tag" >> $env:GITHUB_OUTPUT
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+          Write-Host "Attaching assets to release $tag (version $version)"
+
+      - name: Rename output files
+        run: |
+          $version = "${{ steps.get_version.outputs.version }}"
+          Move-Item -Path "optimizerDuck/bin/Release/Single/net10.0/publish/win-x64/optimizerDuck.exe" -Destination "optimizerDuck-Windows-x64-$version.exe"
+          Move-Item -Path "optimizerDuck/bin/Release/Single/net10.0/publish/win-arm64/optimizerDuck.exe" -Destination "optimizerDuck-Windows-arm64-$version.exe"
+        shell: pwsh
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ steps.get_version.outputs.tag }}
+          files: |
+            ./optimizerDuck-Windows-x64-${{ steps.get_version.outputs.version }}.exe
+            ./optimizerDuck-Windows-arm64-${{ steps.get_version.outputs.version }}.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Wait for asset to be ready
+        id: verify_asset
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+        run: |
+          $tag = "${{ steps.get_version.outputs.tag }}"
+          $owner = "${{ github.repository_owner }}"
+          $repo = "optimizerDuck"
+          $targetAssets = @(
+            "optimizerDuck-Windows-x64-${{ steps.get_version.outputs.version }}.exe",
+            "optimizerDuck-Windows-arm64-${{ steps.get_version.outputs.version }}.exe"
+          )
+
+          $maxRetries = 60
+          $retryDelay = 2
+
+          for ($i = 0; $i -lt $maxRetries; $i++) {
+            try {
+              $response = Invoke-RestMethod -Uri "https://api.github.com/repos/$owner/$repo/releases/tags/$tag" `
+                -Headers @{
+                  "Authorization" = "Bearer $env:GITHUB_TOKEN"
+                  "Accept"        = "application/vnd.github+json"
+                }
+
+              $missing = @($targetAssets | Where-Object {
+                $name = $_
+                -not ($response.assets | Where-Object { $_.name -eq $name })
+              })
+
+              if ($missing.Count -eq 0) {
+                Write-Host "::notice::Assets '$($targetAssets -join ', ')' found and ready!"
+                echo "verified=true" >> $env:GITHUB_OUTPUT
+                exit 0
+              }
+            } catch {
+              Write-Host "API call failed (attempt $($i+1)): $_"
+            }
+
+            Write-Host "Waiting for asset... attempt $($i+1)/$maxRetries"
+            Start-Sleep -Seconds $retryDelay
+          }
+
+          Write-Host "::error::Asset verification failed after $maxRetries attempts"
+          exit 1
+
+      - name: Send webhook notify
+        if: steps.verify_asset.outputs.verified == 'true' && inputs.skip_notify != true
+        shell: pwsh
+        run: |
+          $webhookUrl = "https://api.botghost.com/webhook/1124234779194298438/${{ secrets.BOTGHOST_WEBHOOK_RELEASE_EVENT_ID }}"
+          $body = @{
+            variables = @(
+              @{ name = "Release Tag";    variable = "{release_tag}";   value = "${{ steps.get_version.outputs.tag }}" }
+              @{ name = "Release Owner";  variable = "{release_owner}"; value = "${{ github.repository_owner }}" }
+              @{ name = "Release Repo";   variable = "{release_repo}";  value = "optimizerDuck" }
+            )
+          } | ConvertTo-Json
+
+          Write-Host "Sending webhook to BotGhost..."
+          Invoke-RestMethod -Uri $webhookUrl `
+            -Method POST `
+            -Headers @{
+              "Authorization" = "${{ secrets.BOTGHOST_WEBHOOK_API_KEY }}"
+              "Content-Type"  = "application/json"
+            } `
+            -Body $body
+
+          Write-Host "::notice::Webhook sent successfully!"

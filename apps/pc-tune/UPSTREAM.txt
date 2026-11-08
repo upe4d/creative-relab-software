@@ -1,0 +1,3 @@
+https://github.com/itsfatduck/optimizerDuck
+Commit: dd3b21ced1bdb06913afee6ad24c50af754e8f66
+Derivative: PC Tune, Russian portable edition, 2026-11-08

@@ -1,0 +1,101 @@
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
+using optimizerDuck.Domain.Abstractions;
+using optimizerDuck.Domain.Exceptions;
+using optimizerDuck.Domain.Optimizations.Models.Services;
+using optimizerDuck.Resources.Languages;
+using optimizerDuck.Services.Configuration;
+using optimizerDuck.Services.System.Primitives;
+
+namespace optimizerDuck.Domain.Revert.Steps;
+
+/// <summary>
+///     Represents a revert step that re-executes a shell command to undo changes.
+/// </summary>
+public class ShellRevertStep : IRevertStep
+{
+    /// <summary>
+    ///     Gets or sets the type of shell to use for execution
+    ///     (<see cref="ShellType.CMD" /> or <see cref="ShellType.PowerShell" />).
+    /// </summary>
+    public ShellType ShellType { get; set; }
+
+    /// <summary>
+    ///     Gets or sets the command string to execute for reverting.
+    /// </summary>
+    public string Command { get; set; } = string.Empty;
+
+    /// <inheritdoc />
+    public string Type => "Shell";
+
+    /// <inheritdoc />
+    public string Description => Loc.Instance["Revert.Shell.Description.Run", ShellType, Command];
+
+    /// <inheritdoc />
+    public async Task<bool> ExecuteAsync(RevertContext context, ILogger logger)
+    {
+        var result = ShellType switch
+        {
+            ShellType.PowerShell => await context
+                .Shell.QueryPowerShellAsync(Command, logger)
+                .ConfigureAwait(false),
+            ShellType.CMD => await context
+                .Shell.QueryCMDAsync(Command, logger)
+                .ConfigureAwait(false),
+            _ => new ShellResult
+            {
+                Command = Command,
+                Stdout = "",
+                Stderr = Loc.Instance["Revert.Shell.Error.UnknownShellType"],
+                ExitCode = 1,
+                Duration = TimeSpan.Zero,
+            },
+        };
+
+        if (result.ExitCode != 0)
+        {
+            var error = !string.IsNullOrWhiteSpace(result.Stderr)
+                ? result.Stderr
+                : Loc.Instance["Revert.Shell.Error.CommandFailed", result.ExitCode];
+            throw new StepExecutionException(error, result.Stderr);
+        }
+
+        return true;
+    }
+
+    /// <inheritdoc />
+    public JObject ToData()
+    {
+        return new JObject
+        {
+            [nameof(ShellType)] = ShellType.ToString(),
+            [nameof(Command)] = Command,
+        };
+    }
+
+    /// <summary>
+    ///     Deserializes a <see cref="ShellRevertStep" /> from JSON data.
+    /// </summary>
+    /// <param name="data">The JSON data to deserialize.</param>
+    /// <returns>A new <see cref="ShellRevertStep" /> instance.</returns>
+    public static ShellRevertStep FromData(JToken data)
+    {
+        return new ShellRevertStep
+        {
+            ShellType = Enum.Parse<ShellType>(data[nameof(ShellType)]?.ToString() ?? "PowerShell"),
+            Command = data[nameof(Command)]?.ToString() ?? string.Empty,
+        };
+    }
+}
+
+/// <summary>
+///     Specifies the type of shell used for command execution.
+/// </summary>
+public enum ShellType
+{
+    /// <summary>Windows PowerShell.</summary>
+    PowerShell,
+
+    /// <summary>Command Prompt (cmd.exe).</summary>
+    CMD,
+}

@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+          cache: true
+          cache-dependency-path: |
+            optimizerDuck/optimizerDuck.csproj
+            optimizerDuck.Test/optimizerDuck.Test.csproj
+
+      - name: Restore
+        run: dotnet restore optimizerDuck.slnx
+
+      - name: Build
+        run: dotnet build optimizerDuck.slnx --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet run --project optimizerDuck.Test/optimizerDuck.Test.csproj --configuration Release --no-build -- -longRunning 30
+
+      - name: Format check
+        run: |
+          dotnet tool install --global csharpier --version 1.3.0
+          csharpier check .

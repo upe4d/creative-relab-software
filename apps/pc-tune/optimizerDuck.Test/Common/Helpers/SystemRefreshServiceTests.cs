@@ -1,0 +1,91 @@
+using optimizerDuck.Common.Helpers;
+
+namespace optimizerDuck.Test.Common.Helpers;
+
+public class SystemRefreshServiceTests
+{
+    [Fact]
+    public void NotifySettingChange_DoesNotThrow()
+    {
+        var exception = Record.Exception(() => SystemRefreshService.NotifySettingChange());
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void RefreshShell_DoesNotThrow()
+    {
+        var exception = Record.Exception(() => SystemRefreshService.RefreshShell());
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void NotifySettingChange_ThenRefreshShell_DoesNotThrow()
+    {
+        var exception1 = Record.Exception(() => SystemRefreshService.NotifySettingChange());
+        Assert.Null(exception1);
+
+        var exception2 = Record.Exception(() => SystemRefreshService.RefreshShell());
+        Assert.Null(exception2);
+    }
+
+    [Fact]
+    public void NotifySettingChange_CanBeCalledMultipleTimes()
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            var exception = Record.Exception(() => SystemRefreshService.NotifySettingChange());
+            Assert.Null(exception);
+        }
+    }
+
+    [Fact]
+    public void NotifyTaskbarSettingChange_DoesNotThrow()
+    {
+        var exception = Record.Exception(() => SystemRefreshService.NotifyTaskbarSettingChange());
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void RefreshDesktop_DoesNotThrow()
+    {
+        var exception = Record.Exception(() => SystemRefreshService.RefreshDesktop());
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void Notify_InvalidWindowHandle_ReturnsWithoutThrowing()
+    {
+        // 0x1033 is LVM_REFRESH. A bogus handle must make the send fail fast instead of
+        // blocking, and the refresh path must swallow that as a no-op.
+        var exception = Record.Exception(() =>
+            SystemRefreshService.Notify(new IntPtr(0x12345678), 0x1033, IntPtr.Zero)
+        );
+
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void UpdatePerUserSystemParameters_DoesNotThrow()
+    {
+        var exception = Record.Exception(() =>
+            SystemRefreshService.UpdatePerUserSystemParameters()
+        );
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void NotifyThemeChanged_DoesNotThrow()
+    {
+        var exception = Record.Exception(() => SystemRefreshService.NotifyThemeChanged());
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void RefreshDesktopIconVisibilityFromRegistry_DoesNotThrow()
+    {
+        var exception = Record.Exception(() =>
+            SystemRefreshService.RefreshDesktopIconVisibilityFromRegistry()
+        );
+        Assert.Null(exception);
+    }
+}
