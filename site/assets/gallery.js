@@ -1,0 +1,8 @@
+(() => { 'use strict';
+ // Галерея открывает только локальные снимки текущей программы; без внешних библиотек.
+ const dialog=document.getElementById('screenshot-dialog');if(!dialog)return;
+ const image=document.getElementById('screenshot-full'),caption=document.getElementById('screenshot-caption'),counter=document.getElementById('screenshot-counter');let group=[],position=0,opener=null;
+ function show(index){position=(index+group.length)%group.length;const item=group[position];image.src=item.href;image.alt=item.querySelector('img').alt;caption.textContent=item.dataset.caption;counter.textContent=`${position+1} / ${group.length}`;}
+ for(const link of document.querySelectorAll('[data-gallery]'))link.addEventListener('click',event=>{event.preventDefault();opener=link;group=[...document.querySelectorAll('[data-gallery]')].filter(item=>item.dataset.gallery===link.dataset.gallery);show(group.indexOf(link));dialog.showModal();});
+ dialog.querySelector('[data-gallery-close]').addEventListener('click',()=>dialog.close());dialog.querySelector('[data-gallery-prev]').addEventListener('click',()=>show(position-1));dialog.querySelector('[data-gallery-next]').addEventListener('click',()=>show(position+1));dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();show(position-1);}if(event.key==='ArrowRight'){event.preventDefault();show(position+1);}});dialog.addEventListener('close',()=>{image.removeAttribute('src');if(opener)opener.focus({preventScroll:true});});
+})();

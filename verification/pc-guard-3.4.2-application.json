@@ -1,0 +1,22 @@
+{
+  "Date": "2026-11-08T13:24:07.0106646+03:00",
+  "ApplicationSHA256": "8A2B6F46E3FA3A19D8EB894935616A403CF99C69E897B03147027F4D962A6778",
+  "Checks": {
+    "native-results.json": 14,
+    "startup-results.json": 17,
+    "suite-results.json": 52,
+    "browser-results.json": 111,
+    "suite-browser-results.json": 69,
+    "camera-policy-results.json": 17,
+    "camera-consent-results.json": 13,
+    "provider-results.json": 5
+  },
+  "ApplicationChecks": 298.0,
+  "NativeChecksReused": true,
+  "UnsignedDriverInstallRefused": null,
+  "CameraPhysicallyToggled": false,
+  "DefenderSwitched": false,
+  "IObitSwitched": false,
+  "KernelRuntimeTested": false,
+  "scope": "Native checks completed in first run; browser checks repeated after transient job-file observation failure. Driver unchanged and not loaded on host."
+}

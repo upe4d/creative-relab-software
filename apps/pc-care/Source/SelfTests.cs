@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -133,11 +133,12 @@ namespace PCCare
             result.Files.Add(new Candidate { CategoryId = "test", Path = Path.Combine(store.Directory, "fixture.tmp"), Bytes = 2048, ModifiedUtc = DateTime.UtcNow.AddDays(-10), Selected = true });
             controller.LoadCleanup(result);
             var checks = new List<string>();
-            foreach (string page in new[] { "Overview", "Cleanup", "Startup", "Large", "History" })
+            foreach (string page in new[] { "Overview", "Cleanup", "Startup", "Large", "History", "About" })
             {
                 controller.SwitchPage(page); window.UpdateLayout();
                 Check(controller.Get<Grid>("Page" + page).Visibility == Visibility.Visible, "Native screen: " + page, checks);
             }
+            Check(controller.Get<Image>("CreatorAvatar").Source != null, "Creator avatar is loaded from local resources", checks);
             controller.SwitchPage("Cleanup"); result.Files[0].Selected = false;
             Check(controller.Get<TextBlock>("SelectionText").Text.Contains("0 Б"), "Individual selection updates cleanup total", checks);
             result.Categories[0].Selected = false; result.Categories[0].Selected = true;
@@ -183,6 +184,8 @@ namespace PCCare
             await Task.Delay(200);
             SaveWindow(window, Path.Combine(directory, "window-with-titlebar.png"));
             window.UpdateLayout(); SaveWindow(window, Path.Combine(directory, "overview-live.png"));
+            controller.SwitchPage("About"); await Task.Delay(200); window.UpdateLayout();
+            SaveWindow(window, Path.Combine(directory, "about-live.png"));
             controller.LoadStartup(StartupManager.Default(store).List());
             controller.SwitchPage("Startup"); await Task.Delay(300); window.UpdateLayout();
             await TableUiTests.ClickHeader(controller.Get<DataGrid>("StartupGrid"), "StatusOrder");

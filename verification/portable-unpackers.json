@@ -1,7 +1,7 @@
 [
   {
     "product": "PC Care",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "checks": 8,
     "failures": 0,
     "preservedData": true,
@@ -9,11 +9,11 @@
     "traversalRejected": true,
     "driveCRejected": true,
     "extractedExecutableVerified": true,
-    "unpackerSHA256": "84DB0B5E433414073D4C2E9B01B2ED8A47D4E627B3FA87CA7BB0EFCF0F086F94"
+    "unpackerSHA256": "D1413FE570F3DD54A987503E2C03E486375D550A8BAE0C3B586F014E254B4BB2"
   },
   {
     "product": "PC Guard",
-    "version": "3.4.1",
+    "version": "3.4.2",
     "checks": 8,
     "failures": 0,
     "preservedData": true,
@@ -21,11 +21,11 @@
     "traversalRejected": true,
     "driveCRejected": true,
     "extractedExecutableVerified": true,
-    "unpackerSHA256": "391BED89590988D6CD77811300C05D67EFFBC3554B76FB70AFB3A35B897D9CF6"
+    "unpackerSHA256": "99DBC30DF0080A25748131A72AD6266C552F482D6AFD0EA6A748AF2678E42635"
   },
   {
     "product": "PC Tune",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "checks": 8,
     "failures": 0,
     "preservedData": true,
@@ -33,6 +33,6 @@
     "traversalRejected": true,
     "driveCRejected": true,
     "extractedExecutableVerified": true,
-    "unpackerSHA256": "CE5247D048633F6C65948392C366A24A6AE803BFE60E22E190568C3523AB4C20"
+    "unpackerSHA256": "3FF6423195C50A6DE8F010AE125FBBF76ED842E4097D961395ECF40C02738009"
   }
 ]

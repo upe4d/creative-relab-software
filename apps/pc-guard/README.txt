@@ -1,4 +1,4 @@
-PC Guard 3.4.1 Preview
+PC Guard 3.4.2 Preview
 Creative Relab | @creativerelab
 https://tools.crrl.ru/software/#pc-guard
 
@@ -84,3 +84,6 @@ PC Guard.exe --self-test и --suite-test используют искусстве
 
 ИСПРАВЛЕНИЕ 3.4.1
 PowerShell-скрипты распространяются в UTF-8 с BOM для Windows PowerShell 5.1.
+
+ОФОРМЛЕНИЕ 3.4.2
+Аватар Creative Relab добавлен в EXE, шапку и раздел автора. Код драйвера не менялся.

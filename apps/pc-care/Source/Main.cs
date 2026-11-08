@@ -111,7 +111,7 @@ namespace PCCare
             {
                 if (icon == null) throw new InvalidDataException("Не найден значок приложения.");
                 BitmapFrame image = BitmapFrame.Create(icon, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
-                image.Freeze(); window.Icon = image; Get<Image>("AppLogo").Source = image; Get<Image>("CaptionIcon").Source = image;
+                image.Freeze(); window.Icon = image; Get<Image>("AppLogo").Source = image; Get<Image>("CaptionIcon").Source = image; Get<Image>("CreatorAvatar").Source = image;
             }
             Get<TextBlock>("InstallPath").Text = AppDomain.CurrentDomain.BaseDirectory;
             Get<TextBlock>("AgeNote").Text = "TEMP и кэш старше " + store.Settings.MinimumAgeDays + " дней. Занятые файлы и ссылки пропускаются.";

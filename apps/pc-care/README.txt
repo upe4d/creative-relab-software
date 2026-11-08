@@ -1,4 +1,4 @@
-PC Care 1.1.2
+PC Care 1.1.3
 Creative Relab | @creativerelab
 https://tools.crrl.ru/software/#pc-care
 
@@ -141,3 +141,6 @@ Windows\Temp и Cache/Code Cache/GPUCache профилей Edge и Chrome.
 Каталог и новые версии: https://tools.crrl.ru/software/
 Исходники и выпуски: https://github.com/upe4d/creative-relab-software
 Создатель: Creative Relab, https://t.me/creativerelab
+
+ОФОРМЛЕНИЕ 1.1.3
+Аватар Creative Relab используется в значке EXE, заголовке и разделе автора.

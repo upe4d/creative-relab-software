@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -12,6 +12,9 @@ namespace CreativeRelab.Portable
         public PortableForm()
         {
             Text = Package.Info.Name + " · Creative Relab"; ClientSize = new Size(650, 385); StartPosition = FormStartPosition.CenterScreen; FormBorderStyle = FormBorderStyle.FixedDialog; MaximizeBox = false; Font = new Font("Segoe UI", 10); BackColor = Color.FromArgb(16, 20, 27); ForeColor = Color.White;
+            Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            // Локальный аватар не требует сети и совпадает со знаком на сайте.
+            using (var stream = typeof(PortableForm).Assembly.GetManifestResourceStream("Relab.Avatar.png")) { var avatar = new PictureBox { Image = new Bitmap(Image.FromStream(stream)), SizeMode = PictureBoxSizeMode.Zoom, Location = new Point(568,22), Size = new Size(54,54) }; Controls.Add(avatar); }
             var brand = new Label { Text = "CREATIVE RELAB  /  PORTABLE", ForeColor = Color.FromArgb(155,185,255), Location = new Point(28,24), AutoSize = true }; Controls.Add(brand);
             Controls.Add(new Label { Text = Package.Info.Name + " " + Package.Info.Version, Font = new Font("Segoe UI", 23, FontStyle.Bold), Location = new Point(25,55), AutoSize = true });
             Controls.Add(new Label { Text = "Распакуйте приложение в папку на D.\nПрограмма и данные будут храниться рядом.", Location = new Point(28,108), Size = new Size(590,48), ForeColor = Color.FromArgb(174,184,201) });

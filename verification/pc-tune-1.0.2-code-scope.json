@@ -1,0 +1,13 @@
+{
+  "baselineTag": "pc-tune-v1.0.1",
+  "version": "1.0.2",
+  "unchangedPaths": [
+    "optimizerDuck/Domain",
+    "optimizerDuck/Services/Optimization",
+    "optimizerDuck/Services/Revert",
+    "optimizerDuck/Services/System",
+    "optimizerDuck/Services/Validation"
+  ],
+  "verification": "git diff --exit-code returned 0",
+  "runtime42RetestedForThisBinary": false
+}

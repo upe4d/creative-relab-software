@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-11-08T10:31:20.796883+00:00",
+  "originalAvatarSHA256": "6b229d1643b2604c39df78a6af0133a269c1d5ca9fbac2865d0145d957bf2a26",
+  "localOnlyAssets": true,
+  "screenshots": [
+    {
+      "file": "pc-care-about.png",
+      "sha256": "c9c9e2ec41269f2811e5ceb1d6aee6242dac5c525eb93c8843dbb769054706f8",
+      "capture": "actual application UI; no generated mockup"
+    },
+    {
+      "file": "pc-care-overview.png",
+      "sha256": "058d67b2e5c094cfa98ce4c6b224cd9c468e5692fb306e524896a6327db31c01",
+      "capture": "actual application UI; no generated mockup"
+    },
+    {
+      "file": "pc-guard-about.png",
+      "sha256": "b892535a8407a600bbd3b2367a8826294a5037b3acc2281bbea527a5c352b4da",
+      "capture": "actual application UI; no generated mockup"
+    },
+    {
+      "file": "pc-guard-engine.png",
+      "sha256": "414a30f984bf6c11d09170c2eb062ceb0a8c61e9ec6ccac92b9e8f4664495394",
+      "capture": "actual application UI; no generated mockup"
+    },
+    {
+      "file": "pc-tune-cleanup.png",
+      "sha256": "76821247ee3fded56f4267f452c6b7f2380444cb217945287c7568b21198cefd",
+      "capture": "actual application UI; no generated mockup"
+    },
+    {
+      "file": "pc-tune-optimize.png",
+      "sha256": "0fa70a6badbc32b6e5c1339ce89f8a2f45d5b79fcb1b57c54bce51eb13666740",
+      "capture": "actual application UI; no generated mockup"
+    }
+  ]
+}
