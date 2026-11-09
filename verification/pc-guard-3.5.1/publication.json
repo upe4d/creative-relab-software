@@ -1,0 +1,32 @@
+{
+  "release": "https://github.com/upe4d/creative-relab-software/releases/tag/pc-guard-v3.5.1",
+  "publishedAt": "2026-11-09T09:42:46Z",
+  "draft": false,
+  "preview": true,
+  "assets": [
+    {
+      "name": "pc-guard-3.5.1-portable.exe",
+      "sha256": "e3845742c3cb40024228579d5b0bf7be900ff4439b4f34b7a68718a9bf0d9901",
+      "bytes": 3600896,
+      "downloadedAndVerified": true
+    },
+    {
+      "name": "pc-guard-3.5.1-portable.zip",
+      "sha256": "2adc3b2d43c8894222e222a78f8217142aed7622a1d88569c5aa64b2b9d894bb",
+      "bytes": 3393752,
+      "downloadedAndVerified": true
+    },
+    {
+      "name": "pc-guard-3.5.1-SHA256SUMS.txt",
+      "sha256": "400e3e13ba1e06aff555e4208c1a69a1bced24ebd5dde71a0b187ea597a18a88",
+      "bytes": 283,
+      "downloadedAndVerified": true
+    },
+    {
+      "name": "pc-guard-3.5.1-source.zip",
+      "sha256": "31973eef9096cb6dce89d1339a6034f84ec291ab5aad8b021f9294d17aa1c889",
+      "bytes": 3909686,
+      "downloadedAndVerified": true
+    }
+  ]
+}
