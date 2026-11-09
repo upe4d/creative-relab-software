@@ -1,0 +1,6 @@
+﻿PC Drivers — Creative Relab
+Интерфейс использует Bootstrap 5.3.8, jQuery 3.7.1 и DataTables 2.3.5 (MIT).
+Оригинальные заголовки лицензий сохранены в файлах public/vendor.
+Точные источники: public/vendor/sources.json.
+SetupAPI, ConfigMgr и PnPUtil — компоненты Windows.
+Код и базы IObit, SDIO, ClamAV в приложение не включены.

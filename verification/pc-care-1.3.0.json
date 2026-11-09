@@ -1,0 +1,40 @@
+{
+  "product": "PC Care",
+  "version": "1.3.0",
+  "registryChecks": 24,
+  "registryResults": [
+    "PASS Three confirmed missing references eligible",
+    "PASS Existing target omitted",
+    "PASS Ambiguous command preserved",
+    "PASS Unavailable volume preserved",
+    "PASS Existing file distinguished from missing",
+    "PASS Network paths never eligible",
+    "PASS Actual HTML report created",
+    "PASS Selected three values removed with backup",
+    "PASS Backup checksum and scope verified",
+    "PASS Neighbour values and section retained",
+    "PASS Rollback restores values and detects conflict",
+    "PASS Conflict never overwritten",
+    "PASS Exact type and original command restored",
+    "PASS Repeated rollback idempotent",
+    "PASS Changed value skipped at fix time",
+    "PASS Reappeared file prevents removal",
+    "PASS Cancellation retains prepared backup without removal",
+    "PASS Corrupted checksum rejected before restore",
+    "PASS Snapshot round trip String",
+    "PASS Snapshot round trip ExpandString",
+    "PASS Snapshot round trip MultiString",
+    "PASS Snapshot round trip DWord",
+    "PASS Snapshot round trip QWord",
+    "PASS Snapshot round trip Binary"
+  ],
+  "uiChecks": 42,
+  "realReadOnlyScan": {
+    "findings": 46,
+    "eligible": 46,
+    "registryChanges": 0
+  },
+  "userRegistryCorrections": 0,
+  "testScope": "Only owned HKCU fixtures are changed during regression",
+  "exeSHA256": "a5d7b89f1233ce596588534832299f4de9dc008fb9f9be8598bbb25821babaa8"
+}

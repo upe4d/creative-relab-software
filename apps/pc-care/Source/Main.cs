@@ -27,9 +27,11 @@ namespace PCCare
             Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("ru-RU");
             try
             {
+                if (args.Contains("--registry-test")) return RegistryTests.Run(directory);
                 if (args.Contains("--self-test")) return SelfTests.Run(directory);
                 bool smoke = args.Contains("--ui-smoke");
-                bool capture = args.Contains("--capture-preview");
+                bool registryCapture = args.Contains("--capture-registry");
+                bool capture = args.Contains("--capture-preview") || registryCapture;
                 using (var mutex = new Mutex(false, @"Local\PCCare_" + Format.Id(directory).Substring(0, 24)))
                 {
                     bool acquired;
@@ -57,7 +59,7 @@ namespace PCCare
                         window.Loaded += async delegate
                         {
                             if (!smoke && !capture) return;
-                            try { if (smoke) await SelfTests.UiSmoke(window, controller, store); else await SelfTests.CaptureLivePreview(window, controller, store); application.Shutdown(0); }
+                            try { if (smoke) await SelfTests.UiSmoke(window, controller, store); else if (registryCapture) await controller.CaptureRegistry(); else await SelfTests.CaptureLivePreview(window, controller, store); application.Shutdown(0); }
                             catch (Exception ex) { File.WriteAllText(Path.Combine(store.Directory, smoke ? "ui-smoke-error.txt" : "capture-error.txt"), ex.ToString()); application.Shutdown(1); }
                         };
                         application.DispatcherUnhandledException += delegate(object sender, DispatcherUnhandledExceptionEventArgs e)
@@ -101,7 +103,7 @@ namespace PCCare
         private CancellationTokenSource cancellation;
         private bool busy, monitoring, selectionBatch, closeWhenIdle;
         private string page = "Overview";
-        private readonly string[] pages = { "Overview", "Cleanup", "Startup", "Large", "History", "About" };
+        private readonly string[] pages = { "Overview", "Cleanup", "Registry", "Startup", "Large", "History", "About" };
         public MainController(Window window, AppStore store, bool smoke)
         {
             this.window = window; this.store = store; this.smoke = smoke;
@@ -143,7 +145,7 @@ namespace PCCare
             Get<Button>("BrowseButton").Click += delegate
             {
                 using (var dialog = new System.Windows.Forms.FolderBrowserDialog { Description = "Папка для поиска крупных файлов", ShowNewFolderButton = false })
-                { if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) Get<TextBox>("LargeRootText").Text = dialog.SelectedPath; }
+                { if (dialog.ShowDialog(new RegistryDialogOwner(window)) == System.Windows.Forms.DialogResult.OK) Get<TextBox>("LargeRootText").Text = dialog.SelectedPath; }
             };
             Get<Button>("LargeScanButton").Click += async delegate { await ScanLargeAsync(); };
             Get<Button>("LargeOpenButton").Click += delegate { Candidate file = Get<DataGrid>("LargeGrid").SelectedItem as Candidate; if (file != null) OpenExplorer(file.Path, true); };
@@ -171,7 +173,7 @@ namespace PCCare
             timer.Interval = TimeSpan.FromSeconds(2);
             timer.Tick += async delegate { await MonitorAsync(); };
             window.Loaded += async delegate { if (!smoke) { timer.Start(); await MonitorAsync(); } };
-            InitializeFamily(); InitializeTables(); ApplyTheme(); SwitchPage("Overview");
+            InitializeFamily(); InitializeTables(); InitializeRegistry(); ApplyTheme(); SwitchPage("Overview");
         }
         private void InitializeTables()
         {
@@ -225,6 +227,7 @@ namespace PCCare
         private void Status(string text) { Get<TextBlock>("StatusText").Text = text; Get<TextBlock>("StatusText").ToolTip = text; }
         private void UpdateButtons()
         {
+            UpdateRegistryButtons();
             foreach (string name in new[] { "ScanButton", "OverviewScanButton", "StartupRefreshButton", "LargeScanButton", "BrowseButton", "HistoryRefreshButton" }) Get<Button>(name).IsEnabled = !busy;
             Get<DataGrid>("CategoryGrid").IsEnabled = !busy; Get<DataGrid>("PreviewGrid").IsEnabled = !busy;
             Get<Button>("CleanButton").IsEnabled = !busy && cleanup != null && (cleanup.Files.Any(f => f.Selected) || cleanup.Categories.Any(c => c.Id == "recycle" && c.Selected && c.Count > 0));

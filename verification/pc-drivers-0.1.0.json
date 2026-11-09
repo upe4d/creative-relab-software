@@ -1,0 +1,48 @@
+{
+  "ok": true,
+  "checks": [
+    "Driver version uses four unsigned 16-bit fields",
+    "Native x64 layouts match Microsoft SDK",
+    "Actual device inventory returned",
+    "Unique nonempty PnP identifiers",
+    "Actual hardware identifiers returned",
+    "Installed driver versions read",
+    "Installed INF located for real compatibility check",
+    "Windows matches actual device to its installed INF",
+    "Native rank orders compatible models",
+    "Unrelated installed INF produces no compatible model",
+    "Missing and non-INF package rejected",
+    "Report escapes device text"
+  ],
+  "devices": 262,
+  "problems": 1,
+  "readErrors": 0,
+  "compatibleModels": 1,
+  "driverInstallations": 0,
+  "layouts": {
+    "device": 32,
+    "install": 584,
+    "driver": 1568,
+    "rank": 32
+  },
+  "product": "PC Drivers",
+  "version": "0.1.0 Preview",
+  "actualBackup": {
+    "files": 3,
+    "bytes": 109250,
+    "independentSha256Verification": "PASS"
+  },
+  "uiTested": [
+    "inventory button",
+    "status filter",
+    "search",
+    "select device",
+    "INF compatibility",
+    "backup export",
+    "report",
+    "backup list",
+    "light theme"
+  ],
+  "uiLimitation": "Повторная визуальная проверка последней CSS-правки и перезагрузки окна не завершена: проверочный браузер остановился на служебной странице ошибки подключения",
+  "exeSHA256": "44912cebe8f370e849954d268c9206bd340e32b0f78913fc9fca2b62b431d752"
+}

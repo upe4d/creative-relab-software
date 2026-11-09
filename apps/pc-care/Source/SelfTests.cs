@@ -133,7 +133,7 @@ namespace PCCare
             result.Files.Add(new Candidate { CategoryId = "test", Path = Path.Combine(store.Directory, "fixture.tmp"), Bytes = 2048, ModifiedUtc = DateTime.UtcNow.AddDays(-10), Selected = true });
             controller.LoadCleanup(result);
             var checks = new List<string>();
-            foreach (string page in new[] { "Overview", "Cleanup", "Startup", "Large", "History", "About" })
+            foreach (string page in new[] { "Overview", "Cleanup", "Registry", "Startup", "Large", "History", "About" })
             {
                 controller.SwitchPage(page); window.UpdateLayout();
                 Check(controller.Get<Grid>("Page" + page).Visibility == Visibility.Visible, "Native screen: " + page, checks);
@@ -153,6 +153,24 @@ namespace PCCare
             Check(window.WindowStyle == WindowStyle.None && System.Windows.Shell.WindowChrome.GetWindowChrome(window).CaptionHeight == 36, "Themed title bar replaces the external system caption", checks);
             Check(System.Windows.Shell.WindowChrome.GetIsHitTestVisibleInChrome(controller.Get<Button>("CaptionClose")), "Caption buttons remain interactive in the draggable title region", checks);
             await TableUiTests.Run(window, controller, checks);
+            var registryRows = new List<RegistryFinding> {
+                new RegistryFinding { Category = "Автозагрузка", KeyPath = "Test\\Run", ValueName = "Missing", Target = "D:\\missing.exe", Eligible = true, Reason = "Файл отсутствует" },
+                new RegistryFinding { Category = "Кэш названий", KeyPath = "Test\\MuiCache", ValueName = "Offline", Target = "Z:\\offline.exe", Eligible = false, Reason = "Недоступный диск" }
+            };
+            controller.LoadRegistryForTest(registryRows); controller.SwitchPage("Registry"); window.UpdateLayout();
+            controller.Get<Button>("RegistrySelect").RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            Check(registryRows[0].Selected && !registryRows[1].Selected, "Registry selection excludes unconfirmed findings", checks);
+            controller.Get<Button>("RegistryClear").RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            Check(!registryRows.Any(r => r.Selected), "Registry clear-selection button works", checks);
+            controller.Get<ComboBox>("RegistryFilter").SelectedIndex = 1;
+            Check(controller.Get<DataGrid>("RegistryGrid").Items.Count == 1, "Registry eligibility filter works", checks);
+            controller.Get<ComboBox>("RegistryFilter").SelectedIndex = 0;
+            controller.Get<TextBox>("RegistrySearch").Text = "offline";
+            Check(controller.Get<DataGrid>("RegistryGrid").Items.Count == 1 && ((RegistryFinding)controller.Get<DataGrid>("RegistryGrid").Items[0]).ValueName == "Offline", "Registry text search works", checks);
+            controller.Get<TextBox>("RegistrySearch").Text = "";
+            await TableUiTests.ClickHeader(controller.Get<DataGrid>("RegistryGrid"), "Category");
+            Check(((RegistryFinding)controller.Get<DataGrid>("RegistryGrid").Items[0]).Category == "Автозагрузка", "Registry column sorting works", checks);
+
             controller.SwitchPage("Overview");
             controller.Get<TextBlock>("CpuText").Text = "UI-проверка";
             controller.Get<TextBlock>("RamText").Text = "UI-проверка";
