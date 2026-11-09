@@ -1,0 +1,11 @@
+{
+  "product": "PC Record",
+  "version": "1.0.0",
+  "checks": 8,
+  "failures": 0,
+  "preservedData": true,
+  "backupVerified": true,
+  "traversalRejected": true,
+  "driveCRejected": true,
+  "extractedExecutableVerified": true
+}

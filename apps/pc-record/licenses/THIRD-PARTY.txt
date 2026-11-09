@@ -1,0 +1,40 @@
+PC Record 1.0.0 — Creative Relab, @creativerelab
+
+Собственная оболочка, управление записью и редактор: MIT, LICENSE.txt.
+ScreenRecorderLib 7.0.1: MIT, ScreenRecorderLib-MIT.txt.
+https://github.com/sskodje/ScreenRecorderLib
+NuGet SHA256 5032DB2821316391FE0322739D658BD8CE4EF059B02542E97B09FA1E47C04E84
+
+Microsoft.Web.WebView2 SDK 1.0.4314.35: Microsoft, WebView2-LICENSE.txt.
+https://www.nuget.org/packages/Microsoft.Web.WebView2/1.0.4314.35
+NuGet SHA256 90778DEB1B77E36292828B4B5833C9255C27533F40E0DDD55891AE718944EDC4
+WebView2 Runtime не включён и не устанавливается программой.
+
+Bootstrap 5.3.8: MIT, Bootstrap-MIT.txt.
+https://github.com/twbs/bootstrap/tree/v5.3.8
+
+FFmpeg 8.1.2: LGPL 2.1, tools/COPYING.LGPLv2.1, без GPL/nonfree/version3.
+Поставщик бинарных файлов: https://github.com/serversideup/ffmpeg-lgpl-builds/releases/tag/v8.1.2-27
+Архив SHA256 FB2DE01912EDB449A5EBA1CC487696C7F71EBB7B325E5C5C69434642EC2BA6B0
+Полные соответствующие исходники FFmpeg и сценарии сборки включены в
+pc-record-1.0.0-source.zip, каталог third-party-source.
+https://github.com/upe4d/creative-relab-software/releases/tag/pc-record-v1.0.0
+Исходный tar.xz FFmpeg SHA256 464BEB5E7BF0C311E68B45AE2F04E9CC2AF88851ABB4082231742A74D97B524C
+Исходники: https://ffmpeg.org/releases/ffmpeg-8.1.2.tar.xz
+Точная конфигурация: tools/SOURCE.txt; исходники программы доступны для изменения и пересборки.
+Обработка вызывает отдельные ffmpeg.exe/ffprobe.exe, а не загружает FFmpeg в процесс оболочки.
+Для обрезки выбран программный libopenh264, для основной записи — Windows Media Foundation.
+
+DLL в поставке FFmpeg: OpenH264 (BSD-2-Clause), Intel oneVPL (MIT),
+mingw-w64 winpthreads (BSD-style), GCC runtime (GPLv3 + GCC Runtime Library Exception).
+Тексты лицензий сохранены в tools/*LICENSE* и tools/GCC-RUNTIME-LIBRARY-EXCEPTION.txt.
+https://github.com/cisco/openh264
+https://github.com/intel/libvpl
+https://gcc.gnu.org/onlinedocs/libstdc++/manual/license.html
+
+Аватар Creative Relab предоставлен создателем для использования в приложениях и каталоге.
+Windows/.NET Framework/Media Foundation/VC++ Runtime используются как компоненты компьютера,
+не устанавливаются и не перенастраиваются PC Record.
+
+Заголовки NVIDIA ffnvcodec: FFNVCODEC-NOTICES.txt; AMD AMF: AMF-LICENSE.txt. Они включены в сборку FFmpeg; приложение выбирает программный кодировщик.
+

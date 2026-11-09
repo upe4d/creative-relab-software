@@ -1,0 +1,42 @@
+{
+  "cases": [
+    {
+      "test": "native-library-limit-1000-of-1005",
+      "status": "pass"
+    },
+    {
+      "test": "pagination-all-20-pages",
+      "status": "pass"
+    },
+    {
+      "test": "numeric-bytes-sort-all-1000",
+      "status": "pass"
+    },
+    {
+      "test": "bytes-sort-descending-first-page",
+      "status": "pass"
+    },
+    {
+      "test": "case-insensitive-cyrillic-search",
+      "status": "pass"
+    },
+    {
+      "test": "filter-empty-and-restore",
+      "status": "pass"
+    },
+    {
+      "test": "render-latency",
+      "status": "measurement",
+      "samples": 20,
+      "minMs": 4.299999952316284,
+      "maxMs": 16.799999952316284,
+      "averageMs": 15.590000009536743,
+      "physicalWheelTested": false
+    }
+  ],
+  "scope": "1005 synthetic PNG fixtures on D; production native-app.js and production EXE unchanged",
+  "provenance": {
+    "exeSHA256": "7F740D7DF0C55BEF93A94506508C557FF083A45AD44252FBCE7FC3A09536E473",
+    "finalBinary": false
+  }
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "screenrecorderlib.7.0.1",
+    "file": "screenrecorderlib.7.0.1.nupkg",
+    "url": "https://api.nuget.org/v3-flatcontainer/screenrecorderlib/7.0.1/screenrecorderlib.7.0.1.nupkg",
+    "sha256": "5032DB2821316391FE0322739D658BD8CE4EF059B02542E97B09FA1E47C04E84",
+    "extract": "screenrecorderlib.7.0.1",
+    "format": "zip"
+  },
+  {
+    "id": "microsoft.web.webview2.1.0.4314.35",
+    "file": "microsoft.web.webview2.1.0.4314.35.nupkg",
+    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.4314.35/microsoft.web.webview2.1.0.4314.35.nupkg",
+    "sha256": "90778DEB1B77E36292828B4B5833C9255C27533F40E0DDD55891AE718944EDC4",
+    "extract": "microsoft.web.webview2.1.0.4314.35",
+    "format": "zip"
+  },
+  {
+    "id": "ffmpeg-8.1.2-lgpl",
+    "file": "ffmpeg-8.1.2-x86_64-pc-windows-msvc.tar.gz",
+    "url": "https://github.com/serversideup/ffmpeg-lgpl-builds/releases/download/v8.1.2-27/ffmpeg-8.1.2-x86_64-pc-windows-msvc.tar.gz",
+    "sha256": "FB2DE01912EDB449A5EBA1CC487696C7F71EBB7B325E5C5C69434642EC2BA6B0",
+    "extract": "ffmpeg-release",
+    "format": "tar"
+  }
+]

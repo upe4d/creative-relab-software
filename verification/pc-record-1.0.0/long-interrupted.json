@@ -1,0 +1,16 @@
+{
+  "status": "interrupted-unconfirmed",
+  "lastProgressSeconds": 6343.340520899999,
+  "sleepEvent": {
+    "provider": "Microsoft-Windows-Kernel-Power",
+    "id": 42,
+    "timeLocal": "2026-11-09T01:21:15+03:00",
+    "reason": "Thermal Zone"
+  },
+  "oldMediaProbeError": "moov atom not found",
+  "processMissingAfterResume": true,
+  "causeOfProcessExitConfirmed": false,
+  "repeat": "postponed-by-owner-short-tests-only",
+  "temperatures": "access-denied",
+  "oldExeSHA256": "7F740D7DF0C55BEF93A94506508C557FF083A45AD44252FBCE7FC3A09536E473"
+}

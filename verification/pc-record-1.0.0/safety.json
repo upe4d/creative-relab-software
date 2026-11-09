@@ -1,0 +1,125 @@
+{
+  "running": false,
+  "cases": [
+    {
+      "test": "countdown-cancel-without-capture",
+      "status": "pass"
+    },
+    {
+      "test": "three-second-countdown-real-capture",
+      "status": "pass"
+    },
+    {
+      "test": "metadata-720",
+      "status": "evidence",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "60/1"
+          }
+        ],
+        "format": {
+          "duration": "3.283333"
+        }
+      },
+      "frames": 98
+    },
+    {
+      "test": "60fps-resolution-720",
+      "status": "pass"
+    },
+    {
+      "test": "metadata-1080",
+      "status": "evidence",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "60/1"
+          }
+        ],
+        "format": {
+          "duration": "3.266667"
+        }
+      },
+      "frames": 95
+    },
+    {
+      "test": "60fps-resolution-1080",
+      "status": "pass"
+    },
+    {
+      "test": "low-space-preflight-rejected",
+      "status": "pass"
+    },
+    {
+      "test": "low-space-during-recording-stop-and-decode",
+      "status": "pass"
+    },
+    {
+      "test": "closed-source-stop-and-decode",
+      "status": "pass"
+    },
+    {
+      "test": "suspend-notification-stops-and-decodes",
+      "status": "pass"
+    },
+    {
+      "test": "simulated-timer-gap-stops-and-decodes",
+      "status": "pass"
+    },
+    {
+      "test": "reject-bad-fps",
+      "status": "pass"
+    },
+    {
+      "test": "reject-bad-countdown",
+      "status": "pass"
+    },
+    {
+      "test": "reject-missing-microphone",
+      "status": "pass"
+    },
+    {
+      "test": "reject-missing-camera",
+      "status": "pass"
+    },
+    {
+      "test": "reject-missing-loopback",
+      "status": "pass"
+    },
+    {
+      "test": "reject-outside-D",
+      "status": "pass"
+    },
+    {
+      "test": "reject-bad-format",
+      "status": "pass"
+    },
+    {
+      "test": "reject-double-start",
+      "status": "pass"
+    },
+    {
+      "test": "nan-trim-rejected",
+      "status": "pass"
+    }
+  ],
+  "exitCode": 0,
+  "scope": "Synthetic windows; fault injection changes only app-local free-space reading. No microphone or camera opened.",
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "exitCode": 0,
+  "cases": [
+    {
+      "test": "real-display-720p-record-decode",
+      "status": "pass",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "3.233333"
+        }
+      },
+      "screenWidth": 3120,
+      "screenHeight": 2080
+    },
+    {
+      "test": "real-area-640x360-record-decode",
+      "status": "pass",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "2.300000"
+        }
+      }
+    },
+    {
+      "test": "floating-toolbar-display-exclusion-pixel-test",
+      "status": "pass",
+      "visibleRedPixels": 4596,
+      "excludedRedPixels": 0,
+      "apiAccepted": true,
+      "x": 1010,
+      "y": 132,
+      "width": 1100,
+      "height": 164
+    }
+  ],
+  "scope": "Only a topmost synthetic full-screen PC Record window on primary display. No audio or camera.",
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

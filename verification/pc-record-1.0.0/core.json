@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-09",
+  "scope": "Only synthetic PC Record test window; no microphone, camera or system audio capture",
+  "cases": [
+    {
+      "test": "real-window-png",
+      "pass": true,
+      "width": 644,
+      "height": 420,
+      "brightPixels": 2770,
+      "cyanPixels": 731
+    },
+    {
+      "test": "mp4-h264-pause-resume-decode",
+      "pass": true,
+      "duration": 3.733333,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 644,
+            "height": 420,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "3.733333"
+        }
+      }
+    },
+    {
+      "test": "mkv-real-record-remux-decode",
+      "pass": true,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 644,
+            "height": 420,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "1.6"
+        },
+        "durationSource": "decoded-frame-count"
+      }
+    },
+    {
+      "test": "trim-one-second-decode",
+      "pass": true,
+      "duration": 1
+    },
+    {
+      "test": "mkv-duration-and-trim-decode",
+      "pass": true,
+      "duration": 1
+    },
+    {
+      "test": "reject-library-path-traversal",
+      "pass": true
+    },
+    {
+      "test": "reject-invalid-window",
+      "pass": true
+    }
+  ],
+  "exitCode": 0,
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

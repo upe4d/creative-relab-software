@@ -1,0 +1,7 @@
+dependencies/
+build/
+Data/
+Recordings/
+verification/
+helper-build/
+*.pdb

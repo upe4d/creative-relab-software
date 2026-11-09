@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -17,7 +17,7 @@ namespace CreativeRelab.Updates
         public string Slug, Name; public bool Preview;
         public static Product Get(string slug)
         {
-            switch(slug){case "pc-care":return new Product{Slug=slug,Name="PC Care",Preview=false};case "pc-guard":return new Product{Slug=slug,Name="PC Guard",Preview=true};case "pc-tune":return new Product{Slug=slug,Name="PC Tune",Preview=true};default:throw new ArgumentException("Неизвестная программа.");}
+            switch(slug){case "pc-care":return new Product{Slug=slug,Name="PC Care",Preview=false};case "pc-guard":return new Product{Slug=slug,Name="PC Guard",Preview=true};case "pc-record":return new Product{Slug=slug,Name="PC Record",Preview=false};case "pc-tune":return new Product{Slug=slug,Name="PC Tune",Preview=true};default:throw new ArgumentException("Неизвестная программа.");}
         }
         public string MainExe { get { return Name+".exe"; } }
     }

@@ -1,0 +1,49 @@
+{
+  "running": false,
+  "cases": [
+    {
+      "test": "system-audio",
+      "status": "pass",
+      "measurement": {
+        "samples": 100011,
+        "seconds": 6.2506875,
+        "rms": 0.02463748156297199,
+        "peak": 0.04541015625
+      }
+    },
+    {
+      "test": "microphone-speech",
+      "status": "skipped-by-owner",
+      "microphoneOpened": false
+    },
+    {
+      "test": "camera-alone",
+      "status": "pass",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "6.600000"
+        }
+      },
+      "visualContentReviewed": false
+    },
+    {
+      "test": "camera-overlay",
+      "status": "failed",
+      "error": "System.IO.IOException: Окно закрыто, свёрнуто или больше недоступно.\r\n   в PCRecord.CaptureEngine.Options(Dictionary`2 args, Boolean isSnapshot)\r\n   в PCRecord.CaptureEngine.Start(Dictionary`2 args, Boolean isSnapshot, Boolean preview)\r\n   в PCRecord.ExtendedVerification.<>c__DisplayClass10.<<Run>b__4>d__1b.MoveNext()"
+    }
+  ],
+  "metrics": [],
+  "metricsFile": "metrics-20261109-104350-a30af1.jsonl",
+  "exitCode": 1
+}

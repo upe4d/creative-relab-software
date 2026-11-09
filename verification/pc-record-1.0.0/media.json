@@ -1,0 +1,56 @@
+{
+  "cases": [
+    {
+      "test": "trim-audio-video-decode",
+      "status": "pass",
+      "duration": 2.021354,
+      "audioRms": 0.022480996270348552,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1284,
+            "height": 784,
+            "avg_frame_rate": "115200/3881"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "2.021354"
+        }
+      }
+    },
+    {
+      "test": "trim-1080p60-decode",
+      "status": "pass",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "60/1"
+          }
+        ],
+        "format": {
+          "duration": "1.000000"
+        }
+      }
+    }
+  ],
+  "exitCode": 0,
+  "provenance": {
+    "exeSHA256": "7F740D7DF0C55BEF93A94506508C557FF083A45AD44252FBCE7FC3A09536E473",
+    "finalBinary": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "exitCode": 0,
+  "loadedProductionAssembly": true,
+  "cases": [
+    {
+      "test": "system-audio-tone-decode",
+      "status": "pass",
+      "samples": 66560,
+      "seconds": 4.16,
+      "rms": 0.02403045888307189,
+      "peak": 0.0452880859375
+    },
+    {
+      "test": "camera-alone-decode",
+      "status": "pass",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "4.133333"
+        }
+      },
+      "visualContentReviewed": false
+    },
+    {
+      "test": "camera-overlay-decode",
+      "status": "pass",
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 644,
+            "height": 420,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "4.233333"
+        }
+      },
+      "visualContentReviewed": false
+    },
+    {
+      "test": "microphone-speech",
+      "status": "skipped-by-owner",
+      "microphoneOpened": false
+    }
+  ],
+  "note": "Audio/camera media stay local; no microphone capture and no upload.",
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

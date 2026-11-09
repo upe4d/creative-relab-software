@@ -1,0 +1,106 @@
+{
+  "cases": [
+    {
+      "test": "preferences-after-webview-reload",
+      "status": "pass"
+    },
+    {
+      "test": "navigation-record",
+      "status": "pass"
+    },
+    {
+      "test": "navigation-screenshots",
+      "status": "pass"
+    },
+    {
+      "test": "navigation-library",
+      "status": "pass"
+    },
+    {
+      "test": "navigation-trim",
+      "status": "pass"
+    },
+    {
+      "test": "navigation-settings",
+      "status": "pass"
+    },
+    {
+      "test": "navigation-about",
+      "status": "pass"
+    },
+    {
+      "test": "theme-light-dark",
+      "status": "pass"
+    },
+    {
+      "test": "create-test-window",
+      "status": "pass"
+    },
+    {
+      "test": "window-picker-and-preview",
+      "status": "pass"
+    },
+    {
+      "test": "record-pause-resume-stop",
+      "status": "pass"
+    },
+    {
+      "test": "screenshot-editor-save",
+      "status": "pass"
+    },
+    {
+      "test": "library-refresh-filter-search-sort",
+      "status": "pass"
+    },
+    {
+      "test": "trim-export",
+      "status": "pass"
+    },
+    {
+      "test": "viewport-880",
+      "status": "evidence",
+      "innerWidth": 880,
+      "innerHeight": 830,
+      "scrollWidth": 880
+    },
+    {
+      "test": "layout-880",
+      "status": "pass"
+    },
+    {
+      "test": "viewport-1120",
+      "status": "evidence",
+      "innerWidth": 1120,
+      "innerHeight": 830,
+      "scrollWidth": 1120
+    },
+    {
+      "test": "layout-1120",
+      "status": "pass"
+    },
+    {
+      "test": "viewport-1280",
+      "status": "evidence",
+      "innerWidth": 1280,
+      "innerHeight": 830,
+      "scrollWidth": 1280
+    },
+    {
+      "test": "layout-1280",
+      "status": "pass"
+    },
+    {
+      "test": "select-arrow-padding",
+      "status": "pass"
+    },
+    {
+      "test": "external-open-file-folder-and-links",
+      "status": "not-run",
+      "reason": "Opens external applications; not covered by this internal interface run"
+    }
+  ],
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

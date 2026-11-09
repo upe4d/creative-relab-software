@@ -1,0 +1,32 @@
+{
+  "galleryNext": true,
+  "mobileAuroraOverflowFixed": true,
+  "errors": [],
+  "widths": [
+    {
+      "scrollWidth": 1425,
+      "width": 1440,
+      "clientWidth": 1425
+    },
+    {
+      "scrollWidth": 1009,
+      "width": 1024,
+      "clientWidth": 1009
+    },
+    {
+      "scrollWidth": 753,
+      "width": 768,
+      "clientWidth": 753
+    },
+    {
+      "scrollWidth": 375,
+      "width": 390,
+      "clientWidth": 375
+    }
+  ],
+  "galleryImages": 3,
+  "galleryClose": true,
+  "products": 4,
+  "scope": "Local preview only; GitHub download links not yet published",
+  "galleryOpen": true
+}

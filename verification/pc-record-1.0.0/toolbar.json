@@ -1,0 +1,18 @@
+{
+  "running": false,
+  "cases": [
+    {
+      "test": "floating-toolbar-pause-resume-stop",
+      "status": "pass",
+      "visibleTopmost": true,
+      "excludeApiAccepted": true
+    }
+  ],
+  "metrics": [],
+  "metricsFile": "metrics-20261109-104541-8012c2.jsonl",
+  "exitCode": 0,
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "test": "display-source-mp4-decode",
+      "status": "pass",
+      "bytes": 162544,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 3120,
+            "height": 2080,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "3.233333"
+        }
+      }
+    },
+    {
+      "test": "display-source-mkv-decode",
+      "status": "pass",
+      "bytes": 165118,
+      "metadata": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 3120,
+            "height": 2080,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "3.333333"
+        },
+        "durationSource": "decoded-frame-count"
+      }
+    }
+  ],
+  "exitCode": 0,
+  "expectedSizeSource": "Earlier primary-display measurement: 3120x2080",
+  "scope": "Own synthetic full-screen content; no audio or camera",
+  "provenance": {
+    "exeSHA256": "0E71F79AA75873D02113C90BF19AE7970D51AA96158FA5211F857E910E2CE88A",
+    "finalBinary": true
+  }
+}

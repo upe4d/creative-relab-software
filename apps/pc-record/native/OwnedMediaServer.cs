@@ -1,0 +1,12 @@
+﻿using System;using System.IO;using System.Net;using System.Net.Sockets;using System.Text;using System.Threading.Tasks;
+namespace PCRecord {
+ // Одноразовый loopback-сервер даёт кодеку произвольное чтение одного собственного файла.
+ internal sealed class OwnedMediaServer:IDisposable {
+  readonly Paths paths;readonly string file,token;readonly TcpListener listener;volatile bool closed;
+  public string Url{get{return "http://127.0.0.1:"+((IPEndPoint)listener.LocalEndpoint).Port+"/"+token;}}
+  public OwnedMediaServer(Paths p,string f){paths=p;file=f;token=Guid.NewGuid().ToString("N");listener=new TcpListener(IPAddress.Loopback,0);listener.Start();Serve();}
+  async void Serve(){while(!closed){try{var client=await listener.AcceptTcpClientAsync();Handle(client);}catch(ObjectDisposedException){break;}catch(SocketException){if(closed)break;}}}
+  async void Handle(TcpClient client){using(client){try{client.ReceiveTimeout=5000;using(var stream=client.GetStream()){var reader=new StreamReader(stream,Encoding.ASCII,false,1024,true);string first=await reader.ReadLineAsync();if(first==null||first.Length>2048)return;string[] request=first.Split(' ');if(request.Length<2||request[1]!="/"+token||(request[0]!="GET"&&request[0]!="HEAD"))return;long length=new FileInfo(file).Length,start=0,end=length-1;bool partial=false;int total=0;string line;while(!String.IsNullOrEmpty(line=await reader.ReadLineAsync())){total+=line.Length;if(total>8192)return;if(line.StartsWith("Range: bytes=",StringComparison.OrdinalIgnoreCase)){string[] range=line.Substring(13).Split('-');long value;if(range.Length!=2||!Int64.TryParse(range[0],out value))return;start=value;if(Int64.TryParse(range[1],out value))end=Math.Min(end,value);partial=true;}}if(start<0||end<start||start>=length)return;long count=end-start+1;string header="HTTP/1.1 "+(partial?"206 Partial Content":"200 OK")+"\r\nContent-Type: application/octet-stream\r\nAccept-Ranges: bytes\r\nContent-Length: "+count+"\r\nConnection: close\r\n"+(partial?"Content-Range: bytes "+start+"-"+end+"/"+length+"\r\n":"")+"\r\n";byte[] bytes=Encoding.ASCII.GetBytes(header);await stream.WriteAsync(bytes,0,bytes.Length);if(request[0]=="GET")using(var input=new OwnedInput(paths,file,start,count)){await input.Stream.CopyToAsync(stream);}}}catch(IOException){}catch(ObjectDisposedException){}catch(SocketException){}}}
+  public void Dispose(){closed=true;listener.Stop();}
+ }
+}
