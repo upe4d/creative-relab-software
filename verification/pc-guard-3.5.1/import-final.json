@@ -1,0 +1,6 @@
+{
+  "status": "not-confirmed",
+  "reason": "Access denied while reading a locally created hash-list fixture in a separate test host; cause unconfirmed",
+  "csvParserTested": true,
+  "earlierCandidateImportPassed": true
+}

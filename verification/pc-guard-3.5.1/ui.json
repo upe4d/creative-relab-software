@@ -1,0 +1,21 @@
+{
+  "testedExeSHA256": "284B083AA69A819B1B295287B6542C0CDF7F3FA5A6DFF0EA80CC383C3ABFCD7E",
+  "cases": [
+    {
+      "test": "own-scan-file-with-passive-defender",
+      "status": "pass",
+      "count": 1,
+      "findings": 0,
+      "skipped": 0
+    },
+    {
+      "test": "own-scan-folder-with-passive-defender",
+      "status": "pass",
+      "count": 1,
+      "findings": 0,
+      "skipped": 0
+    }
+  ],
+  "finalBuildVisualCheck": "not-completed-browser-control-could-not-determine-url",
+  "dialogTestScope": "Native dialogs on own test window; fallback owner present for file and folder"
+}

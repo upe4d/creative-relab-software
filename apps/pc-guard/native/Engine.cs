@@ -67,8 +67,21 @@ namespace PCGuard
             byte[] bytes; using (var file = SafeFiles.OpenStable(path, false)) { using (var memory = new MemoryStream()) { file.CopyTo(memory); bytes = memory.ToArray(); } }
             string hash; using (var memory = new MemoryStream(bytes)) hash = SafeFiles.Hash(memory);
             if (!hash.Equals(expectedHash, StringComparison.OrdinalIgnoreCase)) throw new IOException("SHA-256 базы не совпала. Предыдущая база сохранена.");
-            var candidate = Validate(Store.Object(Store.Serializer().DeserializeObject(Store.Utf8.GetString(bytes))));
-            lock (gate) { store.Write("engine-rules.json", candidate); database = candidate; index = Index(candidate); }
+            Dictionary<string,object> candidate;
+            lock(gate) {
+                if(String.Equals(Path.GetExtension(path),".json",StringComparison.OrdinalIgnoreCase)) candidate=Validate(Store.Object(Store.Serializer().DeserializeObject(Store.Utf8.GetString(bytes).TrimStart('\uFEFF'))));
+                else {
+                    var extension=Path.GetExtension(path).ToLowerInvariant();
+                    if(extension!=".txt"&&extension!=".csv"&&extension!=".sha256")throw new InvalidDataException("Поддерживаются JSON PC Guard и списки SHA-256 TXT/CSV/SHA256; базы ClamAV CVD требуют отдельного движка.");
+                    // Внешние списки дополняют базу предупреждениями, сохраняя существующие блокирующие правила.
+                    var imported=HashListImport.Parse(Store.Utf8.GetString(bytes),Path.GetFileName(path));
+                    var next=new Dictionary<string,Dictionary<string,object>>(index,StringComparer.OrdinalIgnoreCase);
+                    foreach(var row in imported)if(!next.ContainsKey(Store.Text(row,"sha256")))next.Add(Store.Text(row,"sha256"),row);
+                    candidate=Validate(Store.Map("schema",1,"version","Import-"+DateTime.UtcNow.ToString("yyyyMMdd-HHmmss"),"feedCommit",ManagedFeedCommit(),"hashes",next.Values.ToArray()));
+                }
+                if(Store.Utf8.GetByteCount(Store.Json(candidate))>16*1024*1024)throw new IOException("Объединённая база больше 16 МиБ. Предыдущая база сохранена.");
+                store.Write("engine-rules.json",candidate);database=candidate;index=Index(candidate);
+            }
             store.Journal("База собственного движка", "Выполнено", "Импорт версии " + Store.Text(candidate,"version") + "; проверен SHA-256 файла. Это контроль целостности, не подтверждение репутации издателя."); return Info();
         }
         internal string[] BlockHashes(){lock(gate)return index.Values.Where(r=>Store.Text(r,"action")!="alert").Select(r=>Store.Text(r,"sha256")).OrderBy(x=>x,StringComparer.Ordinal).ToArray();}

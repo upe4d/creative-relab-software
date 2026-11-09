@@ -1,0 +1,21 @@
+{
+  "checks": 12,
+  "failures": 0,
+  "results": [
+    "TXT/CSV SHA256 deduplicated",
+    "Imported lists alert only",
+    "MD5 rejected",
+    "Embedded alphanumeric token rejected",
+    "Oversized line rejected",
+    "Import merges and deduplicates existing database",
+    "Existing blocking rules retained",
+    "Actual engine detects imported SHA as warning",
+    "Wrong expected SHA rejected",
+    "Rejected import preserves database",
+    "Import without SHA256 rejected",
+    "Malformed list preserves database"
+  ],
+  "actualProductionEngine": true,
+  "malwareDownloaded": false,
+  "testedExeSHA256": "284B083AA69A819B1B295287B6542C0CDF7F3FA5A6DFF0EA80CC383C3ABFCD7E"
+}

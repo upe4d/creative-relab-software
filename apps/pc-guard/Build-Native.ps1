@@ -11,7 +11,7 @@ foreach($file in @(Get-ChildItem -LiteralPath $Destination -Filter '*.ps1' -Recu
 # Значок издателя создаётся из предоставленного аватара без перерисовки.
 & (Join-Path $PSScriptRoot 'Make-BrandIcon.ps1') -Source (Join-Path $PSScriptRoot 'public\assets\creative-relab-avatar.png') -Destination $Destination
 $iconPath=Join-Path $Destination 'app.ico'
-$manifest='<?xml version="1.0" encoding="utf-8"?><assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1"><assemblyIdentity version="3.5.0.0" name="PCGuard"/><trustInfo xmlns="urn:schemas-microsoft-com:asm.v3"><security><requestedPrivileges><requestedExecutionLevel level="asInvoker" uiAccess="false"/></requestedPrivileges></security></trustInfo><compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1"><application><supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/></application></compatibility></assembly>'
+$manifest='<?xml version="1.0" encoding="utf-8"?><assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1"><assemblyIdentity version="3.5.1.0" name="PCGuard"/><trustInfo xmlns="urn:schemas-microsoft-com:asm.v3"><security><requestedPrivileges><requestedExecutionLevel level="asInvoker" uiAccess="false"/></requestedPrivileges></security></trustInfo><compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1"><application><supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/></application></compatibility></assembly>'
 [IO.File]::WriteAllText((Join-Path $Destination 'app.manifest'),$manifest,[Text.Encoding]::UTF8)
 $compiler=Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
 $sources=@(Get-ChildItem -LiteralPath (Join-Path $Destination 'native') -Filter '*.cs' -File|ForEach-Object FullName)

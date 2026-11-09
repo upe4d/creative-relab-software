@@ -81,17 +81,47 @@ function Get-GuardFileAnalysis($Arguments) {
 
 function Select-GuardPath($Arguments) {
     Add-Type -AssemblyName System.Windows.Forms
-    if ($Arguments.kind -eq 'folder') {
-        $dialog = New-Object Windows.Forms.FolderBrowserDialog
-        $dialog.Description = 'PC Guard: выбери папку или USB-диск'; $dialog.ShowNewFolderButton = $false
-        try { if ($dialog.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) { return @{path=$dialog.SelectedPath;cancelled=$false} } }
-        finally { $dialog.Dispose() }
-    } else {
-        $dialog = New-Object Windows.Forms.OpenFileDialog; $dialog.Title = 'PC Guard: выбери файл'; $dialog.CheckFileExists = $true
-        try { if ($dialog.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) { return @{path=$dialog.FileName;cancelled=$false} } }
-        finally { $dialog.Dispose() }
+    # Владелец делает диалог модальным относительно окна PC Guard, в том числе между процессами.
+    if (-not ('PCGuardDialogOwner' -as [type])) {
+        Add-Type -ReferencedAssemblies System.Windows.Forms -TypeDefinition @"
+using System; using System.Text; using System.Runtime.InteropServices; using System.Windows.Forms;
+public sealed class PCGuardDialogOwner : IWin32Window {
+    private readonly IntPtr handle; public PCGuardDialogOwner(IntPtr value) { handle=value; }
+    public IntPtr Handle { get { return handle; } }
+    [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
+    [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern int GetWindowText(IntPtr h, StringBuilder text, int length);
+}
+"@
     }
-    return @{path=$null;cancelled=$true}
+    $fallback = $null; $dialog = $null
+    $handle = [PCGuardDialogOwner]::GetForegroundWindow(); $caption = New-Object Text.StringBuilder 512
+    [void][PCGuardDialogOwner]::GetWindowText($handle,$caption,512)
+    if ($handle -ne [IntPtr]::Zero -and $caption.ToString().Equals('PC Guard',[StringComparison]::OrdinalIgnoreCase)) {
+        $owner = New-Object PCGuardDialogOwner $handle
+    } else {
+        # Если фокус успел перейти, временное собственное окно удержит только диалог выше приложения.
+        $fallback = New-Object Windows.Forms.Form
+        $fallback.Text='PC Guard: выбор пути'; $fallback.ShowInTaskbar=$false; $fallback.TopMost=$true
+        $fallback.FormBorderStyle='FixedToolWindow'; $fallback.Opacity=0
+        $fallback.StartPosition='CenterScreen'; $fallback.Width=1; $fallback.Height=1
+        $fallback.Show(); $fallback.Activate(); $owner=$fallback
+    }
+    try {
+        if ($Arguments.kind -eq 'folder') {
+            $dialog=New-Object Windows.Forms.FolderBrowserDialog
+            $dialog.Description='PC Guard: выбери папку или USB-диск'; $dialog.ShowNewFolderButton=$false
+        } else {
+            $dialog=New-Object Windows.Forms.OpenFileDialog
+            $dialog.Title='PC Guard: выбери файл'; $dialog.CheckFileExists=$true
+        }
+        if ($dialog.ShowDialog($owner) -eq [Windows.Forms.DialogResult]::OK) {
+            $selected=if($Arguments.kind -eq 'folder'){$dialog.SelectedPath}else{$dialog.FileName}
+            return @{path=$selected;cancelled=$false}
+        }
+        return @{path=$null;cancelled=$true}
+    } finally {
+        if($dialog){$dialog.Dispose()}; if($fallback){$fallback.Dispose()}
+    }
 }
 
 function Open-GuardWindow($Arguments) {

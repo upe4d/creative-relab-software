@@ -1,0 +1,23 @@
+{
+  "mode": "Own temporary windows and native dialogs only",
+  "noUserFilesSelected": true,
+  "checks": 2,
+  "results": [
+    {
+      "ownerTitle": "PC Guard: выбор пути",
+      "dialogTitle": "PC Guard: выбери файл",
+      "ownsTestWindow": false,
+      "kind": "file",
+      "ownerPresent": true,
+      "visibleDialogFound": true
+    },
+    {
+      "ownerTitle": "PC Guard: выбор пути",
+      "dialogTitle": "Обзор папок",
+      "ownsTestWindow": false,
+      "kind": "folder",
+      "ownerPresent": true,
+      "visibleDialogFound": true
+    }
+  ]
+}
