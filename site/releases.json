@@ -1,6 +1,6 @@
 {
   "repository": "upe4d/creative-relab-software",
-  "recordedAt": "2026-11-08T11:32:31.702103+00:00",
+  "recordedAt": "2026-11-09T08:00:39.486684+00:00",
   "products": [
     {
       "id": "pc-care",
@@ -47,6 +47,22 @@
         "portable": {
           "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-tune-v1.1.0/pc-tune-1.1.0-portable.zip",
           "bytes": 71390120
+        }
+      }
+    },
+    {
+      "id": "pc-record",
+      "version": "1.0.0",
+      "date": "2026-11-09T07:59:30Z",
+      "prerelease": false,
+      "assets": {
+        "portable": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-record-v1.0.0/pc-record-1.0.0-portable.zip",
+          "bytes": 28681901
+        },
+        "installer": {
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-record-v1.0.0/pc-record-1.0.0-portable.exe",
+          "bytes": 28889088
         }
       }
     }
