@@ -1,20 +1,22 @@
 {
   "repository": "upe4d/creative-relab-software",
-  "recordedAt": "2026-11-09T09:43:28.620728+00:00",
+  "recordedAt": "2026-11-09T16:21:08.580414+00:00",
   "products": [
     {
       "id": "pc-care",
-      "version": "1.2.0",
-      "date": "2026-11-08T11:29:31Z",
+      "version": "1.3.0",
+      "date": "2026-11-09T16:19:32Z",
       "prerelease": false,
       "assets": {
         "installer": {
-          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.2.0/pc-care-1.2.0-portable.exe",
-          "bytes": 663040
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.3.0/pc-care-1.3.0-portable.exe",
+          "bytes": 678912,
+          "sha256": "21690b3d36f788c735cee0b5db408c47ca489c5e195c33f41e018f903793fe53"
         },
         "portable": {
-          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.2.0/pc-care-1.2.0-portable.zip",
-          "bytes": 455913
+          "url": "https://github.com/upe4d/creative-relab-software/releases/download/pc-care-v1.3.0/pc-care-1.3.0-portable.zip",
+          "bytes": 471715,
+          "sha256": "c12c0d9898c4ae26b627d148afae911c10d8fcf8d978bc47e7c827a0bb1ad764"
         }
       }
     },
