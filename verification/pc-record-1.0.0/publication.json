@@ -1,0 +1,111 @@
+{
+  "release": "https://github.com/upe4d/creative-relab-software/releases/tag/pc-record-v1.0.0",
+  "draft": false,
+  "prerelease": false,
+  "assets": [
+    {
+      "name": "pc-record-1.0.0-portable.exe",
+      "bytes": 28889088,
+      "sha256": "e2eeb7df3fb54f62ce8e5becc5dab82473b9a835d51e74eb7ca6c01fe0bf5975",
+      "matchesLocalAndGitHub": true
+    },
+    {
+      "name": "pc-record-1.0.0-portable.zip",
+      "bytes": 28681901,
+      "sha256": "ada0d6e961f678fafdb9de0f01a630dabca929c65498e604ec308c0a56a0bb50",
+      "matchesLocalAndGitHub": true
+    },
+    {
+      "name": "pc-record-1.0.0-SHA256SUMS.txt",
+      "bytes": 286,
+      "sha256": "284070eece51adbd2584c07cfceca53ad80f9b953b2de79565d8c1c5aab3e14e",
+      "matchesLocalAndGitHub": true
+    },
+    {
+      "name": "pc-record-1.0.0-source.zip",
+      "bytes": 14102638,
+      "sha256": "224a46d71351911cda7efe481c33e3c58efe99a320a95aabc7eac50241cc305f",
+      "matchesLocalAndGitHub": true
+    }
+  ],
+  "verifiedAt": "2026-11-09T08:07:24.697527+00:00",
+  "website": "https://tools.crrl.ru/software/#pc-record-details",
+  "websiteFiles": [
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256": "af7b6d18857b792738e165ba89c0400c00fcb9697e29e36e7c2d0ac7d8def620",
+      "matchesDeployedSource": true
+    },
+    {
+      "path": "releases.json",
+      "status": 200,
+      "sha256": "4bdfa2999501e22861217ab747b870af408d908160355171f11bcc20dc4924cf",
+      "matchesDeployedSource": true
+    },
+    {
+      "path": "assets/software.js",
+      "status": 200,
+      "sha256": "1f7ce65876b69dd5daa3305f49852fcc05ab453a5346d02e679d14e40b6d0492",
+      "matchesDeployedSource": true
+    },
+    {
+      "path": "assets/software.css",
+      "status": 200,
+      "sha256": "9a472be45f631a301a73b91cac8ea174d396019fcc3aa9af95241dcf44981de5",
+      "matchesDeployedSource": true
+    },
+    {
+      "path": "assets/screenshots/pc-record-record.png",
+      "status": 200,
+      "sha256": "613501da6e69bf8847db312341d8f570b9f84791810b830c6bdfad47e5c5e0dd",
+      "matchesDeployedSource": true
+    },
+    {
+      "path": "assets/screenshots/pc-record-light.png",
+      "status": 200,
+      "sha256": "880755caf2718b9271dde29f7ccb5048f0ed2c7c201c5e0810a1a83338f0ef84",
+      "matchesDeployedSource": true
+    },
+    {
+      "path": "assets/screenshots/pc-record-toolbar.png",
+      "status": 200,
+      "sha256": "60fe36f9b0947144258e905f11668615fba177c88293467a48decfa5b018521b",
+      "matchesDeployedSource": true
+    }
+  ],
+  "deployedFiles": 20,
+  "protectedFilesChecked": 60,
+  "protectedFileChanges": [],
+  "neighborHttpChecks": {
+    "https://tools.crrl.ru/": {
+      "status": 200,
+      "url": "https://tools.crrl.ru/"
+    },
+    "https://tools.crrl.ru/1111/": {
+      "status": 200,
+      "url": "https://tools.crrl.ru/1111/admin.php"
+    },
+    "https://art.gptru.pro/": {
+      "status": 200,
+      "url": "https://art.gptru.pro/editor"
+    }
+  },
+  "updater": {
+    "product": "PC Record",
+    "installedVersion": "1.0.0",
+    "latestVersion": "1.0.0",
+    "updateAvailable": false,
+    "preview": false,
+    "releaseUrl": "https://github.com/upe4d/creative-relab-software/releases/tag/pc-record-v1.0.0",
+    "sha256": "e2eeb7df3fb54f62ce8e5becc5dab82473b9a835d51e74eb7ca6c01fe0bf5975",
+    "bytes": 28889088,
+    "programInstalled": false
+  },
+  "gallery": {
+    "testedInBrowser": true,
+    "images": 3,
+    "openNextClose": "pass"
+  },
+  "library": "unchanged; earlier successful evidence retained; final repeat not completed"
+}
